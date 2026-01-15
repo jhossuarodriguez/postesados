@@ -11,7 +11,7 @@ const navItems = [
 
 <section>
     <header
-        class="fixed mt-5 inset-x-0 mx-auto w-full max-w-[1340px] shadow-2xl z-50 bg-[#000070] rounded-xl px-4"
+        class="fixed mt-5 inset-x-0 mx-auto w-full md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
     >
         <nav class="py-2">
             <div class="flex justify-between items-center">
@@ -28,9 +28,9 @@ const navItems = [
                         navItems.map((item, index) => (
                             <a
                                 href={item.href}
-                                class={`px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
+                                class={`opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
                                     index === 0
-                                        ? "bg-[#0000a0] rounded-full"
+                                        ? "bg-[#0000a0] rounded-full opacity-100"
                                         : ""
                                 }`}
                             >
@@ -42,7 +42,7 @@ const navItems = [
                         <img
                             src="/logo_postesados_nobg.webp"
                             alt="Postesados Logo"
-                            class="h-16 w-auto ml-14"
+                            class="h-16 w-auto md:ml-14 lg:ml-48"
                         />
                     </a>
                 </div>
