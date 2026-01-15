@@ -1,0 +1,246 @@
+---
+import PlayButton from "@/assets/icons/playButton.svg";
+import PrevButton from "@/assets/icons/prevButton.svg";
+import NextButton from "@/assets/icons/nextButton.svg";
+---
+
+<section class="bg-[#e8ecf5] rounded-2xl pt-6 mt-5 w-full mx-auto pb-10">
+    <div class="pt-[174px] pb-[70px] max-w-[1340px] mx-auto px-5">
+        <header
+            class="text-[#0032A0] text-6xl font-medium tracking-tighter leading-20"
+        >
+            <span class="font-bold">Construimos</span> Sobre <br /> Relaciones
+            <span class="font-bold">Sólidas.</span>
+        </header>
+    </div>
+
+    <div class="w-full mx-auto px-5 flex justify-center items-center">
+        <section
+            class="splide w-full h-[341px] rounded-xl overflow-hidden"
+            aria-label="Proyectos Destacados"
+        >
+            <div class="splide__track h-full">
+                <ul class="splide__list h-full flex items-center">
+                    <li
+                        class="splide__slide relative flex items-center justify-center"
+                    >
+                        <video
+                            class="w-[600px] h-[336px] object-cover rounded-xl"
+                            src="/postesados_hero.webm"
+                            muted
+                            loop
+                            playsinline
+                            autoplay
+                        >
+                        </video>
+
+                        <!-- Play button overlay -->
+                        <div
+                            class="absolute inset-0 flex items-center justify-center"
+                        >
+                            <button
+                                class="bg-white/90 hover:bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+                            >
+                                <PlayButton />
+                            </button>
+                        </div>
+                    </li>
+
+                    <li
+                        class="splide__slide relative flex items-center justify-center"
+                    >
+                        <div
+                            class="w-[687px] h-[341px] bg-gradient-to-r from-orange-400 via-yellow-500 to-orange-600 rounded-xl relative overflow-hidden"
+                        >
+                            <!-- Background image placeholder -->
+                            <div class="absolute inset-0 bg-black/40"></div>
+                            <img
+                                src="/images/slider_1.webp"
+                                alt="Worker with safety equipment"
+                                class="w-full h-full object-cover"
+                            />
+
+                            <!-- Overlay content -->
+                            <div
+                                class="absolute inset-0 p-8 flex flex-col justify-center text-white"
+                            >
+                                <div class="mb-6">
+                                    <span
+                                        class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center"
+                                    >
+                                        <span
+                                            class="w-2 h-2 bg-white rounded-full mr-2"
+                                        ></span>
+                                        Insight
+                                    </span>
+                                </div>
+                                <h3
+                                    class="text-4xl font-bold leading-tight mb-4"
+                                >
+                                    Health & Safety: From First Page to Industry
+                                    Standard
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li
+                        class="splide__slide relative flex items-center justify-center"
+                    >
+                        <div
+                            class="w-[687px] h-[341px] bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl relative overflow-hidden"
+                        >
+                            <!-- Background image placeholder -->
+                            <div class="absolute inset-0 bg-black/30"></div>
+                            <img
+                                src="/images/slider_2.webp"
+                                alt="Construction project"
+                                class="w-full h-full object-cover"
+                            />
+
+                            <!-- Overlay content -->
+                            <div
+                                class="absolute inset-0 p-8 flex flex-col justify-center text-white"
+                            >
+                                <div class="mb-6">
+                                    <span
+                                        class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium"
+                                    >
+                                        Innovation
+                                    </span>
+                                </div>
+                                <h3
+                                    class="text-4xl font-bold leading-tight mb-4"
+                                >
+                                    Advanced Technology in Construction Projects
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li
+                        class="splide__slide relative flex items-center justify-center"
+                    >
+                        <div
+                            class="w-[687px] h-[341px] bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl relative overflow-hidden"
+                        >
+                            <!-- Background image placeholder -->
+                            <div class="absolute inset-0 bg-black/30"></div>
+                            <img
+                                src="/images/slider_3.webp"
+                                alt="Construction project"
+                                class="w-full h-full object-cover"
+                            />
+
+                            <!-- Overlay content -->
+                            <div
+                                class="absolute inset-0 p-8 flex flex-col justify-center text-white"
+                            >
+                                <div class="mb-6">
+                                    <span
+                                        class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium"
+                                    >
+                                        Innovation
+                                    </span>
+                                </div>
+                                <h3
+                                    class="text-4xl font-bold leading-tight mb-4"
+                                >
+                                    Advanced Technology in Construction Projects
+                                </h3>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Custom navigation controls positioned below -->
+    <div class="flex items-center justify-center mt-6 gap-4">
+        <!-- Previous button -->
+        <button
+            id="prevBtn"
+            class="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
+        >
+            <PrevButton />
+        </button>
+
+        <!-- Dots pagination -->
+        <div class="flex space-x-2">
+            <button
+                class="dot w-3 h-3 bg-[#0032A0] rounded-full transition-opacity duration-200"
+                data-slide="0"></button>
+            <button
+                class="dot w-3 h-3 bg-gray-300 rounded-full transition-opacity duration-200"
+                data-slide="1"></button>
+            <button
+                class="dot w-3 h-3 bg-gray-300 rounded-full transition-opacity duration-200"
+                data-slide="2"></button>
+            <button
+                class="dot w-3 h-3 bg-gray-300 rounded-full transition-opacity duration-200"
+                data-slide="3"></button>
+        </div>
+
+        <!-- Next button -->
+        <button
+            id="nextBtn"
+            class="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
+        >
+            <NextButton />
+        </button>
+    </div>
+</section>
+
+<script>
+    import Splide from "@splidejs/splide";
+    import "@splidejs/splide/css";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const splide = new Splide(".splide", {
+            type: "loop",
+            autoplay: true,
+            interval: 5000,
+            arrows: false,
+            pagination: false,
+            perPage: 2,
+            perMove: 1,
+            gap: "2rem",
+            padding: "2rem",
+            breakpoints: {
+                768: {
+                    perPage: 1,
+                    gap: "1rem",
+                    padding: "1rem",
+                },
+            },
+        }).mount();
+
+        // Custom navigation
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const dots = document.querySelectorAll(".dot");
+
+        // Previous/Next buttons
+        prevBtn?.addEventListener("click", () => splide.go("<"));
+        nextBtn?.addEventListener("click", () => splide.go(">"));
+
+        // Dots navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => splide.go(index));
+        });
+
+        // Update active dot
+        splide.on("moved", (newIndex) => {
+            dots.forEach((dot, index) => {
+                if (index === newIndex) {
+                    dot.classList.remove("bg-gray-300");
+                    dot.classList.add("bg-[#0032A0]");
+                } else {
+                    dot.classList.remove("bg-[#0032A0]");
+                    dot.classList.add("bg-gray-300");
+                }
+            });
+        });
+    });
+</script>
