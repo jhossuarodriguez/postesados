@@ -11,13 +11,13 @@ const navItems = [
 
 <section>
     <header
-        class="fixed mt-5 inset-x-0 mx-auto w-full md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
+        class="fixed mt-5 inset-x-0 mx-auto w-full max-w-[430px] md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
     >
         <nav class="py-2">
             <div class="flex justify-between items-center">
                 <div class="flex items-center gap-1">
                     <div
-                        class="flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
+                        class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                     >
                         <button class="cursor-pointer size-6">
                             <Menu class="text-white" />
@@ -28,7 +28,7 @@ const navItems = [
                         navItems.map((item, index) => (
                             <a
                                 href={item.href}
-                                class={`opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
+                                class={`hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
                                     index === 0
                                         ? "bg-[#0000a0] rounded-full opacity-100"
                                         : ""
@@ -52,8 +52,12 @@ const navItems = [
                         href="/contact"
                         class="flex gap-2 text-white text-sm rounded-full bg-[#0000a0] px-3 py-1"
                         >Contactanos
-                        <MoveRight />
+                        <MoveRight class="hidden lg:block" />
                     </a>
+
+                    <button class="lg:hidden cursor-pointer size-6">
+                        <Menu class="text-white" />
+                    </button>
                 </div>
             </div>
         </nav>
