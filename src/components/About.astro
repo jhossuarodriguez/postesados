@@ -1,1 +1,39 @@
-<section class="mt-40 pt-24">HELLO WORD</section>
+---
+import MoveRight from "@/assets/icons/MoveRight.svg";
+---
+
+<section class="w-full mt-40 pt-24">
+    <div class="relative w-full rounded-xl overflow-hidden shadow-2xl">
+        <div class="absolute inset-0 bg-[#002884] opacity-70 z-10"></div>
+
+        <video
+            class="w-full object-cover"
+            src="/bg-video.webm"
+            preload="auto"
+            muted
+            loop
+            playsinline
+            aria-hidden="true"
+            autoplay></video>
+
+        <div
+            class="absolute z-20 inset-0 flex flex-col justify-center items-center text-center px-4 md:px-0"
+        >
+            <p
+                class="text-white text-5xl max-w-5xl font-medium text-balance drop-shadow-md"
+            >
+                Una empresa especializada en tecnología de hormigón y soluciones
+                estructurales. Construimos bases donde la calidad y la
+                eficiencia perduran, abriendo camino a la innovación y al
+                desarrollo de grandes proyectos.
+            </p>
+
+            <a
+                href="/about"
+                class="mt-12 inline-block bg-white text-[#000070] font-medium px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-lg"
+                >Contactanos
+                <MoveRight class="inline-block ml-2" />
+            </a>
+        </div>
+    </div>
+</section>
