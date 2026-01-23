@@ -2,12 +2,12 @@
 import MoveRight from "@/assets/icons/MoveRight.svg";
 ---
 
-<section class="w-full mt-40 pt-24">
-    <div class="relative w-full rounded-xl overflow-hidden shadow-2xl">
+<section class="w-full h-screen mt-40 lg:pt-28">
+    <div class="relative w-full rounded-2xl overflow-hidden">
         <div class="absolute inset-0 bg-[#002884] opacity-70 z-10"></div>
 
         <video
-            class="w-full object-cover"
+            class="w-full h-[600px] lg:h-screen object-cover"
             src="/bg-video.webm"
             preload="auto"
             muted
@@ -17,10 +17,10 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
             autoplay></video>
 
         <div
-            class="absolute z-20 inset-0 flex flex-col justify-center items-center text-center px-4 md:px-0"
+            class="absolute z-20 inset-0 flex flex-col justify-center items-center text-center px-4 md:px-0 lg:mt-20 lg:pt-20"
         >
             <p
-                class="text-white text-5xl max-w-5xl font-medium text-balance drop-shadow-md"
+                class="mb-10 text-white text-3xl max-w-5xl lg:max-w-6xl lg:text-6xl font-medium text-balance drop-shadow-md"
             >
                 Una empresa especializada en tecnología de hormigón y soluciones
                 estructurales. Construimos bases donde la calidad y la
@@ -30,7 +30,7 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
 
             <a
                 href="/about"
-                class="mt-12 inline-block bg-white text-[#000070] font-medium px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-lg"
+                class="text-sm lg:text-base lg:mt-16 inline-block bg-white text-[#000070] font-medium px-4 py-2 lg:px-8 lg:py-3 rounded-full hover:bg-gray-100 transition shadow-lg"
                 >Contactanos
                 <MoveRight class="inline-block ml-2" />
             </a>
