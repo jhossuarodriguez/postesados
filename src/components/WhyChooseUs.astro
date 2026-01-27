@@ -1,0 +1,197 @@
+---
+import Building from "@/assets/icons/building.svg";
+import Users from "@/assets/icons/users.svg";
+import Award from "@/assets/icons/award.svg";
+import Briefcase from "@/assets/icons/briefcase.svg";
+---
+
+<section class="flex flex-col w-full h-screen mt-20 lg:mt-40 lg:pt-28">
+    {/* ... (El encabezado se mantiene igual) ... */}
+    <div class="flex flex-col px-4 lg:px-10 lg:mx-60 space-y-10">
+        <div
+            class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-56"
+        >
+            <p
+                class="flex justify-center items-center text-xs lg:text-base text-[#0032A0] font-bold gap-2"
+            >
+                ● Por qué elegirnos
+            </p>
+        </div>
+        <div
+            class="flex flex-col lg:flex-row items-center gap-x-20 space-y-3 lg:space-y-0"
+        >
+            <p class="text-3xl lg:text-7xl text-[#0032A0] w-full lg:max-w-3xl">
+                Innovación en <span class="font-bold text-[#0032A0]"
+                    >Ingeniería,</span
+                >
+                <br />Impulsada por <span class="text-[#0032A0] font-bold"
+                    >Nuestra Experiencia</span
+                >
+            </p>
+        </div>
+    </div>
+
+    <div
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px] mt-20"
+    >
+        {
+            /* ... (Las tres primeras tarjetas se mantienen EXACTAMENTE IGUAL que en tu código original) ... */
+        }
+
+        {/* Large featured card - Proyectos Realizados */}
+        <div
+            class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-lg p-6 bg-[#0032A0]"
+        >
+            <div class="h-full flex flex-col justify-between">
+                <div>
+                    <div
+                        class="bg-white/20 backdrop-blur-sm w-14 h-14 rounded-xl flex items-center justify-center mb-4"
+                    >
+                        <Building class="text-white" />
+                    </div>
+                    <h2 class="text-white mb-2">Proyectos Realizados</h2>
+                    <p class="text-7xl text-white mb-3">+500</p>
+                    <p class="text-white/80 font-general-sans">
+                        Vigas pretensadas, puentes y estructuras de metro
+                        completados exitosamente
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {/* Clientes Satisfechos */}
+        <div
+            class="md:col-span-1 md:row-span-1 rounded-2xl border-2 border-[#0032A0] overflow-hidden relative transition-all duration-300 hover:shadow-lg p-6"
+        >
+            <div class="h-full flex flex-col justify-between">
+                <div
+                    class="bg-[#0032A0]/10 w-12 h-12 rounded-xl flex items-center justify-center"
+                >
+                    <Users class="text-[#0032A0]" />
+                </div>
+                <div>
+                    <h3 class="text-[#0032A0] mb-1">Clientes Satisfechos</h3>
+                    <p class="text-4xl text-[#0032A0] mb-1">+150</p>
+                    <p class="text-gray-600 text-sm font-general-sans">
+                        En todo el país
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {/* Años en el mercado */}
+        <div
+            class="md:col-span-1 md:row-span-1 bg-[#0032A0] rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-lg p-6"
+        >
+            <div class="h-full flex flex-col justify-between">
+                <div
+                    class="bg-white/20 w-12 h-12 rounded-xl flex items-center justify-center"
+                >
+                    <Award class="text-white" />
+                </div>
+                <div>
+                    <h3 class="text-white mb-1">Años en el Mercado</h3>
+                    <p class="text-4xl text-white mb-1">+25</p>
+                    <p class="text-white/80 text-sm font-general-sans">
+                        De experiencia
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {/* --- AQUÍ EMPIEZAN LOS CAMBIOS --- */}
+
+        {/* Especialidades - CON DIFUMINADO BLANCO */}
+        <div
+            class="md:col-span-2 md:row-span-1 border-2 border-[#0032A0] rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-lg group bg-white"
+        >
+            {/* 1. Imagen de fondo */}
+            <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                alt="Especialidades construcción"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0 opacity-40 lg:opacity-100"
+            />
+
+            {
+                /* 2. El DIFUMINADO BLANCO (Gradiente de blanco a transparente hacia arriba) */
+            }
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/90 lg:via-white/70 to-transparent z-1"
+            >
+            </div>
+
+            {/* 3. Contenido (Tus colores originales) */}
+            <div
+                class="relative h-full flex items-center justify-between p-6 z-10"
+            >
+                <div class="flex items-center gap-4">
+                    <div
+                        class="bg-[#0032A0]/10 w-12 h-12 rounded-xl flex items-center justify-center shadow-sm bg-white/50 backdrop-blur-md"
+                    >
+                        <Briefcase class="text-[#0032A0]" />
+                    </div>
+                    <div>
+                        <h3
+                            class="text-[#0032A0] text-lg lg:text-xl font-bold mb-1"
+                        >
+                            Especialidades
+                        </h3>
+                        {
+                            /* Añadido un ligero fondo blanco semitransparente al texto para asegurar legibilidad en móviles */
+                        }
+                        <p
+                            class="text-gray-700 text-sm font-general-sans font-medium lg:bg-transparent bg-white/60 backdrop-blur-sm rounded-lg p-1 lg:p-0"
+                        >
+                            Hormigón pretensado • Tecnología de tensado •
+                            Estructuras especiales
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {/* Grupo Empresarial - CON DIFUMINADO BLANCO */}
+        <div
+            class="md:col-span-1 md:row-span-1 rounded-2xl border-2 border-[#0032A0] overflow-hidden relative transition-all duration-300 hover:shadow-lg group bg-white"
+        >
+            {/* 1. Imagen de fondo */}
+            <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+                alt="Grupo empresarial"
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0 opacity-40 lg:opacity-100"
+            />
+
+            {/* 2. El DIFUMINADO BLANCO */}
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/90 lg:via-white/70 to-transparent z-1"
+            >
+            </div>
+
+            {/* 3. Contenido (Tus colores originales) */}
+            <div class="relative h-full flex flex-col justify-center p-6 z-10">
+                <h3 class="text-[#0032A0] text-lg lg:text-xl font-bold mb-3">
+                    Grupo Empresarial
+                </h3>
+                <div class="space-y-2">
+                    {
+                        /* He añadido un fondo blanco con blur a los tags para que resalten sobre la imagen */
+                    }
+                    <div
+                        class="bg-white/80 backdrop-blur-md border border-white/40 shadow-sm px-3 py-2 rounded-lg"
+                    >
+                        <span class="text-[#0032A0] font-general-sans font-bold"
+                            >Tenax</span
+                        >
+                    </div>
+                    <div
+                        class="bg-white/80 backdrop-blur-md border border-white/40 shadow-sm px-3 py-2 rounded-lg"
+                    >
+                        <span class="text-[#0032A0] font-general-sans font-bold"
+                            >Dr. Drilling</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
