@@ -30,6 +30,15 @@
   src: url('/fonts/montserrat-v31-latin-700.woff2') format('woff2');
 }
 
+@font-face{
+  font-display: swap;
+  font-family: 'GeneralSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/GeneralSans-Regular.woff2') format('woff2');
+}
+
 @theme{
   --shadow-3xl: 0 100px 80px #0000000d,0 41.778px 33.422px #0000000a,0 22.336px 17.869px #00000008,0 12.522px 10.017px #00000008,0 6.65px 5.32px #00000005,0 2.767px 2.214px #00000003;
+  --font-general-sans: 'GeneralSans', sans-serif;
 }
