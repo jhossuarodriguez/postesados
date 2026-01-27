@@ -1,3 +1,7 @@
+> [!WARNING]
+> EN DESARROLLO
+
+
 # Astro Starter Kit: Basics
 
 ```sh
