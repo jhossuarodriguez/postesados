@@ -5,22 +5,22 @@ import NextButton from "@/assets/icons/nextButton.svg";
 
 const slidesData = [
     {
-        src: "/images/slider_1.webp",
-        alt: "Worker with safety equipment",
-        category: "Insight",
-        title: "Health & Safety: From First Page to Industry Standard",
+        src: "/images/tesado-vigas-gato-multitoron.webp",
+        alt: "Técnicos de Postesados JHP operando un gato hidráulico multitorón para el tesado de cables en una viga de hormigón.",
+        category: "Postensado",
+        title: "Tesado de Vigas y Estructuras de Alta Carga",
     },
     {
-        src: "/images/slider_2.webp",
-        alt: "Construction project",
-        category: "Innovation",
-        title: "Advanced Technology in Construction Projects",
+        src: "/images/inyeccion-lechada-proteccion-vigas.webp",
+        alt: "Operario con equipo de protección realizando la inyección técnica de lechada en los ductos de una estructura postesada.",
+        category: "Inyección",
+        title: "Inyección de Lechada para Protección Estructural",
     },
     {
-        src: "/images/slider_3.webp",
-        alt: "Construction project",
-        category: "Innovation",
-        title: "Sustainable Building Practices",
+        src: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
+        alt: "Línea de tetrápodos rompeolas prefabricados instalados para la protección de la zona costera.",
+        category: "Prefabricados",
+        title: "Fabricación de Tetrápodos Rompeolas de 2 Toneladas",
     },
 ];
 ---
@@ -34,7 +34,7 @@ const slidesData = [
         <header
             class="text-[#0032A0] text-4xl sm:text-4xl md:text-6xl font-medium tracking-tighter leading-normal md:leading-20 mx-4 mt-10 lg:mt-0"
         >
-            <span class="font-bold">Construimos</span> Sobre <br /> Relaciones
+            <span class="font-bold">Construimos</span> el Futuro <br /> Sobre Bases
             <span class="font-bold">Sólidas</span>
         </header>
     </div>
@@ -83,8 +83,9 @@ const slidesData = [
                                     <div class="absolute inset-0 p-8 flex flex-col justify-center text-white">
                                         <div class="mb-6 translate-y-10 md:translate-y-24">
                                             <span class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center ">
+                                                {/* Lógica para destacar categorías específicas si es necesario */}
                                                 {slide.category ===
-                                                    "Insight" && (
+                                                    "Infraestructura" && (
                                                     <span class="w-2 h-2 bg-white rounded-full mr-2" />
                                                 )}
                                                 {slide.category}
@@ -172,7 +173,7 @@ const slidesData = [
 
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
-        4;
+
         const dots = document.querySelectorAll(".dot");
 
         prevBtn?.addEventListener("click", () => splide.go("<"));
@@ -183,8 +184,6 @@ const slidesData = [
         });
 
         splide.on("moved", (newIndex) => {
-            // Ajuste de índice porque Splide en modo Loop clona slides y el indice puede ser confuso
-            // Uso de propiedad 'length' de los dots para mantener el modulo correcto
             const activeIndex = newIndex % dots.length;
 
             dots.forEach((dot, index) => {
