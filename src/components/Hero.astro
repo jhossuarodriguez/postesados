@@ -170,7 +170,6 @@ const slidesData = [
             },
         }).mount();
 
-        // Custom navigation logic
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
         4;
@@ -184,8 +183,8 @@ const slidesData = [
         });
 
         splide.on("moved", (newIndex) => {
-            // Ajustamos el índice porque Splide en modo Loop clona slides y el índice puede ser confuso
-            // Usamos la propiedad 'length' de los dots para mantener el modulo correcto
+            // Ajuste de índice porque Splide en modo Loop clona slides y el indice puede ser confuso
+            // Uso de propiedad 'length' de los dots para mantener el modulo correcto
             const activeIndex = newIndex % dots.length;
 
             dots.forEach((dot, index) => {
