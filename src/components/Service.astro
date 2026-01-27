@@ -1,0 +1,194 @@
+---
+import ChartSpline from "@/assets/icons/chart-spline.svg";
+import PrevButton from "@/assets/icons/prevButton.svg";
+import NextButton from "@/assets/icons/nextButton.svg";
+
+const slidesData = [
+    {
+        src: "/images/slider_1.webp",
+        alt: "Worker with safety equipment",
+        category: "Insight",
+        title: "Health & Safety: From First Page to Industry Standard",
+    },
+    {
+        src: "/images/slider_2.webp",
+        alt: "Construction project",
+        category: "Innovation",
+        title: "Advanced Technology in Construction Projects",
+    },
+    {
+        src: "/images/slider_3.webp",
+        alt: "Construction project",
+        category: "Innovation",
+        title: "Sustainable Building Practices",
+    },
+];
+---
+
+<section class="flex flex-col w-full h-screen mt-20 lg:mt-40 lg:pt-28">
+    <div class="flex flex-col px-4 lg:px-10 lg:mx-60 space-y-10">
+        <div
+            class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-64"
+        >
+            <p
+                class="flex justify-center items-center text-xs lg:text-base text-[#0032A0] font-bold gap-2"
+            >
+                <ChartSpline />
+                Nuestras soluciones
+            </p>
+        </div>
+        <div
+            class="flex flex-col lg:flex-row items-center gap-x-20 space-y-3 lg:space-y-0"
+        >
+            <p class="text-3xl lg:text-7xl text-[#0032A0]">
+                Comprehensive
+                <span class="font-bold text-[#0032A0]">Solutions</span>
+                <br />For
+                <span class="text-[#0032A0] font-bold"> Every Build</span>
+            </p>
+
+            <div>
+                <p class="text-balance lg:text-[18px] pt-2 lg:pt-0">
+                    From sketch to skyline, we are your trusted, full-service,
+                    Cradle-to-Grave partner. No matter the scale, phase,
+                    complexity, or risk, we sweat the small stuff to bring your
+                    biggest ideas to life.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="splide w-full h-[516px] md:h-[470px] rounded-xl overflow-hidden"
+        aria-label="Proyectos Destacados"
+    >
+        <div class="splide__track h-full">
+            <ul class="splide__list h-full flex items-center gap-0 md:gap-6">
+                {
+                    slidesData.map((slide) => (
+                        <li class="splide__slide relative flex items-center justify-center ">
+                            <div class="w-[282px] h-[516px] md:w-[400px] lg:w-[900px] lg:h-[470px] rounded-xl relative overflow-hidden group">
+                                <div class="absolute inset-0 bg-black/40" />
+                                <img
+                                    src={slide.src}
+                                    alt={slide.alt}
+                                    class="w-full h-full object-cover mix-blend-overlay transform transition-transform duration-500 group-hover:scale-110"
+                                />
+
+                                <div class="absolute inset-0 p-8 flex flex-col justify-center text-white">
+                                    <div class="mb-6 translate-y-10 md:translate-y-24">
+                                        <span class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center ">
+                                            {slide.category === "Insight" && (
+                                                <span class="w-2 h-2 bg-white rounded-full mr-2" />
+                                            )}
+                                            {slide.category}
+                                        </span>
+                                    </div>
+                                    <h3 class=" md:text-4xl font-bold leading-tight mb-4 translate-y-10 md:translate-y-28">
+                                        {slide.title}
+                                    </h3>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div
+        class="flex items-center justify-center mt-6 gap-9 bg-[#e7ecf6] rounded-full w-56 py-1.5 mx-auto"
+    >
+        <button
+            id="prevBtn"
+            class="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+        >
+            <PrevButton />
+        </button>
+
+        <div class="flex space-x-2">
+            <button
+                class="dot w-3 h-3 bg-[#0032A0] rounded-full transition-opacity duration-200"
+                data-slide="0"></button>
+
+            {
+                slidesData.map((_, index) => (
+                    <button
+                        class="dot w-3 h-3 bg-gray-300 rounded-full transition-opacity duration-200"
+                        data-slide={index + 1}
+                    />
+                ))
+            }
+        </div>
+
+        <button
+            id="nextBtn"
+            class="bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+        >
+            <NextButton />
+        </button>
+    </div>
+</section>
+
+<script>
+    import Splide from "@splidejs/splide";
+    import "@splidejs/splide/css";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const splide = new Splide(".splide", {
+            type: "loop",
+            autoplay: true,
+            interval: 5000,
+            arrows: false,
+            pagination: false,
+            perPage: 2,
+            perMove: 1,
+            breakpoints: {
+                1024: {
+                    perPage: 2,
+                },
+                820: {
+                    perPage: 1,
+                },
+                768: {
+                    perPage: 2,
+                    gap: "1rem",
+                },
+                480: {
+                    perPage: 1,
+                },
+                430: {
+                    perPage: 1,
+                },
+            },
+        }).mount();
+
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        4;
+        const dots = document.querySelectorAll(".dot");
+
+        prevBtn?.addEventListener("click", () => splide.go("<"));
+        nextBtn?.addEventListener("click", () => splide.go(">"));
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => splide.go(index));
+        });
+
+        splide.on("moved", (newIndex) => {
+            // Ajuste de índice porque Splide en modo Loop clona slides y el indice puede ser confuso
+            // Uso de propiedad 'length' de los dots para mantener el modulo correcto
+            const activeIndex = newIndex % dots.length;
+
+            dots.forEach((dot, index) => {
+                if (index === activeIndex) {
+                    dot.classList.remove("bg-gray-300");
+                    dot.classList.add("bg-[#0032A0]");
+                } else {
+                    dot.classList.remove("bg-[#0032A0]");
+                    dot.classList.add("bg-gray-300");
+                }
+            });
+        });
+    });
+</script>
