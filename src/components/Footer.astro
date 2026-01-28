@@ -40,6 +40,7 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                                 src="/logo_postesados_nobg.webp"
                                 alt="Postesados Logo"
                                 class="h-20 w-auto"
+                                loading="lazy"
                             />
                             Postesados JHP
                         </div>
@@ -49,9 +50,18 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                         <p
                             class="font-bold text-white mb-2 uppercase tracking-wider text-xs"
                         >
-                            Oficinas
+                            Oficina
                         </p>
-                        <p>Santo Domingo, República Dominicana</p>
+                        <a
+                            class="block hover:text-white transition-colors underline decoration-white/30 underline-offset-4"
+                            href="https://maps.app.goo.gl/hDjzE76zwmDkEnJVA"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            title="Ubicación de la Oficina de Postesados"
+                            aria-label="Ubicación de la Oficina de Postesados"
+                        >
+                            Santo Domingo, República Dominicana
+                        </a>
                         <div class="pt-4 space-y-1">
                             <a
                                 href="tel:8092225652"
@@ -80,6 +90,8 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                         rel="noopener noreferrer"
                         target="_blank"
                         class="p-2 border border-white/20 rounded-full hover:bg-white hover:text-[#000070] transition-all"
+                        title="Instagram Oficial de Postesados"
+                        aria-label="Instagram Oficial de Postesados"
                     >
                         <Instagram />
                     </a>
@@ -88,6 +100,8 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                         rel="noopener noreferrer"
                         target="_blank"
                         class="p-2 border border-white/20 rounded-full hover:bg-white hover:text-[#000070] transition-all"
+                        title="LinkedIn Oficial de Postesados"
+                        aria-label="LinkedIn Oficial de Postesados"
                     >
                         <LinkedIn />
                     </a>
@@ -196,7 +210,16 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                 &copy; {new Date().getFullYear()} Postesados JHP, S.R.L. Todos los
                 derechos reservados.
             </p>
-            <p>Ingeniería y Tecnología en Hormigón.</p>
+            <div class="flex flex-col space-y-2">
+                <p>Ingeniería y Tecnología en Hormigón.</p>
+                <a
+                    href="https://managerord.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block hover:text-white transition-colors underline decoration-white/30 underline-offset-4"
+                    >Desarrollada por el equipo de Managero</a
+                >
+            </div>
         </div>
     </div>
 </footer>
