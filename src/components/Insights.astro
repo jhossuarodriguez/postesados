@@ -1,34 +1,160 @@
 ---
-import Building from "@/assets/icons/building.svg";
-import Users from "@/assets/icons/users.svg";
-import Award from "@/assets/icons/award.svg";
-import Briefcase from "@/assets/icons/briefcase.svg";
+import PlusIcon from "@/assets/icons/plus.svg";
+import MinusIcon from "@/assets/icons/minus.svg";
+
+const innovationsData = [
+    {
+        id: "01",
+        title: "Eficiencia Estructural con Tecnología de Postesado",
+        description:
+            "Especialistas en hormigón pretesado y postesado. Eliminamos deflexiones y garantizamos durabilidad mediante sistemas de tensado de alta precisión para vigas maestras y estructuras complejas.",
+        image: "/images/tesado-vigas-gato-multitoron.webp",
+        alt: "Técnicos realizando tesado con gato hidráulico",
+    },
+    {
+        id: "02",
+        title: "Infraestructura Vial y Transporte Masivo",
+        description:
+            "Pieza clave en la Línea 2C del Metro y la Autopista Duarte. Ejecutamos la inyección técnica de lechada y el tesado de vigas artesa, asegurando la conexión y el desarrollo del país.",
+        image: "/images/inyeccion-lechada-proteccion-vigas.webp",
+        alt: "Vigas Artesa Metro Santo Domingo",
+    },
+    {
+        id: "03",
+        title: "Prefabricados de Gran Escala y Graderías",
+        description:
+            "Fabricación y montaje de elementos como los 2,500 m² de graderías para la Plaza Multiuso Seibana. Soluciones rápidas con acabados de alta calidad para espacios públicos.",
+        image: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
+        alt: "Graderías Plaza Seibana",
+    },
+    {
+        id: "04",
+        title: "Suministro de Tecnología y Equipos",
+        description:
+            "Importadores líderes de torones, anclajes y ductos. Proveemos soporte técnico y alquiler de gatos hidráulicos y bombas de inyección para proyectos de ingeniería.",
+        image: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
+        alt: "Equipos de inyección y postesado",
+    },
+];
 ---
 
 <section
-    class="bg-[#e8ecf5] rounded-2xl flex flex-col w-full min-h-screen pb-24 mt-20"
+    class="bg-[#e8ecf5] rounded-2xl flex flex-col w-full min-h-screen pb-10 mt-20"
 >
     <div class="flex flex-col px-4 lg:px-10 2xl:ml-60 space-y-10 mt-10">
         <div
-            class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-56"
+            class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-56 bg-white"
         >
             <p
                 class="flex justify-center items-center text-xs lg:text-base text-[#0032A0] font-bold gap-2"
             >
-                ● Insights
+                ● Nuestros Servicios
             </p>
         </div>
+
         <div
             class="flex flex-col lg:flex-row items-center gap-x-20 space-y-3 lg:space-y-0"
         >
-            <p class="text-3xl lg:text-7xl text-[#0032A0] w-full lg:max-w-3xl">
-                Innovación <span class="font-bold text-[#0032A0]"
-                    >Estructural,</span
-                >
-                <br />Impulsada por la <span class="text-[#0032A0] font-bold">
-                    Experiencia.</span
-                >
-            </p>
+            <h2
+                class="text-3xl lg:text-6xl text-[#0032A0] w-full lg:max-w-4xl leading-tight"
+            >
+                Ingeniería Avanzada que <br />
+                <span class="font-bold">Impulsa el Desarrollo</span>
+            </h2>
         </div>
     </div>
+
+    <div
+        class="flex flex-col gap-4 mt-8 max-w-5xl mx-auto"
+        id="accordion-container"
+    >
+        {
+            innovationsData.map((item, index) => (
+                <div
+                    class={`group accordion-item bg-white rounded-xl overflow-hidden shadow-sm border border-transparent hover:border-gray-200 transition-all duration-500 ease-in-out ${index === 0 ? "open" : ""}`}
+                    data-index={index}
+                >
+                    <button
+                        class="w-full flex items-center justify-between p-6 lg:p-8 text-left focus:outline-none"
+                        aria-expanded={index === 0 ? "true" : "false"}
+                    >
+                        <div class="flex items-center gap-4 lg:gap-8">
+                            <span class="text-2xl lg:text-4xl font-bold text-[#0032A0]/80 group-hover:text-[#0032A0] transition-colors w-12">
+                                {item.id}
+                            </span>
+                            <h3 class="text-lg lg:text-2xl font-bold text-[#0032A0] group-hover:text-[#0040c0] transition-colors">
+                                {item.title}
+                            </h3>
+                        </div>
+
+                        <div class="shrink-0 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-[#0032A0] flex items-center justify-center text-white transition-transform duration-300 hover:bg-[#002080]">
+                            <span class="text-2xl font-light leading-none mb-1 block group-[.open]:hidden">
+                                <PlusIcon />
+                            </span>
+                            <span class="text-2xl font-light leading-none mb-1 hidden group-[.open]:block">
+                                <MinusIcon />
+                            </span>
+                        </div>
+                    </button>
+
+                    {/* LOGICA DE ANIMACIÓN EN TAILWIND:
+                        1. grid grid-rows-[0fr]: Estado inicial cerrado.
+                        2. group-[.open]:grid-rows-[1fr]: Cuando el padre tiene clase 'open', cambia a 1fr.
+                        3. transition-[grid-template-rows]: Anima solo esa propiedad.
+                    */}
+                    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-[.open]:grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            <div class="px-6 lg:px-8 pb-8 flex flex-col lg:flex-row gap-8 items-start">
+                                <div class="lg:w-1/2 pt-2">
+                                    <p class="text-gray-600 text-base lg:text-lg leading-relaxed text-pretty border-l-4 border-[#0032A0] pl-6">
+                                        {item.description}
+                                    </p>
+                                </div>
+                                <div class="lg:w-1/2 w-full h-56 lg:h-72 rounded-xl overflow-hidden relative shadow-inner">
+                                    <img
+                                        src={item.image}
+                                        alt={item.alt}
+                                        class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                                        loading="lazy"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const accordionContainer = document.getElementById(
+            "accordion-container",
+        );
+        const items = accordionContainer?.querySelectorAll(".accordion-item");
+
+        items?.forEach((item) => {
+            const button = item.querySelector("button");
+
+            button?.addEventListener("click", () => {
+                const isOpen = item.classList.contains("open");
+
+                // 1. Cerrar todos los items primero
+                items.forEach((item) => {
+                    item.classList.remove("open");
+                    item.querySelector("button")?.setAttribute(
+                        "aria-expanded",
+                        "false",
+                    );
+                });
+
+                // 2. Si el clickeado NO estaba abierto, abrirlo
+                if (!isOpen) {
+                    item.classList.add("open");
+                    button?.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+    });
+</script>
