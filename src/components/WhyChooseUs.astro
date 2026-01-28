@@ -5,9 +5,8 @@ import Award from "@/assets/icons/award.svg";
 import Briefcase from "@/assets/icons/briefcase.svg";
 ---
 
-<section class="flex flex-col w-full h-screen mt-20 lg:mt-40 lg:pt-28">
-    {/* ... (El encabezado se mantiene igual) ... */}
-    <div class="flex flex-col px-4 lg:px-10 lg:mx-60 space-y-10">
+<section class="flex flex-col w-full min-h-screen lg:mt-20">
+    <div class="flex flex-col px-4 lg:px-10 2xl:ml-60 space-y-10">
         <div
             class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-56"
         >
@@ -34,11 +33,7 @@ import Briefcase from "@/assets/icons/briefcase.svg";
     <div
         class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[200px] mt-20"
     >
-        {
-            /* ... (Las tres primeras tarjetas se mantienen EXACTAMENTE IGUAL que en tu código original) ... */
-        }
-
-        {/* Large featured card - Proyectos Realizados */}
+        {/* Proyectos Realizados */}
         <div
             class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-lg p-6 bg-[#0032A0]"
         >
@@ -99,28 +94,22 @@ import Briefcase from "@/assets/icons/briefcase.svg";
             </div>
         </div>
 
-        {/* --- AQUÍ EMPIEZAN LOS CAMBIOS --- */}
-
-        {/* Especialidades - CON DIFUMINADO BLANCO */}
+        {/* Especialidades */}
         <div
             class="md:col-span-2 md:row-span-1 border-2 border-[#0032A0] rounded-2xl overflow-hidden relative transition-all duration-300 hover:shadow-lg group bg-white"
         >
-            {/* 1. Imagen de fondo */}
             <img
                 src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
                 alt="Especialidades construcción"
                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0 opacity-40 lg:opacity-100"
             />
 
-            {
-                /* 2. El DIFUMINADO BLANCO (Gradiente de blanco a transparente hacia arriba) */
-            }
+            {/* Gradiente blanco ajustado */}
             <div
-                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/90 lg:via-white/70 to-transparent z-1"
+                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/80 lg:via-white/60 to-transparent z-1"
             >
             </div>
 
-            {/* 3. Contenido (Tus colores originales) */}
             <div
                 class="relative h-full flex items-center justify-between p-6 z-10"
             >
@@ -136,9 +125,6 @@ import Briefcase from "@/assets/icons/briefcase.svg";
                         >
                             Especialidades
                         </h3>
-                        {
-                            /* Añadido un ligero fondo blanco semitransparente al texto para asegurar legibilidad en móviles */
-                        }
                         <p
                             class="text-gray-700 text-sm font-general-sans font-medium lg:bg-transparent bg-white/60 backdrop-blur-sm rounded-lg p-1 lg:p-0"
                         >
@@ -150,32 +136,27 @@ import Briefcase from "@/assets/icons/briefcase.svg";
             </div>
         </div>
 
-        {/* Grupo Empresarial - CON DIFUMINADO BLANCO */}
+        {/* Grupo Empresarial */}
         <div
             class="md:col-span-1 md:row-span-1 rounded-2xl border-2 border-[#0032A0] overflow-hidden relative transition-all duration-300 hover:shadow-lg group bg-white"
         >
-            {/* 1. Imagen de fondo */}
             <img
                 src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
                 alt="Grupo empresarial"
                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0 opacity-40 lg:opacity-100"
             />
 
-            {/* 2. El DIFUMINADO BLANCO */}
+            {/* Gradiente blanco ajustado */}
             <div
-                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/90 lg:via-white/70 to-transparent z-1"
+                class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] via-white/80 lg:via-white/60 to-transparent z-1"
             >
             </div>
 
-            {/* 3. Contenido (Tus colores originales) */}
             <div class="relative h-full flex flex-col justify-center p-6 z-10">
                 <h3 class="text-[#0032A0] text-lg lg:text-xl font-bold mb-3">
                     Grupo Empresarial
                 </h3>
                 <div class="space-y-2">
-                    {
-                        /* He añadido un fondo blanco con blur a los tags para que resalten sobre la imagen */
-                    }
                     <div
                         class="bg-white/80 backdrop-blur-md border border-white/40 shadow-sm px-3 py-2 rounded-lg"
                     >
