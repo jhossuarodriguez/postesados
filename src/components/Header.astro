@@ -1,6 +1,7 @@
 ---
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import Menu from "@/assets/icons/Menu.svg";
+import XButton from "@/assets/icons/XButton.svg";
 const navItems = [
     { label: "Inicio", href: "#inicio" },
     { label: "Nosotros", href: "#nosotros" },
@@ -19,67 +20,168 @@ const navItems = [
                     <div
                         class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                     >
-                        <button class="cursor-pointer size-6">
-                            <Menu class="text-white" />
+                        <!-- Desktop Menu Button -->
+                        <button
+                            class="cursor-pointer size-6 relative z-50"
+                            aria-label="Toggle Menu"
+                            aria-expanded="false"
+                            id="menu-button-btn"
+                        >
+                            <Menu
+                                class="text-white transition-all duration-300 hero-header-icon"
+                                id="menu-icon"
+                            />
+                            <XButton
+                                class="text-white transition-all duration-300 hero-header-icon absolute top-0 left-0 opacity-0 scale-0"
+                            />
                         </button>
+
+                        {
+                            navItems.map((item, index) => (
+                                <a
+                                    href={item.href}
+                                    class={`hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
+                                        index === 0
+                                            ? "bg-[#0000a0] rounded-full opacity-100"
+                                            : ""
+                                    }`}
+                                >
+                                    {item.label}
+                                </a>
+                            ))
+                        }
+                        <a
+                            href="https://postesados.com"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src="/logo_postesados_nobg.webp"
+                                alt="Postesados Logo"
+                                class="h-16 w-auto md:ml-14 lg:ml-48"
+                            />
+                        </a>
                     </div>
 
-                    {
-                        navItems.map((item, index) => (
-                            <a
-                                href={item.href}
-                                class={`hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
-                                    index === 0
-                                        ? "bg-[#0000a0] rounded-full opacity-100"
-                                        : ""
-                                }`}
-                            >
-                                {item.label}
-                            </a>
-                        ))
-                    }
-                    <a href="https://postesados.com" rel="noopener noreferrer">
-                        <img
-                            src="/logo_postesados_nobg.webp"
-                            alt="Postesados Logo"
-                            class="h-16 w-auto md:ml-14 lg:ml-48"
-                        />
-                    </a>
-                </div>
+                    <div class="flex justify-center items-center gap-2">
+                        <a
+                            href="/contact"
+                            class="flex gap-2 text-white text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
+                            >Contactanos
+                            <MoveRight
+                                class="lg:inline-block ml-2 hidden group-hover:animate-slide-in-left duration-75"
+                            />
+                        </a>
 
-                <div class="flex justify-center items-center gap-2">
-                    <a
-                        href="/contact"
-                        class="flex gap-2 text-white text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
-                        >Contactanos
-                        <MoveRight
-                            class="lg:inline-block ml-2 hidden group-hover:animate-slide-in-left duration-75"
-                        />
-                    </a>
+                        <!--Mobile Menu Button -->
+                        <button
+                            class="lg:hidden cursor-pointer size-6 relative z-50"
+                            id="mobile-menu-btn"
+                            aria-label="Toggle Menu"
+                            aria-expanded="false"
+                        >
+                            <Menu
+                                class="text-white hero-header-icon absolute top-0 left-0 opacity-0 scale-0 transition-all duration-300"
+                                id="mobile-menu-icon"
+                            />
 
-                    <button class="lg:hidden cursor-pointer size-6">
-                        <Menu class="text-white" />
-                    </button>
+                            <!-- Icono X (oculto por defecto) -->
+                            <XButton
+                                id="mobile-close-icon"
+                                class="w-6 h-6 hero-header-icon absolute top-0
+                        left-0 opacity-0 scale-0 transition-all duration-300"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
-
-        <!-- {/* Mobile Navigation */}
-        {
-            isMenuOpen && (
-                <nav class="lg:hidden py-4 border-t bg-white">
-                    {navItems.map((item) => (
-                        <a
-                            key={item.label}
-                            href={item.href}
-                            class="block py-3 px-4 text-gray-700 hover:text-[#000070] hover:bg-gray-50 transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            {item.label}
-                        </a>
-                    ))}
-                </nav>
-            )
-        } -->
     </header>
+
+    <!--Mobile Menu Panel -->
+    <nav
+        class="fixed top-0 right-0 h-full w-full bg-[#000070] z-50 transform translate-y-full transition-transform duration-300 ease-out lg:hidden"
+        id="mobile-menu"
+        aria-label="Mobile Navegation"
+    >
+        <div class="flex flex-col h-full pt-24 pb-8 px-6">
+            <!--Navegation Links -->
+            {
+                navItems.map((link, index) => (
+                    <a
+                        href={link.href}
+                        class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white rounded-xl transition-all duration-200"
+                        style={`--delay: ${index * 50}ms`}
+                    >
+                        <span class="w-2 h-2 rounded-full">{link.label}</span>
+                    </a>
+                ))
+            }
+        </div>
+    </nav>
 </section>
+
+<script>
+    function mobileMenu() {
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const overlay = document.getElementById("mobile-menu-overlay");
+        const menuIcon = document.getElementById("mobile-menu-icon");
+        const closeIcon = document.getElementById("mobile-close-icon");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-links");
+
+        let isOpen = false;
+        function openMenu() {
+            isOpen = true;
+            mobileMenu?.classList.remove("translate-y-full");
+            mobileMenu?.classList.add("translate-y-0");
+            overlay?.classList.remove("opacity-0", "points-events-none");
+            overlay?.classList.add("opacity-100", "points-events-auto");
+            menuIcon?.classList.add("opacity-0", "scale-0");
+            menuIcon?.classList.remove("opacity-100", "scale-100");
+            menuBtn?.setAttribute("aria-expanded", "true");
+            document.body.style.overflow = "hidden";
+
+            mobileNavLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add("mobile-nav-link--visible");
+                }, index * 50);
+            });
+        }
+
+        function closeMenu() {
+            isOpen = false;
+            mobileMenu?.classList.add("translate-y-full");
+            mobileMenu?.classList.remove("translate-y-0");
+            overlay?.classList.add("opacity-0", "points-events-none");
+            overlay?.classList.remove("opacity-100", "points-events-auto");
+            menuIcon?.classList.remove("opacity-0", "scale-0");
+            menuIcon?.classList.add("opacity-100", "scale-100");
+            menuBtn?.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+
+            mobileNavLinks.forEach((link) => {
+                link.classList.remove("mobile-nav-link--visible");
+            });
+        }
+
+        function toggleMenu() {
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        }
+
+        menuBtn?.addEventListener("click", toggleMenu);
+        overlay?.addEventListener("click", closeMenu);
+
+        mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
+    }
+
+    mobileMenu();
+    document.addEventListener("astro:after-swap", mobileMenu);
+</script>
