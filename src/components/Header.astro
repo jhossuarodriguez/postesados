@@ -42,7 +42,7 @@ const navItems = [
                         <img
                             src="/logo_postesados_nobg.webp"
                             alt="Postesados Logo"
-                            class="h-16 w-auto md:ml-14 lg:ml-48"
+                            class="h-16 w-auto translate-x-28"
                         />
                     </a>
                 </div>
@@ -61,6 +61,30 @@ const navItems = [
                     <button class="lg:hidden cursor-pointer size-6">
                         <Menu class="text-white" />
                     </button>
+                </div>
+            </div>
+        </nav>
+
+        <!--Nav Mobile -->
+        <nav
+            class="fixed inset-0 h-full w-full bg-[#000070] z-50 transform translate-y-full duration-300 ease-out shadow-xl md:hidden"
+            id="mobile-menu"
+            aria-label="Mobile menu"
+        >
+            <div class="flex flex-col h-full pt-24 pb-8 px-6">
+                <div class="flex flex-col gap-2">
+                    {
+                        navItems.map((link, index) => (
+                            <a
+                                href={link.href}
+                                class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white rounded-xl transition-all duration-200"
+                                style={`--delay: ${index * 50}ms`}
+                            >
+                                <span class="w-2 h-2 rounded-full bg-primary/30" />
+                                {link.label}
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
         </nav>
