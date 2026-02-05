@@ -18,7 +18,7 @@ const navItems = [
     >
         <nav class="py-2 relative z-50">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-1">
+                <div class="flex items-center gaap-1">
                     <div
                         class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                     >
@@ -84,33 +84,59 @@ const navItems = [
 
         <!--Nav Mobile -->
         <nav
-            class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-300 ease-out shadow-xl md:hidden"
+            class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden"
             id="mobile-menu"
             aria-label="Mobile menu"
         >
             <div class="flex flex-col h-full pt-24 pb-8 px-6 mt-10 md:mt-0">
                 <div class="flex flex-col gap-2">
                     {
-                        navItems.map((link, index) => (
-                            <a
-                                href={link.href}
-                                class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white transition-all duration-200 border-b border-white/25"
-                                style={`--delay: ${index * 50}ms`}
-                            >
-                                <div class="w-full flex justify-between items-center size-4">
+                        navItems.map((link, index) =>
+                            index === navItems.length - 1 ? (
+                                <a
+                                    href={link.href}
+                                    class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#0000a0] rounded-full text-center shadow-lg hover:bg-[#0000c0] transition-all"
+                                    data-index={index}
+                                >
                                     {link.label}
-                                    <div class="flex justify-center items-center rounded-sm border border-white">
-                                        <NextButton class="size-4" />
+                                    <NextButton class="inline-block size-4 ml-2" />
+                                </a>
+                            ) : (
+                                <a
+                                    href={link.href}
+                                    class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white border-b border-white/25"
+                                    data-index={index}
+                                >
+                                    <div class="w-full flex justify-between items-center size-4">
+                                        {link.label}
+                                        <div class="flex justify-center items-center rounded-sm border border-white">
+                                            <NextButton class="size-4" />
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        ))
+                                </a>
+                            ),
+                        )
                     }
                 </div>
             </div>
         </nav>
     </header>
 </section>
+
+<style>
+    .mobile-nav-link {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-nav-link--visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
 
 <script>
     const MobileMenu = () => {
@@ -148,10 +174,14 @@ const navItems = [
             // Keep shadow visible
             header?.classList.add("shadow-3xl");
 
+            // Staggered reveal
             mobileNavLinks.forEach((link, index) => {
-                setTimeout(() => {
-                    link.classList.add("mobile-nav-link--visible");
-                }, index * 50);
+                setTimeout(
+                    () => {
+                        link.classList.add("mobile-nav-link--visible");
+                    },
+                    200 + index * 80,
+                );
             });
         };
 
