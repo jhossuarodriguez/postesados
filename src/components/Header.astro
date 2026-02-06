@@ -11,82 +11,82 @@ const navItems = [
 ];
 ---
 
-<section>
-    <header
-        class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
-        id="main-header"
-    >
-        <nav class="py-2 relative z-50" id="header-content">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center gap-1">
-                    <div
-                        class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
-                    >
-                        <button class="cursor-pointer size-6" id="menuBtn">
-                            <Menu class="text-white" id="menu-icon" />
-                            <X
-                                id="close-icon"
-                                class="w-6 h-6 hero-header-icon absolute top-0 left-0 opacity-0 scale-0 transition-all duration-300"
-                            />
-                        </button>
-                    </div>
-
-                    {
-                        navItems.map((item, index) => (
-                            <a
-                                href={item.href}
-                                class={`hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
-                                    index === 0
-                                        ? "bg-[#0000a0] rounded-full opacity-100"
-                                        : ""
-                                }`}
-                            >
-                                {item.label}
-                            </a>
-                        ))
-                    }
-                    <a href="https://postesados.com" rel="noopener noreferrer">
-                        <img
-                            src="/logo_postesados_nobg.webp"
-                            alt="Postesados Logo"
-                            class="h-16 w-auto md:ml-14 lg:ml-48"
-                        />
-                    </a>
-                </div>
-
-                <div class="flex justify-center items-center gap-2">
-                    <a
-                        href="/contact"
-                        class="flex gap-2 text-white text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
-                        id="contactBtn"
-                        >Contactanos
-                        <MoveRight
-                            class="lg:inline-block ml-2 hidden group-hover:animate-slide-in-left duration-100"
-                        />
-                    </a>
-
-                    <button
-                        class="lg:hidden cursor-pointer relative flex items-center justify-center size-9 rounded-full transition-all duration-300"
-                        id="mobile-menuBtn"
-                    >
-                        <Menu
-                            class="text-white size-6 transition-all duration-300"
-                            id="mobile-menu-icon"
-                        />
+<header
+    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
+    id="main-header"
+>
+    <nav class="py-2 relative z-50" id="header-content">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-1">
+                <div
+                    class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
+                >
+                    <button class="cursor-pointer size-6" id="menuBtn">
+                        <Menu class="text-white" id="menu-icon" />
                         <X
-                            id="mobile-close-icon"
-                            class="w-5 h-5 text-white absolute opacity-0 scale-0 transition-all duration-300"
+                            id="close-icon"
+                            class="w-6 h-6 hero-header-icon absolute top-0 left-0 opacity-0 scale-0 transition-all duration-300"
                         />
                     </button>
                 </div>
+
+                {
+                    navItems.map((item, index) => (
+                        <a
+                            href={item.href}
+                            class={`nav-links hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
+                                index === 0
+                                    ? "bg-[#0000a0] rounded-full opacity-100"
+                                    : ""
+                            }`}
+                        >
+                            {item.label}
+                        </a>
+                    ))
+                }
+                <a href="https://postesados.com" rel="noopener noreferrer">
+                    <img
+                        src="/logo_postesados_nobg.webp"
+                        alt="Postesados Logo"
+                        class="h-16 w-auto md:ml-14 lg:ml-48"
+                    />
+                </a>
             </div>
-        </nav>
-    </header>
-</section>
+
+            <div class="flex justify-center items-center gap-2">
+                <a
+                    href="/contact"
+                    class="flex gap-2 text-white text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
+                    id="contactBtn"
+                    >Contactanos
+                    <MoveRight
+                        class="lg:inline-block ml-2 hidden group-hover:animate-slide-in-left duration-100"
+                    />
+                </a>
+
+                <button
+                    class="lg:hidden cursor-pointer relative flex items-center justify-center size-9 rounded-full transition-all duration-300"
+                    id="mobile-menuBtn"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    <Menu
+                        class="text-white size-6 transition-all duration-300"
+                        id="mobile-menu-icon"
+                    />
+                    <X
+                        id="mobile-close-icon"
+                        class="w-5 h-5 text-white absolute opacity-0 scale-0 transition-all duration-300"
+                    />
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <!--Nav Mobile -->
 <nav
-    class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden"
+    class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden opacity-0 invisible"
     id="mobile-menu"
     aria-label="Mobile menu"
 >
@@ -152,6 +152,17 @@ const navItems = [
 
         const openMobileMenu = () => {
             isOpen = true;
+            mobileMenu?.classList.remove(
+                "-translate-y-full",
+                "opacity-0",
+                "invisible",
+            );
+
+            mobileMenu?.classList.add(
+                "translate-y-0",
+                "opacity-100",
+                "visible",
+            );
             mobileMenu?.classList.remove("-translate-y-full");
             mobileMenu?.classList.add("translate-y-0");
 
@@ -196,6 +207,10 @@ const navItems = [
             mobileNavLinks.forEach((link) => {
                 link.classList.remove("mobile-nav-link--visible");
             });
+
+            mobileMenu?.classList.remove("translate-y-0", "visible");
+
+            mobileMenu?.classList.add("-translate-y-full", "invisible");
         };
 
         const toggleMenu = () => {
@@ -217,5 +232,23 @@ const navItems = [
     };
 
     MobileMenu();
+
+    const Menu = () => {
+        const MENU = document.getElementById("header-content");
+        const MENU_BTN = document.getElementById("menuBtn");
+        const MENU_ICON = document.getElementById("menu-icon");
+        const MENU_CLOSE_ICON = document.getElementById("close-icon");
+        const NAV_LINKS = document.querySelectorAll(".nav-links");
+
+        let isOpen = false;
+
+        const OpenMenu = () => {
+            isOpen = true;
+
+            MENU?.classList.add("translate-y-[600px]");
+            MENU_BTN?.classList.add("opacity-0", "scale-0");
+        };
+    };
+
     document.addEventListener("astro:after-swap", MobileMenu);
 </script>
