@@ -16,9 +16,9 @@ const navItems = [
         class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
         id="main-header"
     >
-        <nav class="py-2 relative z-50">
+        <nav class="py-2 relative z-50" id="header-content">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gaap-1">
+                <div class="flex items-center gap-1">
                     <div
                         class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                     >
@@ -81,47 +81,47 @@ const navItems = [
                 </div>
             </div>
         </nav>
-
-        <!--Nav Mobile -->
-        <nav
-            class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden"
-            id="mobile-menu"
-            aria-label="Mobile menu"
-        >
-            <div class="flex flex-col h-full pt-24 pb-8 px-6 mt-10 md:mt-0">
-                <div class="flex flex-col gap-2">
-                    {
-                        navItems.map((link, index) =>
-                            index === navItems.length - 1 ? (
-                                <a
-                                    href={link.href}
-                                    class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#0000a0] rounded-full text-center shadow-lg hover:bg-[#0000c0] transition-all"
-                                    data-index={index}
-                                >
-                                    {link.label}
-                                    <NextButton class="inline-block size-4 ml-2" />
-                                </a>
-                            ) : (
-                                <a
-                                    href={link.href}
-                                    class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white border-b border-white/25"
-                                    data-index={index}
-                                >
-                                    <div class="w-full flex justify-between items-center size-4">
-                                        {link.label}
-                                        <div class="flex justify-center items-center rounded-sm border border-white">
-                                            <NextButton class="size-4" />
-                                        </div>
-                                    </div>
-                                </a>
-                            ),
-                        )
-                    }
-                </div>
-            </div>
-        </nav>
     </header>
 </section>
+
+<!--Nav Mobile -->
+<nav
+    class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden"
+    id="mobile-menu"
+    aria-label="Mobile menu"
+>
+    <div class="flex flex-col h-full pt-24 pb-8 px-6 mt-10 md:mt-0">
+        <div class="flex flex-col gap-2">
+            {
+                navItems.map((link, index) =>
+                    index === navItems.length - 1 ? (
+                        <a
+                            href={link.href}
+                            class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#030938] rounded-full text-center shadow-lg "
+                            data-index={index}
+                        >
+                            {link.label}
+                            <NextButton class="inline-block size-4 ml-2" />
+                        </a>
+                    ) : (
+                        <a
+                            href={link.href}
+                            class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white border-b border-white/25"
+                            data-index={index}
+                        >
+                            <div class="w-full flex justify-between items-center size-4">
+                                {link.label}
+                                <div class="flex justify-center items-center rounded-sm border border-white">
+                                    <NextButton class="size-4" />
+                                </div>
+                            </div>
+                        </a>
+                    ),
+                )
+            }
+        </div>
+    </div>
+</nav>
 
 <style>
     .mobile-nav-link {
@@ -140,10 +140,6 @@ const navItems = [
 
 <script>
     const MobileMenu = () => {
-        const menuBtn = document.getElementById("menuBtn");
-        const menuIcon = document.getElementById("menu-icon");
-        const header = document.getElementById("main-header");
-
         //Mobile
         const mobileMenu = document.getElementById("mobile-menu");
         const mobileMenuBtn = document.getElementById("mobile-menuBtn");
@@ -159,20 +155,15 @@ const navItems = [
             mobileMenu?.classList.remove("-translate-y-full");
             mobileMenu?.classList.add("translate-y-0");
 
-            // Hide hamburger, show X
             mobileMenuIcon?.classList.add("opacity-0", "scale-0");
             mobileCloseIcon?.classList.remove("opacity-0", "scale-0");
             mobileCloseIcon?.classList.add("opacity-100", "scale-100");
 
-            // Black circle background on button
-            mobileMenuBtn?.classList.add("bg-black");
-            contactBtn?.classList.add("bg-black");
+            mobileMenuBtn?.classList.add("bg-[#030938]");
+            contactBtn?.classList.add("bg-[#030938]");
 
             mobileMenuBtn?.setAttribute("aria-expanded", "true");
             document.body.style.overflow = "hidden";
-
-            // Keep shadow visible
-            header?.classList.add("shadow-3xl");
 
             // Staggered reveal
             mobileNavLinks.forEach((link, index) => {
@@ -196,8 +187,8 @@ const navItems = [
             mobileCloseIcon?.classList.add("opacity-0", "scale-0");
 
             // Remove black circle background
-            mobileMenuBtn?.classList.remove("bg-black");
-            contactBtn?.classList.remove("bg-black");
+            mobileMenuBtn?.classList.remove("bg-[#030938]");
+            contactBtn?.classList.remove("bg-[#030938]");
 
             mobileMenuBtn?.setAttribute("aria-expanded", "false");
             document.body.style.overflow = "";
