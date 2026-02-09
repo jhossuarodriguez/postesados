@@ -21,11 +21,19 @@ const navItems = [
                 <div
                     class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                 >
-                    <button class="cursor-pointer size-6" id="menuBtn">
-                        <Menu class="text-white" id="menu-icon" />
+                    <button
+                        class="cursor-pointer size-6 rounded-full relative flex items-center justify-center"
+                        id="menuBtn"
+                        aria-expanded="false"
+                        aria-controls="menu"
+                    >
+                        <Menu
+                            class="text-white absolute transition-all duration-300"
+                            id="menu-icon"
+                        />
                         <X
                             id="close-icon"
-                            class="w-6 h-6 hero-header-icon absolute top-0 left-0 opacity-0 scale-0 transition-all duration-300"
+                            class="text-white absolute opacity-0 scale-0 transition-all duration-300"
                         />
                     </button>
                 </div>
@@ -76,13 +84,98 @@ const navItems = [
                     />
                     <X
                         id="mobile-close-icon"
-                        class="w-5 h-5 text-white absolute opacity-0 scale-0 transition-all duration-300"
+                        class="size-6 text-white absolute opacity-0 scale-0 transition-all duration-300"
                     />
                 </button>
             </div>
         </div>
     </nav>
 </header>
+
+<!-- Desktop Dropdown Menu -->
+<div
+    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] bg-[#000070] rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
+    id="menu-dropdownn"
+>
+    <div
+        class="p-6 mx-10 grid grid-cols-4 gap-6 py-10 mt-10 max-h-[600px] min-h-[500px]"
+    >
+        <div class="space-y-4">
+            <h3
+                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+            >
+                Navegación
+            </h3>
+            {
+                navItems.map((item) => (
+                    <a
+                        href={item.href}
+                        class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                    >
+                        {item.label}
+                    </a>
+                ))
+            }
+        </div>
+        <div class="space-y-4">
+            <h3
+                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+            >
+                Servicios
+            </h3>
+            <a
+                href="/servicios"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Ver todos</a
+            >
+        </div>
+        <div class="space-y-4">
+            <h3
+                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+            >
+                Empresa
+            </h3>
+            <a
+                href="/nosotros"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Nosotros</a
+            >
+            <a
+                href="/equipo"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Equipo</a
+            >
+            <a
+                href="/proyectos"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Proyectos</a
+            >
+        </div>
+        <div class="space-y-4">
+            <h3
+                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+            >
+                Legal
+            </h3>
+            <a
+                href="/privacidad"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Privacidad</a
+            >
+            <a
+                href="/terminos"
+                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                >Términos</a
+            >
+        </div>
+    </div>
+</div>
+
+<div
+    class="fixed inset-0 backdrop-blur-sm z-30 opacity-0 invisible transition-all duration-300 hidden lg:block"
+    id="desktop-overlay"
+>
+</div>
 
 <!--Nav Mobile -->
 <nav
@@ -234,21 +327,108 @@ const navItems = [
     MobileMenu();
 
     const Menu = () => {
-        const MENU = document.getElementById("header-content");
+        const DROPDOWN = document.getElementById("menu-dropdownn");
+        const OVERLAY = document.getElementById("desktop-overlay");
         const MENU_BTN = document.getElementById("menuBtn");
         const MENU_ICON = document.getElementById("menu-icon");
         const MENU_CLOSE_ICON = document.getElementById("close-icon");
-        const NAV_LINKS = document.querySelectorAll(".nav-links");
+        const DROPDOWN_LINKS = document.querySelectorAll(
+            ".menu-dropdownn-link",
+        );
 
         let isOpen = false;
 
-        const OpenMenu = () => {
+        const openMenu = () => {
             isOpen = true;
 
-            MENU?.classList.add("translate-y-[600px]");
-            MENU_BTN?.classList.add("opacity-0", "scale-0");
+            // Mostrar overlay con blur
+            OVERLAY?.classList.remove("opacity-0", "invisible");
+            OVERLAY?.classList.add("opacity-100", "visible");
+
+            // Mostrar dropdown
+            DROPDOWN?.classList.remove(
+                "-translate-y-8",
+                "opacity-0",
+                "invisible",
+            );
+            DROPDOWN?.classList.add("-translate-y-4", "opacity-100", "visible");
+
+            // Cambiar iconos: ocultar hamburguesa, mostrar X
+            MENU_ICON?.classList.add("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.remove("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.add("opacity-100", "scale-100");
+            MENU_BTN?.classList.add("bg-[#0000a0]");
+
+            MENU_BTN?.setAttribute("aria-expanded", "true");
         };
+        ``;
+
+        const closeMenu = () => {
+            isOpen = false;
+
+            OVERLAY?.classList.add("opacity-0", "invisible");
+            OVERLAY?.classList.remove("opacity-100", "visible");
+
+            DROPDOWN?.classList.add("-translate-y-8", "opacity-0", "invisible");
+            DROPDOWN?.classList.remove(
+                "translate-y-0",
+                "opacity-100",
+                "visible",
+            );
+
+            MENU_ICON?.classList.remove("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.remove("opacity-100", "scale-100");
+            MENU_CLOSE_ICON?.classList.add("opacity-0", "scale-0");
+            MENU_BTN?.classList.remove("bg-[#030938]", "text-white");
+
+            MENU_BTN?.setAttribute("aria-expanded", "false");
+        };
+
+        const toggleMenu = () => {
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        };
+
+        MENU_BTN?.addEventListener("click", toggleMenu);
+
+        DROPDOWN_LINKS.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
+
+        // Cerrar al hacer click en el overlay
+        OVERLAY?.addEventListener("click", closeMenu);
+
+        // Cerrar al hacer click fuera
+        document.addEventListener("click", (e) => {
+            if (
+                isOpen &&
+                !DROPDOWN?.contains(e.target as Node) &&
+                !MENU_BTN?.contains(e.target as Node)
+            ) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (isOpen && e.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768 && isOpen) {
+                closeMenu();
+            }
+        });
     };
 
+    Menu();
+
     document.addEventListener("astro:after-swap", MobileMenu);
+    document.addEventListener("astro:after-swap", Menu);
 </script>
