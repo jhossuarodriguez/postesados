@@ -17,12 +17,12 @@ const slidesData = [
     {
         src: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
         alt: "Línea de tetrápodos rompeolas.",
-        category: "Prefabricados",
+        category: "Buildings",
     },
     {
-        src: "/images/tesado-vigas-gato-multitoron.webp",
+        src: "/images/PROJECTS_IMAGES/soldadura-pilotes-acero.webp",
         alt: "Mantenimiento preventivo.",
-        category: "Mantenimiento",
+        category: "Buildings",
     },
 ];
 ---
@@ -64,15 +64,15 @@ const slidesData = [
 
     {/* Contenedor del Slider */}
     <div
-        class="splide splide-projects w-full h-[500px] lg:h-[400px] mt-10"
+        class="splide splide-projects w-full h-125 lg:h-134.75 mt-20"
         aria-label="Proyectos Destacados"
     >
-        <div class="splide__track h-full">
+        <div class="splide__track h-full translate-x-0 2xl:translate-x-28">
             <ul class="splide__list h-full flex items-center">
                 {
                     slidesData.map((slide) => (
                         <li class="splide__slide relative flex items-center justify-center">
-                            <div class="w-full h-[500px] lg:h-[400px] rounded-xl relative overflow-hidden group shadow-md">
+                            <div class="w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
                                 <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
 
                                 <img
@@ -81,9 +81,16 @@ const slidesData = [
                                     class="w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 z-0"
                                 />
 
+                                <a
+                                    href="#"
+                                    class="absolute top-4 right-4 z-20 w-12 h-12 bg-white rounded-full hidden lg:flex items-center justify-center text-gray-800 text-2xl shadow-md hover:scale-105 transition-transform duration-200"
+                                >
+                                    +
+                                </a>
+
                                 <div class="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end items-start z-20 pointer-events-none pb-8">
-                                    <div class="relative z-10">
-                                        <h3 class="text-white text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-md">
+                                    <div class="relative z-20">
+                                        <h3 class="text-white text-3xl md:text-6xl font-extrabold tracking-tight drop-shadow-md">
                                             {slide.category}
                                         </h3>
                                     </div>
@@ -150,24 +157,21 @@ const slidesData = [
             interval: 5000,
             arrows: false,
             pagination: false,
-            perPage: 3,
+            fixedWidth: "427px",
             perMove: 1,
-            gap: "1rem",
+            gap: "1.5rem",
 
             padding: { left: 0, right: "5%" },
 
             breakpoints: {
-                1280: {
-                    perPage: 3,
-                    gap: "1rem",
-                    padding: { left: 0, right: "8rem" },
-                },
                 1024: {
+                    fixedWidth: 0,
                     perPage: 2,
                     gap: "1rem",
                     padding: { left: 0, right: "6rem" },
                 },
                 640: {
+                    fixedWidth: 0,
                     perPage: 1,
                     gap: "1rem",
                     padding: { left: 0, right: "3rem" },
