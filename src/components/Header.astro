@@ -7,12 +7,12 @@ const navItems = [
     { label: "Inicio", href: "#inicio" },
     { label: "Nosotros", href: "/nosotros" },
     { label: "Servicios", href: "/servicios" },
-    { label: "Contacto", href: "/contacto" },
+    { label: "Tecnologia", href: "/tecnologia" },
 ];
 ---
 
 <header
-    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
+    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
     id="main-header"
 >
     <nav class="py-2 relative z-50" id="header-content">
@@ -94,11 +94,11 @@ const navItems = [
 
 <!-- Desktop Dropdown Menu -->
 <div
-    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-[1340px] lg:max-w-[1600px] bg-[#000070] rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
+    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 bg-[#000070] rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
     id="menu-dropdownn"
 >
     <div
-        class="p-6 mx-10 grid grid-cols-4 gap-6 py-10 mt-10 max-h-[500px] min-h-[440px] 2xl:max-h-[600px] 2xl:min-h-[500px]"
+        class="p-6 mx-10 grid grid-cols-4 gap-6 py-10 mt-10 max-h-125 min-h-110 2xl:max-h-150 2xl:min-h-125"
     >
         <div class="space-y-4">
             <h3
@@ -256,8 +256,6 @@ const navItems = [
                 "opacity-100",
                 "visible",
             );
-            mobileMenu?.classList.remove("-translate-y-full");
-            mobileMenu?.classList.add("translate-y-0");
 
             mobileMenuIcon?.classList.add("opacity-0", "scale-0");
             mobileCloseIcon?.classList.remove("opacity-0", "scale-0");
@@ -301,9 +299,8 @@ const navItems = [
                 link.classList.remove("mobile-nav-link--visible");
             });
 
-            mobileMenu?.classList.remove("translate-y-0", "visible");
-
-            mobileMenu?.classList.add("-translate-y-full", "invisible");
+            mobileMenu?.classList.remove("opacity-100", "visible");
+            mobileMenu?.classList.add("opacity-0", "invisible");
         };
 
         const toggleMenu = () => {
@@ -361,7 +358,6 @@ const navItems = [
 
             MENU_BTN?.setAttribute("aria-expanded", "true");
         };
-        ``;
 
         const closeMenu = () => {
             isOpen = false;
