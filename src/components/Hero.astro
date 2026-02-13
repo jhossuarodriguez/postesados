@@ -5,28 +5,28 @@ import NextButton from "@/assets/icons/nextButton.svg";
 
 const slidesData = [
     {
-        src: "/images/tesado-vigas-gato-multitoron.webp",
-        alt: "Técnicos de Postesados JHP operando un gato hidráulico multitorón para el tesado de cables en una viga de hormigón.",
+        src: "/images/HERO_IMAGES/planta-de-tratamiento-de-agua.webp",
+        alt: "Ingenieros supervisando tanques de concreto en una planta de tratamiento hídrico.",
         category: "Postensado",
-        title: "Tesado de Vigas y Estructuras de Alta Carga",
+        title: "Planta de tratamiento de agua",
     },
     {
-        src: "/images/inyeccion-lechada-proteccion-vigas.webp",
-        alt: "Operario con equipo de protección realizando la inyección técnica de lechada en los ductos de una estructura postesada.",
+        src: "/images/HERO_IMAGES/construccion-puente.webp",
+        alt: "Vista aérea de la estructura de un puente en fase de armado sobre un río rodeado de árboles.",
         category: "Inyección",
-        title: "Inyección de Lechada para Protección Estructural",
+        title: "Construcción de puente sobre río",
     },
     {
-        src: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
-        alt: "Línea de tetrápodos rompeolas prefabricados instalados para la protección de la zona costera.",
+        src: "/images/HERO_IMAGES/instalacion-tuberia-rio.webp",
+        alt: "Vista aérea de la instalación de una gran tubería verde sobre una estructura metálica que cruza un río, con maquinaria de construcción y trabajadores",
         category: "Prefabricados",
-        title: "Fabricación de Tetrápodos Rompeolas de 2 Toneladas",
+        title: "Cruce aéreo de tubería",
     },
 ];
 ---
 
 <section
-    class="bg-[#e8ecf5] h-[450px] md:h-[500px] lg:h-[820px] rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10"
+    class="bg-[#e8ecf5] h-[450px] md:h-[500px] lg:h-[750px] rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10"
 >
     <div
         class="pt-28 md:pt-[174px] pb-0 md:pb-[70px] md:max-w-[1340px] lg:max-w-[1600px] mx-auto md:px-5 lg:px-5"
@@ -41,7 +41,7 @@ const slidesData = [
 
     <div class="w-full mx-auto md:pl-20 px-5 flex justify-center items-center">
         <section
-            class="splide w-full h-60 md:h-[470px] rounded-xl overflow-hidden"
+            class="splide w-full h-60 md:h-[400px] rounded-xl overflow-hidden"
             aria-label="Proyectos Destacados"
         >
             <div class="splide__track h-full">
@@ -52,7 +52,7 @@ const slidesData = [
                         class="splide__slide relative flex items-center justify-center"
                     >
                         <video
-                            class="w-[360px] md:w-[400px] lg:w-[900px] lg:h-[470px] object-cover rounded-xl"
+                            class="w-full h-[200px] md:h-[400px] object-cover rounded-xl"
                             src="/postesados_hero.webm"
                             muted
                             loop
@@ -72,12 +72,12 @@ const slidesData = [
                     {
                         slidesData.map((slide) => (
                             <li class="splide__slide relative flex items-center justify-center ">
-                                <div class="w-[360px] h-[200px] md:w-[400px] lg:w-[900px] lg:h-[470px] rounded-xl relative overflow-hidden group">
-                                    <div class="absolute inset-0 bg-black/40" />
+                                <div class="w-full h-[200px] md:h-[400px] rounded-xl relative overflow-hidden group">
+                                    <div class="absolute inset-0 bg-black/20" />
                                     <img
                                         src={slide.src}
                                         alt={slide.alt}
-                                        class="w-full h-full object-cover mix-blend-overlay transform transition-transform duration-200 group-hover:scale-110"
+                                        class="w-full h-full object-cover mix-blend-overlay transform transition-transform duration-400 group-hover:scale-110"
                                     />
 
                                     <div class="absolute inset-0 p-8 flex flex-col justify-center text-white">
@@ -149,25 +149,16 @@ const slidesData = [
             interval: 5000,
             arrows: false,
             pagination: false,
-            perPage: 2,
+            fixedWidth: "711px",
+            height: "400px",
             perMove: 1,
+            gap: "1.5rem",
             padding: { left: 0, right: "8%" },
             breakpoints: {
-                1024: {
-                    perPage: 2,
-                },
-                820: {
-                    perPage: 1,
-                },
                 768: {
-                    perPage: 2,
+                    fixedWidth: "360px",
+                    height: "200px",
                     gap: "1rem",
-                },
-                480: {
-                    perPage: 1,
-                },
-                430: {
-                    perPage: 1,
                 },
             },
         }).mount();
