@@ -1,0 +1,370 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+---
+
+<Layout>
+    <Header />
+    <section>
+        <div
+            class="relative h-120 md:h-126.25 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 overflow-hidden"
+        >
+            <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&auto=format&fit=crop"
+                alt=""
+                class="absolute inset-0 w-full h-full object-cover object-center rounded-2xl"
+            />
+            <div class="inset-0 bg-black/30 absolute rounded-2xl"></div>
+            <div
+                class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 relative z-10"
+            >
+                <div
+                    class="w-full flex flex-col lg:flex-row justify-between items-center gap-x-20 space-y-3 lg:space-y-0 mt-24 ml-10"
+                >
+                    <p
+                        class="text-white font-bold text-4xl sm:text-4xl md:text-8xl tracking-tighter leading-normal md:leading-20 w-full"
+                    >
+                        Servicios
+                    </p>
+                    <div class="mb-5 flex justify-end w-full">
+                        <p
+                            class="text-balance lg:text-[18px] pt-2 lg:pt-0 text-white md:mt-20 font-general-sans"
+                        >
+                            Ofrecemos soluciones integrales de postensado: desde
+                            materiales y equipos especializados hasta tensado
+                            preciso, inyección de cemento y rendimiento
+                            estructural a largo plazo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sobre Nuestra Compañía -->
+        <div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+            >
+                <!-- Card 1: Postesados JHP -->
+                <div
+                    class="bg-[#e8ecf5] hover:bg-[#0032A0] transition duration-300 text-white rounded-2xl p-8 flex flex-col justify-between min-h-52 group/card"
+                >
+                    <div>
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Postesados JHP, S.R.L.
+                        </h3>
+                        <p
+                            class="text-black text-sm leading-relaxed font-general-sans group-hover/card:text-white"
+                        >
+                            Somos una empresa especializada en hormigón
+                            pretensado, ofreciendo soluciones en hormigón
+                            pretesado y postesado.
+                        </p>
+                    </div>
+                    <span
+                        class="text-3xl font-bold text-[#0032A0] mt-6 group-hover/card:text-white"
+                        >01</span
+                    >
+                </div>
+
+                <!-- Card 2: Dr. Drilling -->
+                <div
+                    class="bg-[#e8ecf5] hover:bg-black transition duration-300 rounded-2xl p-8 flex flex-col justify-between min-h-64 group/card"
+                >
+                    <div>
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#0032A0] group-hover/card:text-yellow-400"
+                        >
+                            Dr. Drilling
+                        </h3>
+                        <p
+                            class="text-black text-sm leading-relaxed font-general-sans group-hover/card:text-white"
+                        >
+                            Ofrecemos soluciones en prefabricados de hormigón
+                            armado para proyectos de ingeniería de alta
+                            complejidad.
+                        </p>
+                    </div>
+                    <span
+                        class="text-3xl font-bold text-[#0032A0] mt-6 group-hover/card:text-yellow-400"
+                        >02</span
+                    >
+                </div>
+
+                <!-- Card 3: Tenax Construction -->
+                <div
+                    class="bg-[#e8ecf5] hover:bg-[#F46738] transition duration-300 rounded-2xl p-8 flex flex-col justify-between min-h-64 group/card"
+                >
+                    <div>
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Tenax Construction
+                        </h3>
+                        <p
+                            class="text-black text-sm leading-relaxed font-general-sans group-hover/card:text-white"
+                        >
+                            Formamos parte de un grupo de empresas con distintas
+                            especialidades en el área de la ingeniería.
+                        </p>
+                    </div>
+                    <span
+                        class="text-3xl font-bold text-[#0032A0] mt-6 group-hover/card:text-white"
+                        >03</span
+                    >
+                </div>
+
+                <!-- Card 4: Under Roof Dominicana -->
+                <div
+                    class="bg-[#e8ecf5] hover:bg-[#016ebe] transition duration-300 rounded-2xl p-8 flex flex-col justify-between min-h-64 group/card"
+                >
+                    <div>
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Under Roof Dominicana
+                        </h3>
+                        <p
+                            class="text-black group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Nos destacamos por nuestra dedicación a la
+                            innovación y la calidad, brindando estructuras
+                            duraderas y eficientes.
+                        </p>
+                    </div>
+                    <span
+                        class="text-3xl font-bold text-[#0032A0] group-hover/card:text-black/40 mt-6"
+                        >04</span
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-[#e8ecf5] rounded-2xl w-full mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16 lg:py-20"
+        >
+            <h2
+                class="text-3xl md:text-5xl font-bold tracking-tighter text-center mb-10 md:mb-14 text-[#0032A0]"
+            >
+                Construyendo Más Allá del Hormigón
+            </h2>
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto"
+            >
+                <!-- Card 1: Postesado -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Postesado
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Ejecución del postesado con adherencia en vigas
+                            maestras, losas y elementos estructurales de alta
+                            exigencia.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/postesado.webp"
+                        alt="Postesado"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 2: Inyección de Lechada -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Inyección de Lechada
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Inyección de lechada en vigas artesa y tipo AASHTO
+                            para puentes y obras viales de gran envergadura.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/inyeccion.webp"
+                        alt="Inyección de Lechada"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 3: Suministro de Materiales -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Suministro de Materiales
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Importación y distribución de torones, ductos,
+                            anclajes y equipos especializados para hormigón
+                            pretensado.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/suministro.webp"
+                        alt="Suministro de Materiales"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 4: Prefabricados -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Prefabricados
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Fabricación, transporte y montaje de elementos de
+                            hormigón pretensado y prefabricado de hormigón
+                            armado.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/prefabricados.webp"
+                        alt="Prefabricados"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 5: Tesado Estructural -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Tesado Estructural
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Tesado de vigas con gatos hidráulicos mono-torón y
+                            multi-torón de alta precisión y fuerza controlada.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/tesado.webp"
+                        alt="Tesado Estructural"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 6: Innovación y Calidad -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Innovación y Calidad
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Más de 15 años de experiencia con técnicos
+                            especializados en soluciones de ingeniería de alta
+                            calidad.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/innovacion.webp"
+                        alt="Innovación y Calidad"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 7: Soluciones Integrales (span full on last row) -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg font-bold mb-2 group-hover/card:text-white"
+                        >
+                            Soluciones Integrales
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm leading-relaxed font-general-sans"
+                        >
+                            Junto a nuestro grupo de empresas, ofrecemos
+                            soluciones completas para proyectos de ingeniería y
+                            construcción.
+                        </p>
+                    </div>
+                    <img
+                        src="/images/projects/soluciones.webp"
+                        alt="Soluciones Integrales"
+                        class="w-24 h-24 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="relative translate-y-16">
+            <img
+                class="rounded-2xl w-full h-120 object-cover object-center"
+                src="/images/about-footer.webp"
+                alt="Personas trabajando footer image"
+            />
+            <div class="inset-0 bg-black/50 absolute rounded-2xl"></div>
+            <div class="ml-14 absolute top-24 left-6">
+                <p
+                    class="flex justify-start items-center text-xs lg:text-base text-[#0032A0] font-bold lg:px-3 px-3 py-1 w-48 lg:w-40 bg-white rounded-full border border-gray-300"
+                >
+                    ● Conversemos
+                </p>
+                <span
+                    class="text-6xl text-white font-bold mt-4 block lg:max-w-2xl leading-tight"
+                    >Da el Siguiente Paso</span
+                >
+                <p
+                    class="text-white mt-4 block lg:max-w-xl leading-tight font-general-sans text-xl"
+                >
+                    Ya sea que requiera un diseño estructural optimizado o una
+                    ejecución precisa de postesado, estamos listos para reforzar
+                    su proyecto con eficiencia ingenieril.
+                </p>
+
+                <a
+                    href="/contacto"
+                    class="text-sm lg:text-base inline-block bg-white text-[#000070] font-medium px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg mt-8"
+                    >Contactanos
+                    <MoveRight
+                        class="inline-block ml-2 group-hover:animate-slide-in-left duration-75"
+                    />
+                </a>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
