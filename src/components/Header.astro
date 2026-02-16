@@ -4,9 +4,9 @@ import Menu from "@/assets/icons/Menu.svg";
 import X from "@/assets/icons/XButton.svg";
 import NextButton from "@/assets/icons/nextButton.svg";
 const navItems = [
-    { label: "Inicio", href: "#inicio" },
+    { label: "Inicio", href: "/" },
     { label: "Nosotros", href: "/nosotros" },
-    { label: "Servicios", href: "/servicios" },
+    { label: "Servicios", href: "#servicios" },
     { label: "Tecnologia", href: "/tecnologia" },
 ];
 ---
@@ -56,7 +56,7 @@ const navItems = [
                     <img
                         src="/logo_postesados_nobg.webp"
                         alt="Postesados Logo"
-                        class="h-16 w-auto md:ml-14 lg:ml-48"
+                        class="h-16 w-auto md:ml-14 xl:ml-24 2xl:ml-48"
                     />
                 </a>
             </div>
@@ -68,7 +68,7 @@ const navItems = [
                     id="contactBtn"
                     >Contactanos
                     <MoveRight
-                        class="lg:inline-block ml-2 hidden group-hover:animate-slide-in-left duration-100"
+                        class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
                     />
                 </a>
 
