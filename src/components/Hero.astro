@@ -41,7 +41,7 @@ const slidesData = [
 
     <div class="w-full mx-auto md:pl-20 px-5 flex justify-center items-center">
         <section
-            class="splide w-full h-60 md:h-50 rounded-xl overflow-hidden"
+            class="splide w-full h-60 md:h-100 rounded-xl overflow-hidden"
             aria-label="Proyectos Destacados"
         >
             <div class="splide__track h-full">
@@ -52,7 +52,7 @@ const slidesData = [
                         class="splide__slide relative flex items-center justify-center"
                     >
                         <video
-                            class="w-full h-50 md:h-50 object-cover rounded-xl"
+                            class="w-full h-50 md:h-100 object-cover rounded-xl"
                             src="/postesados_hero.webm"
                             muted
                             loop
@@ -72,7 +72,7 @@ const slidesData = [
                     {
                         slidesData.map((slide) => (
                             <li class="splide__slide relative flex items-center justify-center ">
-                                <div class="w-full h-50 md:h-50 rounded-xl relative overflow-hidden group">
+                                <div class="w-full h-50 md:h-100 rounded-xl relative overflow-hidden group">
                                     <div class="absolute inset-0 bg-black/20" />
                                     <img
                                         src={slide.src}
@@ -82,7 +82,12 @@ const slidesData = [
 
                                     <div class="absolute inset-0 p-8 flex flex-col justify-center text-white">
                                         <div class="mb-6 translate-y-10 md:translate-y-24">
-                                            <span class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center">
+                                            <span class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center ">
+                                                {/* Lógica para destacar categorías específicas si es necesario */}
+                                                {slide.category ===
+                                                    "Infraestructura" && (
+                                                    <span class="w-2 h-2 bg-white rounded-full mr-2" />
+                                                )}
                                                 {slide.category}
                                             </span>
                                         </div>
