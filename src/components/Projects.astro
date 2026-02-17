@@ -1,26 +1,32 @@
 ---
+import { Image } from 'astro:assets';
 import ChartSpline from "@/assets/icons/chart-spline.svg";
 import PrevButton from "@/assets/icons/prevButton.svg";
 import NextButton from "@/assets/icons/nextButton.svg";
 
+import imgPilar from "@/assets/images/PROJECTS_IMAGES/pilar-tablestacas.webp";
+import imgArmado from "@/assets/images/PROJECTS_IMAGES/armado-puente.webp";
+import imgTetrapodos from "@/assets/images/tetrapodos-rompeolas-san-pedro-macoris.webp";
+import imgSoldadura from "@/assets/images/PROJECTS_IMAGES/soldadura-pilotes-acero.webp";
+
 const slidesData = [
     {
-        src: "/images/PROJECTS_IMAGES/pilar-tablestacas.webp",
+        src: imgPilar,
         alt: "Técnicos operando gato hidráulico.",
         category: "Postensado",
     },
     {
-        src: "/images/PROJECTS_IMAGES/armado-puente.webp",
+        src: imgArmado,
         alt: "Inyección técnica de lechada.",
         category: "Inyección",
     },
     {
-        src: "/images/tetrapodos-rompeolas-san-pedro-macoris.webp",
+        src: imgTetrapodos,
         alt: "Línea de tetrápodos rompeolas.",
         category: "Buildings",
     },
     {
-        src: "/images/PROJECTS_IMAGES/soldadura-pilotes-acero.webp",
+        src: imgSoldadura,
         alt: "Mantenimiento preventivo.",
         category: "Buildings",
     },
@@ -75,18 +81,11 @@ const slidesData = [
                             <div class="w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
                                 <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
 
-                                <img
+                                <Image
                                     src={slide.src}
                                     alt={slide.alt}
                                     class="w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 z-0"
                                 />
-
-                                <a
-                                    href="#"
-                                    class="absolute top-4 right-4 z-20 w-12 h-12 bg-white rounded-full hidden lg:flex items-center justify-center text-gray-800 text-2xl shadow-md hover:scale-105 transition-transform duration-200"
-                                >
-                                    +
-                                </a>
 
                                 <div class="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end items-start z-20 pointer-events-none pb-8">
                                     <div class="relative z-20">
