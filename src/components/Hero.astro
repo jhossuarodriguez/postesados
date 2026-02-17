@@ -1,23 +1,28 @@
 ---
+import { Image } from 'astro:assets';
 import PlayButton from "@/assets/icons/playButton.svg";
 import PrevButton from "@/assets/icons/prevButton.svg";
 import NextButton from "@/assets/icons/nextButton.svg";
 
+import imgPlanta from "@/assets/images/HERO_IMAGES/planta-de-tratamiento-de-agua.webp";
+import imgPuente from "@/assets/images/HERO_IMAGES/construccion-puente.webp";
+import imgTuberia from "@/assets/images/HERO_IMAGES/instalacion-tuberia-rio.webp";
+
 const slidesData = [
     {
-        src: "/images/HERO_IMAGES/planta-de-tratamiento-de-agua.webp",
+        src: imgPlanta,
         alt: "Ingenieros supervisando tanques de concreto en una planta de tratamiento hídrico.",
         category: "Postensado",
         title: "Planta de tratamiento de agua",
     },
     {
-        src: "/images/HERO_IMAGES/construccion-puente.webp",
+        src: imgPuente,
         alt: "Vista aérea de la estructura de un puente en fase de armado sobre un río rodeado de árboles.",
         category: "Inyección",
         title: "Construcción de puente sobre río",
     },
     {
-        src: "/images/HERO_IMAGES/instalacion-tuberia-rio.webp",
+        src: imgTuberia,
         alt: "Vista aérea de la instalación de una gran tubería verde sobre una estructura metálica que cruza un río, con maquinaria de construcción y trabajadores",
         category: "Prefabricados",
         title: "Cruce aéreo de tubería",
@@ -74,7 +79,7 @@ const slidesData = [
                             <li class="splide__slide relative flex items-center justify-center ">
                                 <div class="w-full h-50 md:h-100 rounded-xl relative overflow-hidden group">
                                     <div class="absolute inset-0 bg-black/20" />
-                                    <img
+                                    <Image
                                         src={slide.src}
                                         alt={slide.alt}
                                         class="w-full h-full object-cover mix-blend-overlay transform transition-transform duration-400 group-hover:scale-110"
