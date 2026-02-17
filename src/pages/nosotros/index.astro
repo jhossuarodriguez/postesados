@@ -1,8 +1,13 @@
 ---
+export const prerender = false
+import { Image } from 'astro:assets';
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import MoveRight from "@/assets/icons/MoveRight.svg";
+
+import imgBgBackground from "@/assets/images/bgBackground.webp";
+import imgAboutFooter from "@/assets/images/about-footer.webp";
 ---
 
 <Layout>
@@ -11,9 +16,9 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
         <div
             class="relative h-120 md:h-138 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 overflow-hidden"
         >
-            <img
-                src="/images/bgBackground.webp"
-                alt=""
+            <Image
+                src={imgBgBackground}
+                alt="Fondo de la empresa"
                 class="absolute inset-0 w-full h-full object-cover object-center rounded-2xl"
             />
             <div class="inset-0 bg-black/40 absolute rounded-2xl"></div>
@@ -342,9 +347,9 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
             </div>
         </div>
         <div class="relative translate-y-16">
-            <img
+            <Image
                 class="rounded-2xl w-full h-120 object-cover object-center"
-                src="/images/about-footer.webp"
+                src={imgAboutFooter}
                 alt="Personas trabajando footer image"
             />
             <div class="inset-0 bg-black/50 absolute rounded-2xl"/>
