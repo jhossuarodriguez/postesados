@@ -1,6 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import PlusIcon from "@/assets/icons/plus.svg";
 import MinusIcon from "@/assets/icons/minus.svg";
+
+import imgViga from "@/assets/images/SERVICE_IMAGES/puente-rio-cachon-vista-aerea-viga.jpeg";
+import imgAcueducto from "@/assets/images/SERVICE_IMAGES/acueducto-construccion-rio-aerea.jpeg";
+import imgMontaje from "@/assets/images/SERVICE_IMAGES/montaje-panel-prefabricado-grua.jpeg";
+import imgTetrapodos from "@/assets/images/SERVICE_IMAGES/patio-tetrapodos-equipos-azules-aerea.jpeg";
 
 const innovationsData = [
     {
@@ -8,7 +14,7 @@ const innovationsData = [
         title: "Eficiencia Estructural con Tecnología de Postesado",
         description:
             "Especialistas en hormigón pretesado y postesado. Eliminamos deflexiones y garantizamos durabilidad mediante sistemas de tensado de alta precisión para vigas maestras y estructuras complejas.",
-        image: "/images/SERVICE_IMAGES/puente-rio-cachon-vista-aerea-viga.jpeg",
+        image: imgViga,
         alt: "Vista aérea de puente con viga postesada sobre río Cachón",
     },
     {
@@ -16,7 +22,7 @@ const innovationsData = [
         title: "Infraestructura Vial y Transporte Masivo",
         description:
             "Pieza clave en la Línea 2C del Metro y la Autopista Duarte. Ejecutamos la inyección técnica de lechada y el tesado de vigas artesa, asegurando la conexión y el desarrollo del país.",
-        image: "/images/SERVICE_IMAGES/acueducto-construccion-rio-aerea.jpeg",
+        image: imgAcueducto,
         alt: "Vista aérea de construcción de acueducto sobre río",
     },
     {
@@ -24,7 +30,7 @@ const innovationsData = [
         title: "Prefabricados de Gran Escala y Graderías",
         description:
             "Fabricación y montaje de elementos como los 2,500 m² de graderías para la Plaza Multiuso Seibana. Soluciones rápidas con acabados de alta calidad para espacios públicos.",
-        image: "/images/SERVICE_IMAGES/montaje-panel-prefabricado-grua.jpeg",
+        image: imgMontaje,
         alt: "Montaje de panel prefabricado con grúa en obra",
     },
     {
@@ -32,7 +38,7 @@ const innovationsData = [
         title: "Suministro de Tecnología y Equipos",
         description:
             "Importadores líderes de torones, anclajes y ductos. Proveemos soporte técnico y alquiler de gatos hidráulicos y bombas de inyección para proyectos de ingeniería.",
-        image: "/images/SERVICE_IMAGES/patio-tetrapodos-equipos-azules-aerea.jpeg",
+        image: imgTetrapodos,
         alt: "Vista aérea de patio de suministro con equipos y elementos prefabricados",
     },
 ];
@@ -111,7 +117,7 @@ const innovationsData = [
                                     </p>
                                 </div>
                                 <div class="lg:w-1/2 w-full h-56 lg:h-72 rounded-xl overflow-hidden relative shadow-inner">
-                                    <img
+                                    <Image
                                         src={item.image}
                                         alt={item.alt}
                                         class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
