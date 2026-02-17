@@ -19,11 +19,15 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
             </h2>
 
             <a
-                href="#inicio"
+                href="/contact"
+                aria-label="Contáctanos"
+                title="Contáctanos para más información"
                 class="group bg-white text-[#000070] text-sm lg:text-lg px-4 py-2 md:px-8 md:py-3 rounded-full font-bold flex items-center gap-3"
+
             >
                 Contáctanos
                 <MoveRight
+                    aria-hidden="true"
                     class="inline-block ml-2 group-hover:translate-x-1 duration-75"
                 />
             </a>
@@ -59,26 +63,31 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                             href="https://maps.app.goo.gl/hDjzE76zwmDkEnJVA"
                             rel="noopener noreferrer"
                             target="_blank"
-                            title="Ubicación de la Oficina de Postesados"
-                            aria-label="Ubicación de la Oficina de Postesados"
+                            aria-label="Ubicación de la Oficina de Postesados en Santo Domingo, República Dominicana"
+                            title="Ver ubicación de la Oficina de Postesados en Google Maps"
                         >
                             Santo Domingo, República Dominicana
                         </a>
                         <div class="pt-4 space-y-1">
                             <a
                                 href="tel:8092225652"
+                                aria-label="Llamar al (809) 222-5652"
+                                title="Llamar al (809) 222-5652"
                                 class="block hover:text-white transition-colors"
                                 >(809) 222-5652</a
                             >
                             <a
                                 href="tel:8095189910"
-                                class="block hover:text-white transition-colors"
+                                aria-label="Llamar al (809) 518-9910"
+                                title="Llamar al (809) 518-9910"
                                 >(809) 518-9910</a
                             >
                         </div>
                         <div class="pt-2">
                             <a
                                 href="mailto:postesados@gmail.com"
+                                aria-label="Enviar correo a postesados@gmail.com"
+                                title="Enviar correo a postesados@gmail.com"
                                 class="block hover:text-white transition-colors underline decoration-white/30 underline-offset-4"
                                 >postesados@gmail.com</a
                             >
@@ -92,20 +101,20 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                         rel="noopener noreferrer"
                         target="_blank"
                         class="p-2 border border-white/20 rounded-full hover:bg-white hover:text-[#000070] transition-all"
-                        title="Instagram Oficial de Postesados"
                         aria-label="Instagram Oficial de Postesados"
+                        title="Ir a Instagram Oficial de Postesados"
                     >
-                        <Instagram />
+                        <Instagram aria-hidden="true" />
                     </a>
                     <a
                         href="https://www.linkedin.com/company/postesados-jhp/about/"
                         rel="noopener noreferrer"
                         target="_blank"
                         class="p-2 border border-white/20 rounded-full hover:bg-white hover:text-[#000070] transition-all"
-                        title="LinkedIn Oficial de Postesados"
                         aria-label="LinkedIn Oficial de Postesados"
+                        title="Ir a LinkedIn Oficial de Postesados"
                     >
-                        <LinkedIn />
+                        <LinkedIn aria-hidden="true" />
                     </a>
                 </div>
             </div>
@@ -113,22 +122,29 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
             <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="flex flex-col gap-4">
                     <h3
+                        aria-label="Nosotros"
                         class="font-bold text-xs uppercase tracking-wider mb-2 text-white/60"
                     >
                         Nosotros
                     </h3>
                     <a
                         href="/nosotros"
+                        aria-label="Nuestra Historia"
+                        title="Ir a Nuestra Historia"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Nuestra Historia</a
                     >
                     <a
                         href="/equipo"
+                        aria-label="Liderazgo"
+                        title="Ir a Liderazgo"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Liderazgo</a
                     >
                     <a
                         href="/grupo"
+                        aria-label="Grupo Empresarial"
+                        title="Ir a Grupo Empresarial"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Grupo Empresarial</a
                     >
@@ -136,27 +152,36 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
 
                 <div class="flex flex-col gap-4">
                     <h3
+                        aria-label="Qué Hacemos"
                         class="font-bold text-xs uppercase tracking-wider mb-2 text-white/60"
                     >
                         Qué Hacemos
                     </h3>
                     <a
                         href="/servicios/postesado"
+                        aria-label="Postesado y Pretensado"
+                        title="Ir a Postesado y Pretensado"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Postesado y Pretensado</a
                     >
                     <a
                         href="/servicios/infraestructura"
+                        aria-label="Infraestructura Vial"
+                        title="Ir a Infraestructura Vial"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Infraestructura Vial</a
                     >
                     <a
                         href="/servicios/prefabricados"
+                        aria-label="Prefabricados"
+                        title="Ir a Prefabricados"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Prefabricados</a
                     >
                     <a
                         href="/servicios/suministros"
+                        aria-label="Suministro y Equipos"
+                        title="Ir a Suministro y Equipos"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Suministro y Equipos</a
                     >
@@ -164,22 +189,29 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
 
                 <div class="flex flex-col gap-4">
                     <h3
+                        aria-label="Proyectos"
                         class="font-bold text-xs uppercase tracking-wider mb-2 text-white/60"
                     >
                         Proyectos
                     </h3>
                     <a
                         href="/proyectos"
+                        aria-label="Todos los Proyectos"
+                        title="Ir a Todos los Proyectos"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Todos los Proyectos</a
                     >
                     <a
                         href="/proyectos/metro"
+                        aria-label="Metro Santo Domingo"
+                        title="Ir a Metro Santo Domingo"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Metro Santo Domingo</a
                     >
                     <a
                         href="/proyectos/puentes"
+                        aria-label="Puentes"
+                        title="Ir a Puentes"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Puentes</a
                     >
@@ -187,17 +219,22 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
 
                 <div class="flex flex-col gap-4">
                     <h3
+                        aria-label="Legal"
                         class="font-bold text-xs uppercase tracking-wider mb-2 text-white/60"
                     >
                         Legal
                     </h3>
                     <a
                         href="/privacidad"
+                        aria-label="Política de Privacidad"
+                        title="Ir a Política de Privacidad"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Política de Privacidad</a
                     >
                     <a
                         href="/terminos"
+                        aria-label="Términos de Uso"
+                        title="Ir a Términos de Uso"
                         class="hover:underline underline-offset-4 decoration-white/50 text-sm"
                         >Términos de Uso</a
                     >
@@ -218,6 +255,8 @@ import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
                     href="https://managerord.com"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Desarrollada por el equipo de Managero"
+                    title="Visitar sitio web de Managero"
                     class="block hover:text-white transition-colors underline decoration-white/30 underline-offset-4"
                     >Desarrollada por el equipo de Managero</a
                 >
