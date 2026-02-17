@@ -6,8 +6,9 @@ import NextButton from "@/assets/icons/nextButton.svg";
 const navItems = [
     { label: "Inicio", href: "/" },
     { label: "Nosotros", href: "/nosotros" },
-    { label: "Servicios", href: "#servicios" },
+    { label: "Servicios", href: "/servicios" },
     { label: "Tecnologia", href: "/tecnologia" },
+    { label: "Contacto", href: "/contacto", class: "md:hidden lg:hidden"}
 ];
 ---
 
@@ -46,13 +47,13 @@ const navItems = [
                                 index === 0
                                     ? "bg-[#0000a0] rounded-full opacity-100"
                                     : ""
-                            }`}
+                            } ${item.class || ""}`}
                         >
                             {item.label}
                         </a>
                     ))
                 }
-                <a href="https://postesados.com" rel="noopener noreferrer">
+                <a href="/">
                     <img
                         src="/logo_postesados_nobg.webp"
                         alt="Postesados Logo"
@@ -64,7 +65,7 @@ const navItems = [
             <div class="flex justify-center items-center gap-2">
                 <a
                     href="/contact"
-                    class="flex gap-2 text-white text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
+                    class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
                     id="contactBtn"
                     >Contactanos
                     <MoveRight
