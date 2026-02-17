@@ -1,0 +1,310 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+---
+
+<Layout>
+    <Header />
+    <section>
+        <div
+            class="relative h-120 md:h-126.25 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 overflow-hidden"
+        >
+            <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&auto=format&fit=crop"
+                alt="Tecnología e ingeniería digital"
+                class="absolute inset-0 w-full h-full object-cover object-center rounded-2xl"
+            />
+            <div class="inset-0 bg-black/40 absolute rounded-2xl"></div>
+            <div
+                class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 relative z-10"
+            >
+                <div
+                    class="w-full flex flex-col lg:flex-row justify-between items-center gap-x-20 space-y-3 lg:space-y-0 mt-24 ml-6"
+                >
+                    <p
+                        class="text-white font-bold text-4xl sm:text-4xl md:text-8xl tracking-tighter leading-normal md:leading-20 w-full"
+                    >
+                        Tecnología
+                    </p>
+                    <div class="mb-5 flex justify-end w-full">
+                        <p
+                            class="text-balance lg:text-[18px] pt-2 lg:pt-0 text-white md:mt-20 font-general-sans"
+                        >
+                            Nuestra División de Ingeniería Digital y Datos transforma la construcción mediante modelado BIM, monitoreo inteligente y análisis predictivo para proyectos más seguros y eficientes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16 md:py-24">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start mx-5 md:mx-0">
+                <!-- Columna izquierda: texto -->
+                <div class="flex-1 flex flex-col gap-8">
+
+                    <h2 class="text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold tracking-tighter text-[#0032A0] leading-tight">
+                        Optimizando la infraestructura <span class="font-bold">de inicio</span> a <span class="text-[#0032A0]">final</span>
+                    </h2>
+                    
+                    <a href="/contact" class="text-sm lg:text-base font-bold inline-block bg-[#0032A0] text-white px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg mt-8 self-start">
+                        
+                        Contáctenos
+                         <MoveRight
+                            class="inline-block ml-2 group-hover:animate-slide-in-left duration-75"
+                        />
+                    </a>
+                </div>
+
+                <!-- Columna derecha: tarjetas de estadísticas -->
+                <div class="flex-1 w-full">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-[#0032A0] rounded-2xl p-8 flex flex-col justify-center h-44">
+                            <span class="text-4xl md:text-5xl font-bold text-white">100%</span>
+                            <p class="text-white/80 font-medium mt-2 text-sm">Propiedad de Empleados</p>
+                        </div>
+                        <div class="bg-[#0032A0] rounded-2xl p-8 flex flex-col justify-center h-44">
+                            <span class="text-4xl md:text-5xl font-bold text-white">50+</span>
+                            <p class="text-white/80 font-medium mt-2 text-sm">Empleados</p>
+                        </div>
+                        <div class="bg-[#0032A0] rounded-2xl p-8 flex flex-col justify-center h-44">
+                            <span class="text-4xl md:text-5xl font-bold text-white">2024</span>
+                            <p class="text-white/80 font-medium mt-2 text-sm">Año de Fundación</p>
+                        </div>
+                        <div class="bg-[#0032A0] rounded-2xl p-8 flex flex-col justify-center h-44">
+                            <span class="text-4xl md:text-5xl font-bold text-white">+2</span>
+                            <p class="text-white/80 font-medium mt-2 text-sm">Años de Operación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bg-[#e8ecf5] rounded-2xl w-full mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16 lg:py-20"
+        >
+            <h2
+                class="text-3xl md:text-5xl 2xl:text-6xl font-bold tracking-tighter text-center mb-10 md:mb-14 text-[#0032A0]"
+            >
+                Ingeniería Digital al Servicio de la Construcción
+            </h2>
+
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-6 2xl:gap-8 max-w-7xl 2xl:max-w-425 mx-auto"
+            >
+                <!-- Card 1: Modelado BIM -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Modelado BIM
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Creación de modelos tridimensionales paramétricos
+                            para la planificación, diseño y coordinación de
+                            proyectos de infraestructura civil.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&auto=format&fit=crop"
+                        alt="Modelado BIM"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 2: Monitoreo Estructural IoT -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Monitoreo Estructural IoT
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Redes de sensores inteligentes instalados en
+                            estructuras para medir deformaciones, vibraciones y
+                            cargas en tiempo real.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=400&auto=format&fit=crop"
+                        alt="Monitoreo Estructural IoT"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 3: Análisis Predictivo -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Análisis Predictivo
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Algoritmos de machine learning aplicados a datos
+                            de obra para anticipar riesgos, optimizar plazos
+                            y reducir costos operativos.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop"
+                        alt="Análisis Predictivo"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 4: Gemelos Digitales -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Gemelos Digitales
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Réplicas virtuales de estructuras físicas que
+                            permiten simular escenarios de carga, envejecimiento
+                            y mantenimiento preventivo.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=400&auto=format&fit=crop"
+                        alt="Gemelos Digitales"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 5: Automatización de Procesos -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Automatización de Procesos
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Digitalización de flujos de trabajo en obra:
+                            control de calidad, registro fotográfico con IA
+                            y reportes automatizados.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&auto=format&fit=crop"
+                        alt="Automatización de Procesos"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 6: Plataformas de Datos -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Plataformas de Datos
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Dashboards centralizados que integran información
+                            de sensores, BIM y gestión de proyectos para la
+                            toma de decisiones en tiempo real.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&auto=format&fit=crop"
+                        alt="Plataformas de Datos"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+
+                <!-- Card 7: Topografía con Drones -->
+                <div
+                    class="bg-white hover:bg-[#0032A0] rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+                >
+                    <div class="flex-1">
+                        <h3
+                            class="text-lg 2xl:text-xl font-bold mb-2 text-[#0032A0] group-hover/card:text-white"
+                        >
+                            Topografía con Drones
+                        </h3>
+                        <p
+                            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+                        >
+                            Levantamientos aéreos de alta resolución con
+                            fotogrametría y LiDAR para control volumétrico
+                            y seguimiento del avance de obra.
+                        </p>
+                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=400&auto=format&fit=crop"
+                        alt="Topografía con Drones"
+                        class="w-32 h-32 object-cover rounded-xl shrink-0"
+                    />
+                </div>
+            </div>
+        </div>
+        <div class="relative translate-y-16">
+            <img
+                class="rounded-2xl w-full h-120 object-cover object-center"
+                src="/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.jpeg"
+                alt="Vista aérea del puente Río Cachón"
+            />
+            <div class="inset-0 bg-black/50 absolute rounded-2xl"></div>
+            <div class="md:ml-14 absolute top-24 bottom-6 left-6 right-6">
+                <div class="flex flex-col justify-between h-full">
+                    <p
+                        class="flex justify-start items-center text-xs lg:text-base text-[#0032A0] font-bold lg:px-3 px-3 py-2 self-start bg-white rounded-full border border-gray-300"
+                    >
+                        ● Innovación Digital
+                    </p>
+                    <span
+                        class="text-3xl md:text-6xl text-white font-bold mt-4 block lg:max-w-2xl leading-tight"
+                        >Digitaliza tu Próximo Proyecto</span
+                    >
+                    <p
+                        class="text-white mt-4 block lg:max-w-xl leading-tight font-general-sans text-base md:text-xl"
+                    >
+                        Desde el modelado BIM hasta el monitoreo en tiempo real,
+                        nuestra división tecnológica está lista para llevar su
+                        infraestructura al siguiente nivel de eficiencia y control.
+                    </p>
+
+                    <a href="/contact" class="text-sm lg:text-base font-bold inline-block bg-white text-[#0032A0] px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg mt-8 self-start">
+                        Contáctenos
+                        <MoveRight
+                            class="inline-block ml-2 group-hover:animate-slide-in-left duration-75"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
