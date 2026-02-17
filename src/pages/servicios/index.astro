@@ -1,8 +1,19 @@
 ---
+export const prerender = false
+import { Image } from 'astro:assets';
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import MoveRight from "@/assets/icons/MoveRight.svg";
+
+import imgEncofrado from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-encofrado-lateral.jpeg";
+import imgVaciado from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-vaciado-nocturno-02.jpeg";
+import imgMixer from "@/assets/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.jpeg";
+import imgMontaje from "@/assets/images/SERVICE_SECTION/montaje-losas-prefabricadas-camion.jpeg";
+import imgGrua from "@/assets/images/SERVICE_SECTION/grua-colocando-cabezal-pilar.jpeg";
+import imgPlanta from "@/assets/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.jpeg";
+import imgAcueducto from "@/assets/images/SERVICE_SECTION/acueducto-vista-aerea-rio.jpeg";
+import imgPuente from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.jpeg";
 ---
 
 <Layout>
@@ -115,8 +126,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             exigencia.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/puente-rio-cachon-encofrado-lateral.jpeg"
+                    <Image
+                        src={imgEncofrado}
                         alt="Postesado"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -139,8 +150,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             para puentes y obras viales de gran envergadura.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/puente-rio-cachon-vaciado-nocturno-02.jpeg"
+                    <Image
+                        src={imgVaciado}
                         alt="Inyección de Lechada"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -164,8 +175,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             pretensado.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.jpeg"
+                    <Image
+                        src={imgMixer}
                         alt="Suministro de Materiales"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -189,8 +200,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             armado.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/montaje-losas-prefabricadas-camion.jpeg"
+                    <Image
+                        src={imgMontaje}
                         alt="Prefabricados"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -213,8 +224,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             multi-torón de alta precisión y fuerza controlada.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/grua-colocando-cabezal-pilar.jpeg"
+                    <Image
+                        src={imgGrua}
                         alt="Tesado Estructural"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -238,8 +249,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             calidad.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.jpeg"
+                    <Image
+                        src={imgPlanta}
                         alt="Innovación y Calidad"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -263,8 +274,8 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                             construcción.
                         </p>
                     </div>
-                    <img
-                        src="/images/SERVICE_SECTION/acueducto-vista-aerea-rio.jpeg"
+                    <Image
+                        src={imgAcueducto}
                         alt="Soluciones Integrales"
                         class="w-32 h-32 object-cover rounded-xl shrink-0"
                     />
@@ -272,9 +283,9 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
             </div>
         </div>
         <div class="relative translate-y-16">
-            <img
+            <Image
                 class="rounded-2xl w-full h-120 object-cover object-center"
-                src="/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.jpeg"
+                src={imgPuente}
                 alt="Vista aérea del puente Río Cachón"
             />
             <div class="inset-0 bg-black/50 absolute rounded-2xl"></div>
