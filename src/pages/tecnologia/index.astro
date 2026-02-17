@@ -1,8 +1,12 @@
 ---
+export const prerender = false
+import { Image } from 'astro:assets';
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import MoveRight from "@/assets/icons/MoveRight.svg";
+
+import imgPuente from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.jpeg";
 ---
 
 <Layout>
@@ -271,9 +275,9 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
             </div>
         </div>
         <div class="relative translate-y-16">
-            <img
+            <Image
                 class="rounded-2xl w-full h-120 object-cover object-center"
-                src="/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.jpeg"
+                src={imgPuente}
                 alt="Vista aérea del puente Río Cachón"
             />
             <div class="inset-0 bg-black/50 absolute rounded-2xl"></div>
