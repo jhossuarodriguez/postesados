@@ -1,0 +1,107 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+---
+
+<Layout>
+    <Header />
+    <section
+        class="bg-[#e8ecf5] rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10"
+    >
+        <div
+            class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5"
+        >
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start mx-4">
+                <!-- Columna izquierda: Contacto info -->
+                <div class="flex-1">
+                    <h1 class="text-[#0032A0] text-4xl sm:text-4xl md:text-8xl font-bold tracking-tighter leading-normal md:leading-20 mb-12 lg:mb-16">
+                        Contáctanos
+                    </h1>
+
+                    <div class="flex flex-col sm:flex-row gap-12 sm:gap-20">
+                        <!-- Oficina Principal -->
+                        <div>
+                            <h3 class="font-bold text-base text-black mb-3">Oficina Principal</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed font-general-sans">
+                                Santo Domingo,<br />
+                                República Dominicana
+                            </p>
+                            <a href="tel:8092225652" class="block text-sm text-black underline underline-offset-4 mt-4 hover:text-[#0032A0] transition-colors">(809) 222-5652</a>
+                            <a href="tel:8095189910" class="block text-sm text-black underline underline-offset-4 mt-1 hover:text-[#0032A0] transition-colors">(809) 518-9910</a>
+                            <a href="mailto:postesados@gmail.com" class="block text-sm text-black underline underline-offset-4 mt-1 hover:text-[#0032A0] transition-colors">postesados@gmail.com</a>
+                        </div>
+
+                        <!-- Consultas Comerciales -->
+                        <div>
+                            <h3 class="font-bold text-base text-black mb-3">Consultas Comerciales</h3>
+                            <p class="text-gray-600 text-sm leading-relaxed font-general-sans">
+                                Departamento Comercial<br />
+                                Ventas y Proyectos
+                            </p>
+                            <a href="tel:8092225652" class="block text-sm text-black underline underline-offset-4 mt-4 hover:text-[#0032A0] transition-colors">(809) 222-5652 ext. 100</a>
+                            <a href="mailto:postesados@gmail.com" class="block text-sm text-black underline underline-offset-4 mt-1 hover:text-[#0032A0] transition-colors">postesados@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Formulario -->
+                <div class="flex-1 w-full bg-white rounded-2xl p-8 lg:p-10">
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#0032A0] mb-2">Escríbenos</h2>
+                    <p class="text-gray-500 text-sm font-general-sans mb-8">Contáctenos para obtener más información.</p>
+
+                    <form class="flex flex-col gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input
+                                type="text"
+                                placeholder="Nombre"
+                                class="w-full px-5 py-3 rounded-full bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans outline-none focus:border-[#0032A0] transition-colors"
+                            />
+                            <input
+                                type="text"
+                                placeholder="Apellido"
+                                class="w-full px-5 py-3 rounded-full bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans outline-none focus:border-[#0032A0] transition-colors"
+                            />
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <input
+                                type="email"
+                                placeholder="Correo electrónico"
+                                class="w-full px-5 py-3 rounded-full bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans outline-none focus:border-[#0032A0] transition-colors"
+                            />
+                            <select
+                                class="w-full px-5 py-3 rounded-full bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans text-gray-400 outline-none focus:border-[#0032A0] transition-colors appearance-none"
+                            >
+                                <option value="" disabled selected>Seleccione un tema</option>
+                                <option value="postesado">Postesado</option>
+                                <option value="pretensado">Pretensado</option>
+                                <option value="prefabricados">Prefabricados</option>
+                                <option value="suministros">Suministro de Materiales</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <input
+                            type="tel"
+                            placeholder="+1 (000) 000-000"
+                            class="w-full px-5 py-3 rounded-full bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans outline-none focus:border-[#0032A0] transition-colors"
+                        />
+                        <textarea
+                            placeholder="Su mensaje"
+                            rows="5"
+                            class="w-full px-5 py-4 rounded-2xl bg-[#e8ecf5] border border-gray-200 text-sm font-general-sans outline-none focus:border-[#0032A0] transition-colors resize-y"
+                        ></textarea>
+                        <button
+                            type="submit"
+                            class="self-start inline-flex items-center gap-2 bg-[#0032A0] text-white font-bold text-sm px-6 py-3 rounded-full hover:bg-[#002080] transition shadow-lg mt-2"
+                        >
+                            Enviar Formulario
+                            <MoveRight class="inline-block ml-1" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <Footer />
+</Layout>
