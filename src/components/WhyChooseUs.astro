@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets';
 import Building from "@/assets/icons/building.svg";
 import Users from "@/assets/icons/users.svg";
 import Award from "@/assets/icons/award.svg";
 import Briefcase from "@/assets/icons/briefcase.svg";
 import ChevronRight from "@/assets/icons/nextButton.svg";
+
+import imgBackgroundCompany from "@/assets/images/background_company.webp";
 ---
 
 <section class="flex flex-col w-full py-16 lg:py-28 overflow-hidden">
@@ -227,8 +230,8 @@ import ChevronRight from "@/assets/icons/nextButton.svg";
             <div
                 class="lg:col-span-4 rounded-4xl overflow-hidden relative min-h-100 group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
             >
-                <img
-                    src="/images/background_company.webp"
+                <Image
+                    src={imgBackgroundCompany}
                     alt="Grupo empresarial"
                     class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000"
                 />
