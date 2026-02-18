@@ -4,9 +4,9 @@ import PlayButton from "@/assets/icons/playButton.svg";
 import PrevButton from "@/assets/icons/prevButton.svg";
 import NextButton from "@/assets/icons/nextButton.svg";
 
-import imgPlanta from "@/assets/images/HERO_IMAGES/planta-de-tratamiento-de-agua.webp";
-import imgPuente from "@/assets/images/HERO_IMAGES/construccion-puente.webp";
-import imgTuberia from "@/assets/images/HERO_IMAGES/instalacion-tuberia-rio.webp";
+import imgPlanta from "@/assets/images/HERO/planta-de-tratamiento-de-agua.webp";
+import imgPuente from "@/assets/images/HERO/construccion-puente.webp";
+import imgTuberia from "@/assets/images/HERO/instalacion-tuberia-rio.webp";
 
 const slidesData = [
     {
@@ -59,6 +59,7 @@ const slidesData = [
                         <video
                             class="w-full h-50 md:h-100 object-cover rounded-xl"
                             src="/postesados_hero.webm"
+                            preload="metadata"
                             muted
                             loop
                             playsinline
@@ -75,7 +76,7 @@ const slidesData = [
                     </li>
 
                     {
-                        slidesData.map((slide) => (
+                        slidesData.map((slide, index) => (
                             <li class="splide__slide relative flex items-center justify-center ">
                                 <div class="w-full h-50 md:h-100 rounded-xl relative overflow-hidden group">
                                     <div class="absolute inset-0 bg-black/20" />
@@ -83,6 +84,8 @@ const slidesData = [
                                         src={slide.src}
                                         alt={slide.alt}
                                         class="w-full h-full object-cover mix-blend-overlay transform transition-transform duration-400 group-hover:scale-110"
+                                        loading={index === 0 ? 'eager' : 'lazy'}
+                                        fetchpriority={index === 0 ? 'high' : 'low'}
                                     />
 
                                     <div class="absolute inset-0 p-8 flex flex-col justify-center text-white">
