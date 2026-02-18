@@ -8,7 +8,7 @@ const navItems = [
     { label: "Nosotros", href: "/nosotros" },
     { label: "Servicios", href: "/servicios" },
     { label: "Tecnologia", href: "/tecnologia" },
-    { label: "Contacto", href: "/contacto", class: "md:hidden lg:hidden"}
+    { label: "Contacto", href: "/contacto", class: "md:hidden lg:hidden" },
 ];
 ---
 
@@ -43,6 +43,9 @@ const navItems = [
                     navItems.map((item, index) => (
                         <a
                             href={item.href}
+                            title="Menu de Navegacion"
+                            aria-label="Menu de Navegacion"
+                            aria-labelledby="Menu de Navegacion"
                             class={`nav-links hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
                                 index === 0
                                     ? "bg-[#0000a0] rounded-full opacity-100"
@@ -53,11 +56,19 @@ const navItems = [
                         </a>
                     ))
                 }
-                <a href="/">
+                <a
+                    href="/"
+                    title="Logo Postesados"
+                    aria-label="Logo Postesados"
+                    aria-labelledby="Logo Postesados"
+                >
                     <img
                         src="/logo_postesados_nobg.webp"
                         alt="Postesados Logo"
                         class="h-16 w-auto md:ml-14 xl:ml-24 2xl:ml-48"
+                        width="120"
+                        height="64"
+                        fetchpriority="high"
                     />
                 </a>
             </div>
@@ -67,6 +78,9 @@ const navItems = [
                     href="/contact"
                     class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
                     id="contactBtn"
+                    title="Contactanos"
+                    aria-label="Contactanos"
+                    aria-labelledby="Contactanos"
                     >Contactanos
                     <MoveRight
                         class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
@@ -104,6 +118,9 @@ const navItems = [
         <div class="space-y-4">
             <h3
                 class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+                title="Boton Navegacion"
+                aria-label="Boton Navegacion"
+                aria-labelledby="Boton Navegacion"
             >
                 Navegación
             </h3>
@@ -112,6 +129,9 @@ const navItems = [
                     <a
                         href={item.href}
                         class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                        title={item.label}
+                        aria-label={item.label}
+                        aria-labelledby={item.label}
                     >
                         {item.label}
                     </a>
@@ -121,51 +141,77 @@ const navItems = [
         <div class="space-y-4">
             <h3
                 class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+                title="Servicios"
+                aria-label="Servicios"
+                aria-labelledby="Servicios"
             >
                 Servicios
             </h3>
             <a
                 href="/servicios"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                >Ver todos</a
-            >
+                title="Servicios"
+                aria-label="Servicios"
+                aria-labelledby="Servicios">Ver todos
+            </a>
         </div>
         <div class="space-y-4">
             <h3
                 class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+                title="Empresa"
+                aria-label="Empresa"
+                aria-labelledby="Empresa"
             >
                 Empresa
             </h3>
             <a
                 href="/nosotros"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                title="Nosotros"
+                aria-label="Nosotros"
+                aria-labelledby="Nosotros"
                 >Nosotros</a
             >
             <a
                 href="/equipo"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                >Equipo</a
-            >
+                title="Equipo"
+                aria-label="Equipo"
+                aria-labelledby="Equipo"
+                >Equipo
+            </a>
             <a
                 href="/proyectos"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                title="Proyectos"
+                aria-label="Proyectos"
+                aria-labelledby="Proyectos"
                 >Proyectos</a
             >
         </div>
         <div class="space-y-4">
             <h3
                 class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+                title="Legal"
+                aria-label="Legal"
+                aria-labelledby="Legal"
             >
                 Legal
             </h3>
             <a
                 href="/privacidad"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                >Privacidad</a
-            >
+                title="Privacidad"
+                aria-label="Privacidad"
+                aria-labelledby="Privacidad"
+                >Privacidad
+            </a>
             <a
                 href="/terminos"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
+                title="Términos"
+                aria-label="Términos"
+                aria-labelledby="Términos"
                 >Términos</a
             >
         </div>
@@ -193,6 +239,9 @@ const navItems = [
                             href={link.href}
                             class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#030938] rounded-full text-center shadow-lg "
                             data-index={index}
+                             title={link.label}
+                            aria-label={link.label}
+                            aria-labelledby={link.label}
                         >
                             {link.label}
                             <NextButton class="inline-block size-4 ml-2" />
@@ -202,6 +251,9 @@ const navItems = [
                             href={link.href}
                             class="mobile-nav-link group flex items-center gap-3 py-4 px-4 text-lg font-medium text-white border-b border-white/25"
                             data-index={index}
+                            title={link.label}
+                            aria-label={link.label}
+                            aria-labelledby={link.label}
                         >
                             <div class="w-full flex justify-between items-center size-4">
                                 {link.label}
