@@ -16,6 +16,9 @@ import Analytics from "@vercel/analytics/astro";
 			href="/favicon-96x96.png"
 			sizes="96x96"
 		/>
+		<!-- Preload fuentes críticas para LCP -->
+		<link rel="preload" href="/fonts/montserrat-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
 	</head>
 	<body class="w-full mx-auto px-2 lg:px-5">
 		<slot />
