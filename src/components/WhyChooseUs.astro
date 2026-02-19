@@ -339,45 +339,49 @@ import bento4 from "@/assets/images/BENTO/Bento4.webp";
 </style>
 
 <script>
-    // Animación de contadores
-    const counters = document.querySelectorAll(".counter");
+    document.addEventListener("astro:page-load", () => {
+        // Animación de contadores
+        const counters = document.querySelectorAll(".counter");
 
-    const animateCounter = (counter: Element) => {
-        const target = parseInt(counter.getAttribute("data-target") || "0");
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
+        const animateCounter = (counter: Element) => {
+            const target = parseInt(
+                counter.getAttribute("data-target") || "0",
+            );
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
 
-        const updateCounter = () => {
-            current += step;
-            if (current < target) {
-                counter.textContent = Math.floor(current).toString();
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target.toString();
-            }
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toString();
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toString();
+                }
+            };
+
+            updateCounter();
         };
 
-        updateCounter();
-    };
+        // Intersection Observer para activar contadores cuando sean visibles
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: "0px",
+        };
 
-    // Intersection Observer para activar contadores cuando sean visibles
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: "0px",
-    };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    animateCounter(counter);
+                    observer.unobserve(counter);
+                }
+            });
+        }, observerOptions);
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                animateCounter(counter);
-                observer.unobserve(counter);
-            }
+        counters.forEach((counter) => {
+            observer.observe(counter);
         });
-    }, observerOptions);
-
-    counters.forEach((counter) => {
-        observer.observe(counter);
     });
 </script>
