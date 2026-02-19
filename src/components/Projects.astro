@@ -149,7 +149,7 @@ const slidesData = [
     import Splide from "@splidejs/splide";
     import "@splidejs/splide/css";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         const splide = new Splide(".splide-projects", {
             type: "loop",
             autoplay: true,
