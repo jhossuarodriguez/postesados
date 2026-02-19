@@ -8,6 +8,7 @@ import imgPlanta from "@/assets/images/HERO/planta-de-tratamiento-de-agua.webp";
 import imgPuente from "@/assets/images/HERO/construccion-puente.webp";
 import imgTuberia from "@/assets/images/HERO/instalacion-tuberia-rio.webp";
 
+
 const slidesData = [
     {
         src: imgPlanta,
@@ -31,7 +32,7 @@ const slidesData = [
 ---
 
 <section
-    class="bg-[#e8ecf5] h-113 md:h-125 lg:h-188 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10"
+    class="bg-[#e8ecf5] h-113 md:h-125 lg:h-188 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 animado"
 >
     <div
         class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5"
@@ -150,7 +151,7 @@ const slidesData = [
     import Splide from "@splidejs/splide";
     import "@splidejs/splide/css";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         const splide = new Splide(".splide", {
             type: "loop",
             autoplay: true,
