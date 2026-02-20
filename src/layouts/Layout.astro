@@ -28,32 +28,22 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 	</body>
 
 	<script>
-		import { animate, inView } from "motion"
+		import { animate, stagger, inView } from "motion"
 
 		document.addEventListener("astro:page-load", () => {
-			const sections = document.querySelectorAll("body > section, body > div > section")
-
-			sections.forEach((section) => {
-				const el = section as HTMLElement
-				el.style.opacity = "0"
-				el.style.transform = "translateY(60px)"
-
-				inView(el, () => {
-					animate(
-						el,
-						{ opacity: [0, 1], y: [60, 0] } as any,
-						{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }
-					)
-
-					return () => {
-						animate(
-							el,
-							{ opacity: [1, 0], y: [0, 60] } as any,
-							{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }
-						)
-					}
-				}, { amount: 0.2 })
+			// Ocultar hijos de cada sección antes de animar
+			document.querySelectorAll("section > *, footer > *").forEach((el) => {
+				;(el as HTMLElement).style.opacity = "0"
 			})
+
+			inView("section, footer", (section) => {
+				const children = section.querySelectorAll(":scope > *")
+				animate(
+					children,
+					{ opacity: [0, 1], y: [24, 0] },
+					{ duration: 3, ease: [0.16, 1, 0.3, 1], delay: stagger(0.12) }
+				)
+			}, { amount: 0.08 })
 		})
 	</script>
 </html>
@@ -72,11 +62,5 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 		height: 100%;
 		font-family: "Montserrat", sans-serif;
 		overflow-y: scroll;
-		scroll-snap-type: y proximity;
-	}
-
-	body > :global(section),
-	body > :global(div > section) {
-		scroll-snap-align: start;
 	}
 </style>
