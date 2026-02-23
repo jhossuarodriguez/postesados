@@ -113,31 +113,8 @@ const navItems = [
     id="menu-dropdownn"
 >
     <div
-        class="p-6 mx-10 grid grid-cols-4 gap-6 py-10 mt-10 max-h-125 min-h-110 2xl:max-h-150 2xl:min-h-125"
+        class="p-6 mx-10 grid grid-cols-3 gap-6 py-10 mt-10 max-h-125 min-h-110 2xl:max-h-150 2xl:min-h-125"
     >
-        <div class="space-y-4">
-            <h3
-                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
-                title="Boton Navegacion"
-                aria-label="Boton Navegacion"
-                aria-labelledby="Boton Navegacion"
-            >
-                Navegación
-            </h3>
-            {
-                navItems.map((item) => (
-                    <a
-                        href={item.href}
-                        class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                        title={item.label}
-                        aria-label={item.label}
-                        aria-labelledby={item.label}
-                    >
-                        {item.label}
-                    </a>
-                ))
-            }
-        </div>
         <div class="space-y-4">
             <h3
                 class="text-white font-semibold text-lg border-b border-white/20 pb-2"
@@ -148,29 +125,87 @@ const navItems = [
                 Servicios
             </h3>
             <a
+                href="/servicios#postesado"
+                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
+                title="Postesado"
+                aria-label="Postesado"
+                aria-labelledby="Postesado"
+                >Postesado
+                <div
+                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                >
+                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
+                </div>
+            </a>
+            <a
+                href="/servicios#inyeccion"
+                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
+                title="Inyección de Lechada"
+                aria-label="Inyección de Lechada"
+                aria-labelledby="Inyección de Lechada"
+                >Inyección de Lechada
+                <div
+                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                >
+                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
+                </div>
+            </a>
+            <a
+                href="/servicios#suministro"
+                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
+                title="Suministro de Materiales"
+                aria-label="Suministro de Materiales"
+                aria-labelledby="Suministro de Materiales"
+                >Suministro de Materiales
+                <div
+                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                >
+                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
+                </div>
+            </a>
+            <a
+                href="/servicios#prefabricados"
+                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
+                title="Prefabricados"
+                aria-label="Prefabricados"
+                aria-labelledby="Prefabricados"
+                >Prefabricados
+                <div
+                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                >
+                    <MoveRight class="size-5 group-hover/section:text-[#000070] hover:translate-x-1 duration-75" />
+                </div>
+            </a>
+            <a
                 href="/servicios"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Servicios"
-                aria-label="Servicios"
-                aria-labelledby="Servicios">Ver todos
+                class="menu-dropdownn-link flex items-center justify-between text-white font-semibold hover:bg-[#0000a0] px-3 py-2 transition-colors mt-2 group/section"
+                title="Ver todos los servicios"
+                aria-label="Ver todos los servicios"
+                aria-labelledby="Ver todos los servicios"
+                >Ver todos
+                <div
+                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white group"
+                >
+                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
+                </div>
             </a>
         </div>
         <div class="space-y-4">
-            <h3
-                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
+            <button
+                class="text-white font-semibold text-lg border-b border-white/20 pb-2 cursor-pointer"
                 title="Empresa"
                 aria-label="Empresa"
                 aria-labelledby="Empresa"
+                id="empresa"
             >
                 Empresa
-            </h3>
+            </button>
             <a
                 href="/nosotros"
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
                 title="Nosotros"
                 aria-label="Nosotros"
-                aria-labelledby="Nosotros"
-                >Nosotros</a
+                aria-labelledby="Nosotros">Nosotros</a
             >
             <a
                 href="/equipo"
@@ -185,8 +220,7 @@ const navItems = [
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
                 title="Proyectos"
                 aria-label="Proyectos"
-                aria-labelledby="Proyectos"
-                >Proyectos</a
+                aria-labelledby="Proyectos">Proyectos</a
             >
         </div>
         <div class="space-y-4">
@@ -211,8 +245,7 @@ const navItems = [
                 class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
                 title="Términos"
                 aria-label="Términos"
-                aria-labelledby="Términos"
-                >Términos</a
+                aria-labelledby="Términos">Términos</a
             >
         </div>
     </div>
@@ -239,7 +272,7 @@ const navItems = [
                             href={link.href}
                             class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#030938] rounded-full text-center shadow-lg "
                             data-index={index}
-                             title={link.label}
+                            title={link.label}
                             aria-label={link.label}
                             aria-labelledby={link.label}
                         >
