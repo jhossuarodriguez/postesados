@@ -112,141 +112,459 @@ const navItems = [
     class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 bg-[#000070] rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
     id="menu-dropdownn"
 >
-    <div
-        class="p-6 mx-10 grid grid-cols-3 gap-6 py-10 mt-10 max-h-125 min-h-110 2xl:max-h-150 2xl:min-h-125"
-    >
-        <div class="space-y-4">
-            <h3
-                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
-                title="Servicios"
-                aria-label="Servicios"
-                aria-labelledby="Servicios"
+    <div class="nav-container px-8 py-8 mt-8">
+        <!-- Tabs -->
+        <ul
+            class="flex items-center gap-0 relative list-none p-0 mb-6 border-b border-white/15"
+            role="tablist"
+            aria-label="Navegación de secciones"
+        >
+            <li role="presentation">
+                <button
+                    id="tab-0"
+                    type="button"
+                    class="tab bg-transparent border-none text-white/55 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white/85 active"
+                    role="tab"
+                    tabindex="0"
+                    aria-selected="true"
+                    aria-controls="panel-0"
+                >
+                    <span class="tab-label">Servicios</span>
+                </button>
+            </li>
+            <li role="presentation">
+                <button
+                    id="tab-1"
+                    type="button"
+                    class="tab bg-transparent border-none text-white/55 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white/85"
+                    role="tab"
+                    tabindex="0"
+                    aria-selected="false"
+                    aria-controls="panel-1"
+                >
+                    <span class="tab-label">Empresa</span>
+                </button>
+            </li>
+            <li role="presentation">
+                <button
+                    id="tab-2"
+                    type="button"
+                    class="tab bg-transparent border-none text-white/55 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white/85"
+                    role="tab"
+                    tabindex="0"
+                    aria-selected="false"
+                    aria-controls="panel-2"
+                >
+                    <span class="tab-label">Legal</span>
+                </button>
+            </li>
+            <div
+                class="active-bar absolute -bottom-px left-0 h-0.5 bg-white rounded-sm transition-[width,transform] duration-300 ease-in-out"
             >
-                Servicios
-            </h3>
-            <a
-                href="/servicios#postesado"
-                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
-                title="Postesado"
-                aria-label="Postesado"
-                aria-labelledby="Postesado"
-                >Postesado
-                <div
-                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
-                >
-                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
+            </div>
+        </ul>
+
+        <!-- Panel: Servicios -->
+        <div
+            class="nav-panel flex justify-between w-full"
+            id="panel-0"
+            role="tabpanel"
+            aria-labelledby="tab-0"
+        >
+            <ul class="grid grid-cols-2 gap-x-12 content-start max-w-6xl">
+                <li>
+                    <a
+                        href="/servicios#postesado"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Postesado
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Sistemas de postesado de alta calidad
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/servicios#inyeccion"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-2"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Inyección de Lechada
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Inyección especializada para estructuras
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/servicios#suministro"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Suministro de Materiales
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Materiales certificados para su obra
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/servicios#prefabricados"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Prefabricados
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Elementos prefabricados a medida
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/servicios"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Ver todos los servicios
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Explora nuestra oferta completa
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="flex h-117 relative">
+                <img
+                    class="w-190 object-cover rounded-2xl"
+                    src="/src/assets/images/dropdown1.webp"
+                    alt="Puente modo dibujo para servicios de postesado"
+                />
+                <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
+                <div class="absolute inset-0">
+                    <div
+                        class="w-full h-full flex flex-col gap-x-20 space-y-3 lg:space-y-0 pt-10 pl-6 pb-6"
+                    >
+                        <span class="text-white/80 font-bold text-base">
+                            Servicios Overview
+                        </span>
+                        <p
+                            class="text-white font-bold text-7xl tracking-tighter w-full"
+                        >
+                            Abarcando <br /> el Futuro.
+                        </p>
+                        <div class="mb-5 flex mt-auto">
+                            <a
+                                href="/servicios"
+                                class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1 group"
+                                title="Ver todos los servicios"
+                                aria-label="Ver todos los servicios"
+                                aria-labelledby="Ver todos los servicios"
+                            >
+                                Ver mas
+                                <MoveRight
+                                    class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
+                                />
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-            <a
-                href="/servicios#inyeccion"
-                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
-                title="Inyección de Lechada"
-                aria-label="Inyección de Lechada"
-                aria-labelledby="Inyección de Lechada"
-                >Inyección de Lechada
-                <div
-                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
-                >
-                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
-                </div>
-            </a>
-            <a
-                href="/servicios#suministro"
-                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
-                title="Suministro de Materiales"
-                aria-label="Suministro de Materiales"
-                aria-labelledby="Suministro de Materiales"
-                >Suministro de Materiales
-                <div
-                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
-                >
-                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
-                </div>
-            </a>
-            <a
-                href="/servicios#prefabricados"
-                class="menu-dropdownn-link flex items-center justify-between text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-xl transition-colors group/section"
-                title="Prefabricados"
-                aria-label="Prefabricados"
-                aria-labelledby="Prefabricados"
-                >Prefabricados
-                <div
-                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
-                >
-                    <MoveRight class="size-5 group-hover/section:text-[#000070] hover:translate-x-1 duration-75" />
-                </div>
-            </a>
-            <a
-                href="/servicios"
-                class="menu-dropdownn-link flex items-center justify-between text-white font-semibold hover:bg-[#0000a0] px-3 py-2 transition-colors mt-2 group/section"
-                title="Ver todos los servicios"
-                aria-label="Ver todos los servicios"
-                aria-labelledby="Ver todos los servicios"
-                >Ver todos
-                <div
-                    class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white group"
-                >
-                    <MoveRight class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75" />
-                </div>
-            </a>
+            </div>
         </div>
-        <div class="space-y-4">
-            <button
-                class="text-white font-semibold text-lg border-b border-white/20 pb-2 cursor-pointer"
-                title="Empresa"
-                aria-label="Empresa"
-                aria-labelledby="Empresa"
-                id="empresa"
-            >
-                Empresa
-            </button>
-            <a
-                href="/nosotros"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Nosotros"
-                aria-label="Nosotros"
-                aria-labelledby="Nosotros">Nosotros</a
-            >
-            <a
-                href="/equipo"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Equipo"
-                aria-label="Equipo"
-                aria-labelledby="Equipo"
-                >Equipo
-            </a>
-            <a
-                href="/proyectos"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Proyectos"
-                aria-label="Proyectos"
-                aria-labelledby="Proyectos">Proyectos</a
-            >
+
+        <!-- Panel: Empresa -->
+        <div
+            class="nav-panel flex justify-between w-full"
+            id="panel-1"
+            role="tabpanel"
+            aria-labelledby="tab-1"
+            hidden
+        >
+            <ul class="content-start">
+                <li>
+                    <a
+                        href="/nosotros"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-10"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Nosotros
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Conoce nuestra historia y misión
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/equipo"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Equipo
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Profesionales comprometidos
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/proyectos"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Proyectos
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Obras que hablan por nosotros
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="flex h-117 relative">
+                <img
+                    class="w-190 object-cover rounded-2xl"
+                    src="/src/assets/images/dropdown2.webp"
+                    alt="Empresa Postesados"
+                />
+                <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
+                <div class="absolute inset-0">
+                    <div
+                        class="w-full h-full flex flex-col gap-x-20 space-y-3 lg:space-y-0 pt-10 pl-6 pb-6"
+                    >
+                        <span class="text-white/80 font-bold text-base">
+                            Empresa Overview
+                        </span>
+                        <p
+                            class="text-white font-bold text-7xl tracking-tighter w-full"
+                        >
+                            Abarcando <br /> el Futuro.
+                        </p>
+                        <div class="mb-5 flex mt-auto">
+                            <a
+                                href="/servicios"
+                                class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1 group"
+                                title="Ver todos los servicios"
+                                aria-label="Ver todos los servicios"
+                                aria-labelledby="Ver todos los servicios"
+                            >
+                                Ver mas
+                                <MoveRight
+                                    class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="space-y-4">
-            <h3
-                class="text-white font-semibold text-lg border-b border-white/20 pb-2"
-                title="Legal"
-                aria-label="Legal"
-                aria-labelledby="Legal"
-            >
-                Legal
-            </h3>
-            <a
-                href="/privacidad"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Privacidad"
-                aria-label="Privacidad"
-                aria-labelledby="Privacidad"
-                >Privacidad
-            </a>
-            <a
-                href="/terminos"
-                class="menu-dropdownn-link block text-white/80 hover:text-white hover:bg-[#0000a0] px-3 py-2 rounded-lg transition-colors"
-                title="Términos"
-                aria-label="Términos"
-                aria-labelledby="Términos">Términos</a
-            >
+
+        <!-- Panel: Legal -->
+        <div
+            class="nav-panel flex justify-between w-full"
+            id="panel-2"
+            role="tabpanel"
+            aria-labelledby="tab-2"
+            hidden
+        >
+            <ul class="content-start">
+                <li>
+                    <a
+                        href="/privacidad"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-10"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Privacidad
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Política de protección
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="/terminos"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Términos
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Condiciones de uso del sitio
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="flex h-117 relative">
+                <img
+                    class="w-190 object-cover rounded-2xl"
+                    src="/src/assets/images/dropdown3.webp"
+                    alt="Infraestructura legal"
+                />
+                <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
+                <div class="absolute inset-0">
+                    <div
+                        class="w-full h-full flex flex-col gap-x-20 space-y-3 lg:space-y-0 pt-10 pl-6 pb-6"
+                    >
+                        <span class="text-white/80 font-bold text-base">
+                            Legal Overview
+                        </span>
+                        <p
+                            class="text-white font-bold text-7xl tracking-tighter w-full"
+                        >
+                            Abarcando <br /> el Futuro.
+                        </p>
+                        <div class="mb-5 flex mt-auto">
+                            <a
+                                href="/servicios"
+                                class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1 group"
+                                title="Ver todos los servicios"
+                                aria-label="Ver todos los servicios"
+                                aria-labelledby="Ver todos los servicios"
+                            >
+                                Ver mas
+                                <MoveRight
+                                    class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -314,6 +632,10 @@ const navItems = [
     .mobile-nav-link--visible {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    .tab.active {
+        color: #ffffff;
     }
 </style>
 
@@ -419,16 +741,51 @@ const navItems = [
             ".menu-dropdownn-link",
         );
 
+        // ── Tabs logic ──────────────────────────────────────
+
+        // 1) Seleccionar elementos
+        const allButtons = document.querySelectorAll<HTMLButtonElement>(".tab");
+        const allPanels = document.querySelectorAll<HTMLElement>(".nav-panel");
+        const slidingBar =
+            document.querySelector<HTMLDivElement>(".active-bar");
+
+        // 2) Mover la barrita debajo del botón clickeado
+        const moveBarTo = (button: HTMLButtonElement) => {
+            if (!slidingBar) return;
+            slidingBar.style.width = `${button.offsetWidth}px`;
+            slidingBar.style.transform = `translateX(${button.offsetLeft}px)`;
+        };
+
+        const changeTab = (clickedIndex: number) => {
+            allButtons.forEach((button, position) => {
+                const isSelected = position === clickedIndex;
+                button.classList.toggle("active", isSelected);
+                button.setAttribute("aria-selected", String(isSelected));
+            });
+
+            allPanels.forEach((panel, position) => {
+                panel.hidden = position !== clickedIndex;
+            });
+
+            if (allButtons[clickedIndex]) moveBarTo(allButtons[clickedIndex]);
+        };
+
+        allButtons.forEach((button, index) => {
+            button.addEventListener("click", () => changeTab(index));
+        });
+
+        if (allButtons[0]) {
+            requestAnimationFrame(() => moveBarTo(allButtons[0]));
+        }
+
         let isOpen = false;
 
         const openMenu = () => {
             isOpen = true;
 
-            // Mostrar overlay con blur
             OVERLAY?.classList.remove("opacity-0", "invisible");
             OVERLAY?.classList.add("opacity-100", "visible");
 
-            // Mostrar dropdown
             DROPDOWN?.classList.remove(
                 "-translate-y-8",
                 "opacity-0",
@@ -436,13 +793,18 @@ const navItems = [
             );
             DROPDOWN?.classList.add("-translate-y-4", "opacity-100", "visible");
 
-            // Cambiar iconos: ocultar hamburguesa, mostrar X
             MENU_ICON?.classList.add("opacity-0", "scale-0");
             MENU_CLOSE_ICON?.classList.remove("opacity-0", "scale-0");
             MENU_CLOSE_ICON?.classList.add("opacity-100", "scale-100");
             MENU_BTN?.classList.add("bg-[#0000a0]");
 
             MENU_BTN?.setAttribute("aria-expanded", "true");
+
+            const activeTab =
+                document.querySelector<HTMLButtonElement>(".tab.active");
+            if (activeTab) {
+                requestAnimationFrame(() => moveBarTo(activeTab));
+            }
         };
 
         const closeMenu = () => {
@@ -482,10 +844,8 @@ const navItems = [
             });
         });
 
-        // Cerrar al hacer click en el overlay
         OVERLAY?.addEventListener("click", closeMenu);
 
-        // Cerrar al hacer click fuera
         document.addEventListener("click", (e) => {
             if (
                 isOpen &&
@@ -506,6 +866,10 @@ const navItems = [
             if (window.innerWidth >= 768 && isOpen) {
                 closeMenu();
             }
+            // Recalculate active bar on resize
+            const activeTab =
+                document.querySelector<HTMLButtonElement>(".tab.active");
+            if (activeTab) moveBarTo(activeTab);
         });
     };
 
