@@ -42,7 +42,7 @@ const slidesData = [
             class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-64"
         >
             <p
-                class="flex justify-center items-center text-xs lg:text-base text-[#0032A0] font-bold gap-2"
+                class="flex justify-center items-center text-xs lg:text-base text-primary font-bold gap-2"
             >
                 <ChartSpline />
                 Nuestras soluciones
@@ -51,11 +51,11 @@ const slidesData = [
         <div
             class="flex flex-col lg:flex-row items-center gap-x-20 space-y-3 lg:space-y-0"
         >
-            <p class="text-3xl lg:text-7xl text-[#0032A0] w-full">
-                Soluciones <span class="font-bold text-[#0032A0]"
+            <p class="text-3xl lg:text-7xl text-primary w-full">
+                Soluciones <span class="font-bold text-primary"
                     >Integrales</span
                 >
-                <br />en <span class="text-[#0032A0] font-bold"
+                <br />en <span class="text-primary font-bold"
                     >Hormigón Pretensado</span
                 >
             </p>
@@ -122,7 +122,7 @@ const slidesData = [
 
         <div class="flex space-x-2">
             <button
-                class="dot-projects w-3 h-3 bg-[#0032A0] rounded-full transition-opacity duration-200"
+                class="dot-projects w-3 h-3 bg-primary rounded-full transition-opacity duration-200"
                 data-slide="0"></button>
             {
                 slidesData
@@ -194,9 +194,9 @@ const slidesData = [
             dots.forEach((dot, index) => {
                 if (index === activeIndex) {
                     dot.classList.remove("bg-gray-300");
-                    dot.classList.add("bg-[#0032A0]");
+                    dot.classList.add("bg-primary");
                 } else {
-                    dot.classList.remove("bg-[#0032A0]");
+                    dot.classList.remove("bg-primary");
                     dot.classList.add("bg-gray-300");
                 }
             });

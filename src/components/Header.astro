@@ -17,14 +17,14 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
 ---
 
 <header
-    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 shadow-3xl z-50 bg-[#000070] rounded-xl px-4"
+    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 shadow-3xl z-50 bg-secondary rounded-xl px-4"
     id="main-header"
 >
     <nav class="py-2 relative z-50" id="header-content">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-1">
                 <div
-                    class="hidden lg:flex items-center justify-center rounded-full hover:bg-[#0000a0] transition-all duration-200 ease-in-out mr-7 px-3 py-3"
+                    class="hidden lg:flex items-center justify-center rounded-full hover:bg-quaternary transition-all duration-200 ease-in-out mr-7 px-3 py-3"
                 >
                     <button
                         class="cursor-pointer size-6 rounded-full relative flex items-center justify-center"
@@ -50,9 +50,9 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             title="Menu de Navegacion"
                             aria-label="Menu de Navegacion"
                             aria-labelledby="Menu de Navegacion"
-                            class={`nav-links hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-[#0000a0] rounded-full transition-colors ${
+                            class={`nav-links hidden md:block opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-quaternary rounded-full transition-colors ${
                                 index === 0
-                                    ? "bg-[#0000a0] rounded-full opacity-100"
+                                    ? "bg-quaternary rounded-full opacity-100"
                                     : ""
                             } ${item.class || ""}`}
                         >
@@ -80,7 +80,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
             <div class="flex justify-center items-center gap-2">
                 <a
                     href="/contact"
-                    class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-[#0000a0] px-3 py-1 group"
+                    class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-quaternary px-3 py-1 group"
                     id="contactBtn"
                     title="Contactanos"
                     aria-label="Contactanos"
@@ -113,7 +113,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
 
 <!-- Desktop Dropdown Menu -->
 <div
-    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 bg-[#000070] rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
+    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 bg-secondary rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
     id="menu-dropdownn"
 >
     <div class="nav-container px-8 py-8 mt-8">
@@ -179,7 +179,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/servicios#postesado"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Servicio Postesado"
                         aria-label="Servicio Postesado"
                         aria-labelledby="Servicio Postesado"
@@ -200,7 +200,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -208,7 +208,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/servicios#inyeccion"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-2"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section gap-x-2"
                         title="Servicio Inyección de Lechada"
                         aria-label="Servicio Inyección de Lechada"
                         aria-labelledby="Servicio Inyección de Lechada"
@@ -229,7 +229,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -237,7 +237,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/servicios#suministro"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Servicio Suministro de Materiales"
                         aria-label="Servicio Suministro de Materiales"
                         aria-labelledby="Servicio Suministro de Materiales"
@@ -258,7 +258,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -266,7 +266,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/servicios#prefabricados"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Servicio Prefabricados"
                         aria-label="Servicio Prefabricados"
                         aria-labelledby="Servicio Prefabricados"
@@ -287,7 +287,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -295,7 +295,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/servicios"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Ver todos los servicios"
                         aria-label="Ver todos los servicios"
                         aria-labelledby="Ver todos los servicios"
@@ -316,7 +316,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -372,7 +372,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/nosotros"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-10"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section gap-x-10"
                         title="Nosotros"
                         aria-label="Nosotros"
                         aria-labelledby="Nosotros"
@@ -393,7 +393,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -401,7 +401,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/equipo"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Equipo"
                         aria-label="Equipo"
                         aria-labelledby="Equipo"
@@ -422,7 +422,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -430,7 +430,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/proyectos"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Proyectos"
                         aria-label="Proyectos"
                         aria-labelledby="Proyectos"
@@ -451,7 +451,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -507,7 +507,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/privacidad"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section gap-x-10"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section gap-x-10"
                         title="Privacidad"
                         aria-label="Privacidad"
                         aria-labelledby="Privacidad"
@@ -528,7 +528,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -536,7 +536,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 <li>
                     <a
                         href="/terminos"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-[#0000a0]/50 text-white/80 hover:text-white group/section"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
                         title="Términos"
                         aria-label="Términos"
                         aria-labelledby="Términos"
@@ -557,7 +557,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                             class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
                         >
                             <MoveRight
-                                class="size-5 group-hover/section:text-[#000070] group-hover/section:translate-x-1 duration-75"
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
                             />
                         </div>
                     </a>
@@ -611,7 +611,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
 
 <!--Nav Mobile -->
 <nav
-    class="fixed inset-0 h-full w-full bg-[#000070] z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden opacity-0 invisible"
+    class="fixed inset-0 h-full w-full bg-secondary z-40 transform -translate-y-full duration-500 ease-in-out shadow-xl md:hidden opacity-0 invisible"
     id="mobile-menu"
     aria-label="Mobile menu"
 >
@@ -622,7 +622,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                     index === navItems.length - 1 ? (
                         <a
                             href={link.href}
-                            class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-[#030938] rounded-full text-center shadow-lg "
+                            class="mobile-nav-link mt-20 translate-y-20 py-4 px-6 text-lg font-semibold text-white bg-dark rounded-full text-center shadow-lg "
                             data-index={index}
                             title={link.label}
                             aria-label={link.label}
@@ -703,8 +703,8 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
             mobileCloseIcon?.classList.remove("opacity-0", "scale-0");
             mobileCloseIcon?.classList.add("opacity-100", "scale-100");
 
-            mobileMenuBtn?.classList.add("bg-[#030938]");
-            contactBtn?.classList.add("bg-[#030938]");
+            mobileMenuBtn?.classList.add("bg-dark");
+            contactBtn?.classList.add("bg-dark");
 
             mobileMenuBtn?.setAttribute("aria-expanded", "true");
             document.body.style.overflow = "hidden";
@@ -731,8 +731,8 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
             mobileCloseIcon?.classList.add("opacity-0", "scale-0");
 
             // Remove black circle background
-            mobileMenuBtn?.classList.remove("bg-[#030938]");
-            contactBtn?.classList.remove("bg-[#030938]");
+            mobileMenuBtn?.classList.remove("bg-dark");
+            contactBtn?.classList.remove("bg-dark");
 
             mobileMenuBtn?.setAttribute("aria-expanded", "false");
             document.body.style.overflow = "";
@@ -830,7 +830,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
             MENU_ICON?.classList.add("opacity-0", "scale-0");
             MENU_CLOSE_ICON?.classList.remove("opacity-0", "scale-0");
             MENU_CLOSE_ICON?.classList.add("opacity-100", "scale-100");
-            MENU_BTN?.classList.add("bg-[#0000a0]");
+            MENU_BTN?.classList.add("bg-quaternary");
 
             MENU_BTN?.setAttribute("aria-expanded", "true");
 
@@ -857,7 +857,7 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
             MENU_ICON?.classList.remove("opacity-0", "scale-0");
             MENU_CLOSE_ICON?.classList.remove("opacity-100", "scale-100");
             MENU_CLOSE_ICON?.classList.add("opacity-0", "scale-0");
-            MENU_BTN?.classList.remove("bg-[#030938]", "text-white");
+            MENU_BTN?.classList.remove("bg-dark", "text-white");
 
             MENU_BTN?.setAttribute("aria-expanded", "false");
         };

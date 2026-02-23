@@ -32,13 +32,13 @@ const slidesData = [
 ---
 
 <section
-    class="bg-[#e8ecf5] h-113 md:h-125 lg:h-188 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 animado"
+    class="bg-tertiary h-113 md:h-125 lg:h-188 rounded-2xl mt-2 lg:pt-6 lg:mt-6 w-full mx-auto pb-10 animado"
 >
     <div
         class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5"
     >
         <header
-            class="text-[#0032A0] text-4xl sm:text-4xl md:text-6xl font-medium tracking-tighter leading-normal md:leading-20 mx-4 mt-10 lg:mt-0"
+            class="text-primary text-4xl sm:text-4xl md:text-6xl font-medium tracking-tighter leading-normal md:leading-20 mx-4 mt-10 lg:mt-0"
         >
             <span class="font-bold">Construimos</span> el Futuro <br /> Sobre Bases
             <span class="font-bold">Sólidas</span>
@@ -91,7 +91,7 @@ const slidesData = [
 
                                     <div class="absolute inset-0 p-8 flex flex-col justify-end pb-14 text-white">
                                         <div class=" translate-y-10 md:translate-y-4">
-                                            <span class="bg-[#0032A0] text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center ">
+                                            <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center ">
                                                 {/* Lógica para destacar categorías específicas si es necesario */}
                                                 {slide.category ===
                                                     "Infraestructura" && (
@@ -125,7 +125,7 @@ const slidesData = [
 
         <div class="flex space-x-2">
             <button
-                class="dot w-3 h-3 bg-[#0032A0] rounded-full transition-opacity duration-200"
+                class="dot w-3 h-3 bg-primary rounded-full transition-opacity duration-200"
                 data-slide="0"></button>
 
             {
@@ -190,9 +190,9 @@ const slidesData = [
             dots.forEach((dot, index) => {
                 if (index === activeIndex) {
                     dot.classList.remove("bg-gray-300");
-                    dot.classList.add("bg-[#0032A0]");
+                    dot.classList.add("bg-primary");
                 } else {
-                    dot.classList.remove("bg-[#0032A0]");
+                    dot.classList.remove("bg-primary");
                     dot.classList.add("bg-gray-300");
                 }
             });
