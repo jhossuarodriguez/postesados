@@ -8,7 +8,7 @@ const navItems = [
     { label: "Nosotros", href: "/nosotros" },
     { label: "Servicios", href: "/servicios" },
     { label: "Tecnologia", href: "/tecnologia" },
-    { label: "Contacto", href: "/contacto", class: "md:hidden lg:hidden" },
+    { label: "Contacto", href: "/contact", class: "md:hidden lg:hidden" },
 ];
 import { Image } from "astro:assets";
 import DropdownImage1 from "@/assets/images/dropdown1.webp";
@@ -147,6 +147,19 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                     aria-controls="panel-1"
                 >
                     <span class="tab-label">Empresa</span>
+                </button>
+            </li>
+            <li role="presentation">
+                <button
+                    id="tab-4"
+                    type="button"
+                    class="tab bg-transparent border-none text-white/55 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white/85"
+                    role="tab"
+                    tabindex="0"
+                    aria-selected="false"
+                    aria-controls="panel-4"
+                >
+                    <span class="tab-label">Proyectos</span>
                 </button>
             </li>
             <li role="presentation">
@@ -322,9 +335,9 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                     </a>
                 </li>
             </ul>
-            <div class="flex h-117 relative">
+            <div class="flex h-80 2xl:h-117 relative">
                 <Image
-                    class="w-190 object-cover rounded-2xl"
+                    class="w-160 2xl:w-190 object-cover rounded-2xl"
                     src={DropdownImage1}
                     alt="Puente modo dibujo para servicios de postesado"
                 />
@@ -427,39 +440,10 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a
-                        href="/proyectos"
-                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section"
-                        title="Proyectos"
-                        aria-label="Proyectos"
-                        aria-labelledby="Proyectos"
-                    >
-                        <div class="flex-1 min-w-0">
-                            <p
-                                class="text-white text-base font-semibold leading-[1.3]"
-                            >
-                                Proyectos
-                            </p>
-                            <p
-                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
-                            >
-                                Obras que hablan por nosotros
-                            </p>
-                        </div>
-                        <div
-                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
-                        >
-                            <MoveRight
-                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
-                            />
-                        </div>
-                    </a>
-                </li>
             </ul>
-            <div class="flex h-117 relative">
+            <div class="flex h-80 2xl:h-117 relative">
                 <Image
-                    class="w-190 object-cover rounded-2xl"
+                    class="w-160 2xl:w-190 object-cover rounded-2xl"
                     src={DropdownImage2}
                     alt="Empresa Postesados"
                 />
@@ -494,6 +478,84 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                 </div>
             </div>
         </div>
+        
+           <!-- Panel: Proyectos -->
+        <div
+            class="nav-panel flex justify-between w-full"
+            id="panel-4"
+            role="tabpanel"
+            aria-labelledby="tab-4"
+            hidden
+        >
+            <ul class="content-start">
+                <li>
+                    <a
+                        href="/proyectos"
+                        class="menu-dropdownn-link flex items-center justify-between py-4 px-3 border-b border-white/8 no-underline rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white group/section gap-x-10"
+                        title="Proyectos"
+                        aria-label="Proyectos"
+                        aria-labelledby="Proyectos"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p
+                                class="text-white text-base font-semibold leading-[1.3]"
+                            >
+                                Proyectos
+                            </p>
+                            <p
+                                class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans"
+                            >
+                                Ver todos nuestros proyectos
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white"
+                        >
+                            <MoveRight
+                                class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75"
+                            />
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="flex h-80 2xl:h-117 relative">
+                <Image
+                    class="w-160 2xl:w-190 object-cover rounded-2xl"
+                    src={DropdownImage2}
+                    alt="Empresa Postesados"
+                />
+                <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
+                <div class="absolute inset-0">
+                    <div
+                        class="w-full h-full flex flex-col gap-x-20 space-y-3 lg:space-y-0 pt-10 pl-6 pb-6"
+                    >
+                        <span class="text-white/80 font-bold text-base">
+                            Empresa Overview
+                        </span>
+                        <p
+                            class="text-white font-bold text-7xl tracking-tighter w-full"
+                        >
+                            Abarcando <br /> el Futuro.
+                        </p>
+                        <div class="mb-5 flex mt-auto">
+                            <a
+                                href="/proyectos"
+                                class="flex gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1 group"
+                                title="Ver todos los proyectos"
+                                aria-label="Ver todos los proyectos"
+                                aria-labelledby="Ver todos los proyectos"
+                            >
+                                Ver mas
+                                <MoveRight
+                                    class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
         <!-- Panel: Legal -->
         <div
@@ -563,9 +625,9 @@ import DropdownImage3 from "@/assets/images/dropdown3.webp";
                     </a>
                 </li>
             </ul>
-            <div class="flex h-117 relative">
+            <div class="flex h-80 2xl:h-117 relative">
                 <Image
-                    class="w-190 object-cover rounded-2xl"
+                    class="w-160 2xl:w-190 object-cover rounded-2xl"
                     src={DropdownImage3}
                     alt="Infraestructura legal"
                 />
