@@ -1,7 +1,15 @@
 ---
 import "@/styles/global.css";
-import Analytics from "@vercel/analytics/astro";
-import ClientRouter from "astro/components/ClientRouter.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Postesados JHP | Soluciones estructurales en hormigón",
+	description = "Diseño, fabricación y suministro de elementos prefabricados de hormigón armado, pretensado y postensado para infraestructura y edificación.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -10,7 +18,13 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-		<title>Postesados</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content="es_DO" />
+		<meta property="og:site_name" content="Postesados JHP" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
 		<link
 			rel="icon"
 			type="image/png"
@@ -20,33 +34,22 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 		<!-- Preload fuentes críticas para LCP -->
 		<link rel="preload" href="/fonts/montserrat-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-		<ClientRouter />
 	</head>
-	<body class="w-full mx-auto px-2 lg:px-5">
+	<body class="w-full mx-auto">
 		<slot />
-		<Analytics />
 	</body>
-
-	<script>
-		import { animate, stagger, inView } from "motion"
-
-		document.addEventListener("astro:page-load", () => {
-			// Ocultar hijos de cada sección antes de animar
-			document.querySelectorAll("section > *, footer > *").forEach((el) => {
-				;(el as HTMLElement).style.opacity = "0"
-			})
-
-			inView("section, footer", (section) => {
-				const children = section.querySelectorAll(":scope > *")
-				animate(
-					children,
-					{ opacity: [0, 1], y: [24, 0] },
-					{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: stagger(0.12) }
-				)
-			}, { amount: 0.08 })
-		})
-	</script>
 </html>
+
+<script>
+	import {
+		destroyViewportVideos,
+		initializeViewportVideos,
+	} from "@/lib/viewport-videos";
+
+	initializeViewportVideos();
+	document.addEventListener("astro:page-load", initializeViewportVideos);
+	document.addEventListener("astro:before-swap", destroyViewportVideos);
+</script>
 
 <style>
 	html {

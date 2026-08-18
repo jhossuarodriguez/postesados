@@ -1,0 +1,33 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    number: string;
+    class?: string;
+    titleClass?: string;
+    descriptionClass?: string;
+    numberClass?: string;
+}
+
+const {
+    title,
+    description,
+    number,
+    class: className = "bg-tertiary hover:bg-primary transition duration-300 rounded-2xl p-8 flex flex-col justify-between min-h-52 group/card",
+    titleClass = "text-xl font-bold mb-3 text-primary group-hover/card:text-white",
+    descriptionClass = "text-gray-500 leading-relaxed font-general-sans group-hover/card:text-white",
+    numberClass = "text-3xl font-bold text-primary mt-6 group-hover/card:text-white",
+} = Astro.props;
+---
+
+<div class={className}>
+    <div>
+        <h3 class={titleClass}>
+            {title}
+        </h3>
+        <p class={descriptionClass}>
+            {description}
+        </p>
+    </div>
+    <span class={numberClass}>{number}</span>
+</div>

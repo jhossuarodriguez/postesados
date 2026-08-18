@@ -1,0 +1,62 @@
+---
+import type { HomeSlide } from "@/data/home";
+import CarouselControls from "./CarouselControls.astro";
+
+interface Props {
+    slides: HomeSlide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<div data-carousel="hero">
+    <div class="w-full overflow-hidden">
+        <div
+            class="h-72 w-full overflow-hidden rounded-xl shadow-2xl md:h-100"
+            role="region"
+            aria-label="Proyectos destacados"
+            aria-roledescription="carrusel"
+            data-carousel-viewport
+        >
+            <ul
+                class="flex h-full items-center transition-transform duration-500 ease-out"
+                data-carousel-track
+            >
+                {
+                    slides.map((slide, index) => (
+                        <li class="relative isolate flex h-full w-full shrink-0 items-center justify-center">
+                            <div class="group relative isolate h-full w-full overflow-hidden rounded-xl">
+                                <div class="pointer-events-none absolute inset-0 z-10 bg-black/25" />
+                                <img
+                                    src={slide.src}
+                                    alt={slide.alt}
+                                    class="relative z-0 w-full h-full object-cover transform transition-transform duration-400 group-hover:scale-110"
+                                    loading={index === 0 ? "eager" : "lazy"}
+                                    fetchpriority={index === 0 ? "high" : "low"}
+                                    decoding="async"
+                                />
+                                <div class="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end p-6 text-white md:p-8">
+                                    <div>
+                                        <span class="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium inline-flex items-center">
+                                            {slide.category}
+                                        </span>
+                                    </div>
+                                    <h3 class="mt-4 text-2xl font-bold leading-tight md:text-4xl">
+                                        {slide.title}
+                                    </h3>
+                                </div>
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+
+    <CarouselControls
+        count={slides.length}
+        carouselName="proyectos destacados"
+        class="mt-4 flex w-fit max-w-full items-center justify-center mx-auto"
+        showArrows={false}
+    />
+</div>

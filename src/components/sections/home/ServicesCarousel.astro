@@ -1,0 +1,56 @@
+---
+import type { HomeSlide } from "@/data/home";
+import CarouselControls from "./CarouselControls.astro";
+
+interface Props {
+    slides: HomeSlide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<div data-carousel="services">
+    <div
+        class="w-full h-125 lg:h-134.75 mt-20 overflow-hidden"
+        role="region"
+        aria-label="Soluciones destacadas"
+        aria-roledescription="carrusel"
+        data-carousel-viewport
+    >
+        <ul
+            class="h-full flex items-center gap-6 px-5 lg:px-10 2xl:pl-28 transition-transform duration-500 ease-out"
+            data-carousel-track
+        >
+            {
+                slides.map((slide, index) => (
+                    <li class="relative isolate flex items-center justify-center shrink-0 w-[calc(100vw-3.5rem)] sm:w-106.75">
+                        <div class="isolate w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
+                            <img
+                                src={slide.src}
+                                alt={slide.alt}
+                                class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110"
+                                loading={index === 0 ? "eager" : "lazy"}
+                                fetchpriority={index === 0 ? "auto" : "low"}
+                                decoding="async"
+                            />
+                            <div class="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end items-start z-20 pointer-events-none pb-8">
+                                <div class="relative z-20">
+                                    <h3 class="text-white text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-md">
+                                        {slide.category}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+
+    <CarouselControls
+        count={slides.length}
+        carouselName="soluciones destacadas"
+        class="flex items-center justify-center mt-8 gap-2 bg-[#e7ecf6] rounded-full max-w-full w-fit px-2 py-1.5 mx-auto"
+    />
+</div>

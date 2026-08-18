@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import ChevronRight from "@/assets/icons/nextButton.svg";
+import { companyImage, companyLinks } from "@/data/home";
+
+const linkClasses = {
+    "accent-orange": "block bg-white/90 backdrop-blur-sm shadow-lg shadow-accent-orange/5 px-5 py-3.5 border border-primary/10 hover:border-accent-orange hover:shadow-xl hover:bg-white transition-all duration-300 group/card",
+    "accent-red": "block bg-white/90 backdrop-blur-sm shadow-lg shadow-accent-red/5 px-5 py-3.5 border border-primary/10 hover:border-accent-red hover:shadow-xl hover:bg-white transition-all duration-300 group/card",
+    primary: "block bg-white/90 backdrop-blur-sm shadow-lg shadow-primary/5 px-5 py-3.5 border border-primary/10 hover:border-primary hover:shadow-xl hover:bg-white transition-all duration-300 group/card",
+};
+
+const labelClasses = {
+    "accent-orange": "text-primary group-hover/card:text-accent-orange font-general-sans font-bold",
+    "accent-red": "text-primary group-hover/card:text-accent-red font-general-sans font-bold",
+    primary: "text-primary group-hover/card:text-primary font-general-sans font-bold",
+};
+
+const iconClasses = {
+    "accent-orange": "size-5 text-primary/50 group-hover/card:text-accent-orange group-hover/card:translate-x-1 transition-all duration-300",
+    "accent-red": "size-5 text-primary/50 group-hover/card:text-accent-red group-hover/card:translate-x-1 transition-all duration-300",
+    primary: "size-5 text-primary/50 group-hover/card:text-primary group-hover/card:translate-x-1 transition-all duration-300",
+};
+---
+
+<div class="lg:col-span-4 rounded-4xl overflow-hidden relative min-h-100 group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+    <Image
+        src={companyImage}
+        alt="Grupo empresarial"
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000"
+    />
+    <div class="absolute inset-0 bg-linear-to-t from-white via-white/95 to-white/70 group-hover:via-white/98 transition-all duration-500"></div>
+    <div class="relative h-full flex flex-col justify-between p-7 lg:p-8">
+        <h3 class="text-primary/70 text-xl font-bold">Grupo Empresarial</h3>
+        <div class="space-y-3">
+            {
+                companyLinks.map((link) => (
+                    <a
+                        href={link.href}
+                        class={linkClasses[link.color]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={link.title}
+                        aria-label={link.title}
+                    >
+                        <div class="flex items-center justify-between">
+                            <span class={labelClasses[link.color]}>{link.label}</span>
+                            <ChevronRight class={iconClasses[link.color]} />
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</div>

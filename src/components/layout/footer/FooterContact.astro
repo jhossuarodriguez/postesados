@@ -1,0 +1,91 @@
+---
+import Instagram from "@/assets/icons/social-media/instagram.svg";
+import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
+import type { FooterContact, FooterSocialLink } from "@/data/footer";
+
+interface Props {
+    contact: FooterContact;
+    socialLinks: FooterSocialLink[];
+}
+
+const { contact, socialLinks } = Astro.props;
+---
+
+<div class="lg:col-span-4 flex flex-col justify-between h-full">
+    <div class="space-y-4">
+        <div class="flex items-center gap-2">
+            <div class="text-2xl font-bold tracking-tighter uppercase italic">
+                <img
+                    src="/logo_postesados_nobg.webp"
+                    alt="Postesados Logo"
+                    class="h-20 w-auto"
+                    loading="lazy"
+                />
+                Postesados JHP
+            </div>
+        </div>
+
+        <div class="text-gray-300 text-sm space-y-1">
+            <p
+                class="font-bold text-white mb-2 uppercase tracking-wider text-xs"
+            >
+                {contact.heading}
+            </p>
+            <a
+                class={contact.address.className}
+                href={contact.address.href}
+                rel={contact.address.rel}
+                target={contact.address.target}
+                aria-label={contact.address.ariaLabel}
+                title={contact.address.title}
+            >
+                {contact.address.label}
+            </a>
+            <div class="pt-2">
+                {
+                    contact.phones.map((phone) => (
+                        <a
+                            href={phone.href}
+                            aria-label={phone.ariaLabel}
+                            title={phone.title}
+                            class={phone.className}
+                        >
+                            {phone.label}
+                        </a>
+                    ))
+                }
+            </div>
+            <div class="pt-1">
+                <a
+                    href={contact.email.href}
+                    aria-label={contact.email.ariaLabel}
+                    title={contact.email.title}
+                    class={contact.email.className}
+                >
+                    {contact.email.label}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex gap-3 mt-6 lg:mt-auto pt-6">
+        {
+            socialLinks.map((link) => (
+                <a
+                    href={link.href}
+                    rel={link.rel}
+                    target={link.target}
+                    class="size-10 inline-flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:text-secondary transition-all"
+                    aria-label={link.ariaLabel}
+                    title={link.title}
+                >
+                    {link.platform === "instagram" ? (
+                        <Instagram aria-hidden="true" />
+                    ) : (
+                        <LinkedIn aria-hidden="true" />
+                    )}
+                </a>
+            ))
+        }
+    </div>
+</div>

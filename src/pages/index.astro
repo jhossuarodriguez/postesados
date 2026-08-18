@@ -1,20 +1,19 @@
 ---
-import Header from "@/components/Header.astro";
-import Hero from "@/components/Hero.astro";
-import About from "@/components/About.astro";
-import Services from "@/components/Services.astro";
-import Footer from "@/components/Footer.astro";
-import Insights from "@/components/Insights.astro";
-import WhyChooseUs from "@/components/WhyChooseUs.astro";
-import Layout from "@/layouts/Layout.astro";
+import About from "@/components/sections/home/About.astro";
+import Hero from "@/components/sections/home/Hero.astro";
+import Insights from "@/components/sections/home/Insights.astro";
+import Service from "@/components/sections/home/Service.astro";
+import WhyChooseUs from "@/components/sections/home/WhyChooseUs.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
 ---
 
-<Layout>
-	<Header />
+<SiteLayout
+	title="Postesados JHP | Hormigón pretensado, postensado y armado"
+	description="Soluciones estructurales eficientes, seguras y duraderas en hormigón pretensado, postensado y armado para infraestructura y edificación."
+>
 	<Hero />
+	<Service />
 	<About />
-	<Services />
 	<WhyChooseUs />
 	<Insights />
-	<Footer />
-</Layout>
+</SiteLayout>

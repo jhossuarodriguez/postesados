@@ -1,0 +1,22 @@
+---
+import type { CompanyStat } from "@/data/company";
+
+interface Props {
+    stats: CompanyStat[];
+}
+
+const { stats } = Astro.props;
+---
+
+<div class="grid grid-cols-2 gap-4" data-reveal-children>
+    {
+        stats.map((stat) => (
+            <div class="bg-primary rounded-2xl p-8 flex flex-col justify-center h-44">
+                <span class="text-4xl md:text-5xl font-bold text-white">
+                    {stat.value}
+                </span>
+                <p class="text-white/80 font-medium mt-2 text-sm">{stat.label}</p>
+            </div>
+        ))
+    }
+</div>

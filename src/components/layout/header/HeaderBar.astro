@@ -1,0 +1,109 @@
+---
+import Menu from "@/assets/icons/Menu.svg";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+import X from "@/assets/icons/XButton.svg";
+import { navItems } from "@/data/navigation";
+---
+
+<header
+    class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 shadow-3xl z-50 bg-secondary rounded-xl px-4"
+    id="main-header"
+>
+    <nav class="py-2 relative z-50" id="header-content">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center gap-1">
+                <div
+                    class="hidden lg:flex items-center justify-center rounded-full hover:bg-quaternary transition-all duration-200 ease-in-out mr-7"
+                >
+                    <button
+                        type="button"
+                        class="cursor-pointer size-12 rounded-full relative flex items-center justify-center"
+                        id="menuBtn"
+                        aria-label="Abrir menú principal"
+                        aria-expanded="false"
+                        aria-controls="menu-dropdownn"
+                    >
+                        <Menu
+                            aria-hidden="true"
+                            class="text-white absolute size-6 transition-all duration-300"
+                            id="menu-icon"
+                        />
+                        <X
+                            aria-hidden="true"
+                            id="close-icon"
+                            class="text-white absolute size-6 opacity-0 scale-0 transition-all duration-300"
+                        />
+                    </button>
+                </div>
+
+                {
+                    navItems.map((item, index) => (
+                        <a
+                            href={item.href}
+                            title="Menu de Navegacion"
+                            aria-label="Menu de Navegacion"
+                            aria-labelledby="Menu de Navegacion"
+                            class={`nav-links hidden md:inline-flex md:min-h-12 md:items-center opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-quaternary rounded-full transition-colors ${
+                                index === 0
+                                    ? "bg-quaternary rounded-full opacity-100"
+                                    : ""
+                            } ${item.class || ""}`}
+                        >
+                            {item.label}
+                        </a>
+                    ))
+                }
+                <a
+                    href="/"
+                    title="Logo Postesados"
+                    aria-label="Logo Postesados"
+                    aria-labelledby="Logo Postesados"
+                >
+                    <img
+                        src="/logo_postesados_nobg.webp"
+                        alt="Postesados Logo"
+                        class="h-16 w-auto md:translate-x-14 xl:translate-x-24 2xl:translate-x-48"
+                        width="120"
+                        height="64"
+                        fetchpriority="high"
+                    />
+                </a>
+            </div>
+
+            <div class="flex justify-center items-center gap-2">
+                <a
+                    href="/contact"
+                    class="flex min-h-12 items-center gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-quaternary px-3 py-2 group"
+                    id="contactBtn"
+                    title="Contactanos"
+                    aria-label="Contactanos"
+                    aria-labelledby="Contactanos"
+                    >Contactanos
+                    <MoveRight
+                        class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
+                    />
+                </a>
+
+                <button
+                    type="button"
+                    class="lg:hidden cursor-pointer relative flex items-center justify-center size-12 rounded-full transition-all duration-300"
+                    id="mobile-menuBtn"
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu"
+                >
+                    <Menu
+                        aria-hidden="true"
+                        class="text-white size-6 transition-all duration-300"
+                        id="mobile-menu-icon"
+                    />
+                    <X
+                        aria-hidden="true"
+                        id="mobile-close-icon"
+                        class="size-6 text-white absolute opacity-0 scale-0 transition-all duration-300"
+                    />
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>

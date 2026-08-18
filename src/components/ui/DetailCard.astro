@@ -1,0 +1,25 @@
+---
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<div
+    class="bg-white hover:bg-primary rounded-2xl p-6 flex flex-col gap-4 items-start transition duration-300 group/card"
+>
+    <div class="flex-1">
+        <h3
+            class="text-lg 2xl:text-xl font-bold mb-2 text-primary group-hover/card:text-white"
+        >
+            {title}
+        </h3>
+        <p
+            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+        >
+            {description}
+        </p>
+    </div>
+</div>

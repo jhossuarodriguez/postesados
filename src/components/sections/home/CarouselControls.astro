@@ -1,0 +1,98 @@
+---
+import NextButton from "@/assets/icons/nextButton.svg";
+import PrevButton from "@/assets/icons/prevButton.svg";
+
+interface Props {
+    count: number;
+    carouselName: string;
+    class: string;
+    showArrows?: boolean;
+}
+
+const { count, carouselName, class: className, showArrows = true } = Astro.props;
+---
+
+<div class={className} data-carousel-controls={carouselName}>
+    {
+        showArrows && (
+            <button
+                type="button"
+                aria-label={`Mostrar elemento anterior de ${carouselName}`}
+                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+                data-carousel-prev
+            >
+                <PrevButton aria-hidden="true" />
+            </button>
+        )
+    }
+
+    <div class="flex overflow-x-auto max-w-[calc(100vw-8rem)] md:max-w-none" aria-label={`Paginación de ${carouselName}`}>
+        {
+            Array.from({ length: count }, (_, index) => (
+                <button
+                    type="button"
+                    aria-label={`Mostrar elemento ${index + 1} de ${carouselName}`}
+                    aria-current={index === 0 ? "true" : undefined}
+                    class="size-12 shrink-0 inline-flex items-center justify-center rounded-full"
+                    data-carousel-dot
+                    data-slide={index}
+                >
+                    <span class={`size-3 ${index === 0 ? "bg-primary" : "bg-gray-300"} rounded-full transition-opacity duration-200`} />
+                </button>
+            ))
+        }
+    </div>
+
+    {
+        showArrows && (
+            <button
+                type="button"
+                aria-label={`Mostrar elemento siguiente de ${carouselName}`}
+                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+                data-carousel-next
+            >
+                <NextButton aria-hidden="true" />
+            </button>
+        )
+    }
+</div>
+
+
+<script>
+    const initializeCarousels = () => {
+        document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((carousel) => {
+            if (carousel.dataset.carouselInitialized === "true") return;
+
+            const track = carousel.querySelector<HTMLElement>("[data-carousel-track]");
+            const slides = Array.from(track?.children ?? []) as HTMLElement[];
+            const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"));
+            const previous = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+            const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
+            let activeIndex = 0;
+
+            if (!track || slides.length === 0) return;
+
+            carousel.dataset.carouselInitialized = "true";
+
+            const showSlide = (index: number) => {
+                activeIndex = Math.max(0, Math.min(index, slides.length - 1));
+                track.style.transform = `translateX(-${slides[activeIndex].offsetLeft}px)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    const isActive = dotIndex === activeIndex;
+                    dot.setAttribute("aria-current", isActive ? "true" : "false");
+                    dot.querySelector("span")?.classList.toggle("bg-primary", isActive);
+                    dot.querySelector("span")?.classList.toggle("bg-gray-300", !isActive);
+                });
+            };
+
+            previous?.addEventListener("click", () => showSlide(activeIndex - 1));
+            next?.addEventListener("click", () => showSlide(activeIndex + 1));
+            dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
+            window.addEventListener("resize", () => showSlide(activeIndex));
+        });
+    };
+
+    initializeCarousels();
+    document.addEventListener("astro:page-load", initializeCarousels);
+</script>

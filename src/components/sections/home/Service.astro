@@ -1,0 +1,31 @@
+---
+import ChartSpline from "@/assets/icons/chart-spline.svg";
+import ServicesCarousel from "@/components/sections/home/ServicesCarousel.astro";
+import { serviceSlides } from "@/data/home";
+---
+
+<section
+    id="projectsCarousel"
+    class="flex w-full flex-col overflow-hidden pb-10 pt-16 lg:pb-20 lg:pt-24"
+>
+    <div class="mx-4 mt-10 flex flex-col space-y-10 px-4 md:mx-8 lg:mx-16 lg:px-10" data-reveal-children>
+        <div class="w-fit rounded-full border border-gray-300 px-5 py-2.5">
+            <p class="flex items-center justify-center gap-2 text-sm font-bold text-primary lg:text-base">
+                <ChartSpline />
+                Nuestras soluciones
+            </p>
+        </div>
+        <h2 class="max-w-5xl text-4xl leading-[1.02] tracking-tight text-primary md:text-6xl lg:text-7xl">
+            Soluciones <span class="font-bold">Integrales</span><br />
+            en <span class="font-bold">Hormigón Pretensado,<br />Postensado y Armado</span>
+        </h2>
+        <div class="mb-5 max-w-3xl">
+            <p class="text-balance text-base leading-relaxed text-black/80 lg:text-xl">
+                Desde el diseño y suministro hasta la instalación final.<br class="hidden sm:block" />
+                Ofrecemos eficiencia estructural y durabilidad.
+            </p>
+        </div>
+    </div>
+
+	<ServicesCarousel slides={serviceSlides} />
+</section>

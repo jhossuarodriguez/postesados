@@ -1,0 +1,18 @@
+---
+import NumberedCard from "@/components/ui/NumberedCard.astro";
+import { termsPrinciples } from "@/data/terms";
+---
+
+<div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16" data-reveal-children>
+        {
+            termsPrinciples.map((item) => (
+                <NumberedCard
+                    title={item.title}
+                    description={item.description}
+                    number={item.number}
+                />
+            ))
+        }
+    </div>
+</div>

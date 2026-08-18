@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import Award from "@/assets/icons/award.svg";
+import ChevronRight from "@/assets/icons/nextButton.svg";
+import { companyLinks, specialties, specialtiesImage } from "@/data/home";
+---
+
+<section class="relative w-full overflow-hidden bg-white text-primary">
+    <div class="pointer-events-none absolute -right-40 top-16 size-120 rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="flex flex-col px-4 lg:px-10 mx-16 space-y-10 mt-10">
+             <div class="flex flex-col space-y-10" data-reveal-children>
+                <div class="w-fit rounded-full border border-gray-300 px-5 py-2.5">
+                    <p class="flex items-center justify-center gap-2 text-sm font-bold text-primary lg:text-base">
+                        <Award class="size-5" />
+                        Por qué elegirnos
+                    </p>
+                </div>
+                <h2 class="max-w-5xl text-4xl leading-[1.02] tracking-tight text-primary md:text-6xl lg:text-7xl">
+                    Innovación en <span class="font-bold text-primary">Ingeniería,</span><br />
+                    impulsada por <span class="font-bold">nuestra experiencia.</span>
+                </h2>
+                <div class="max-w-3xl">
+                    <p class="text-balance text-base leading-relaxed text-black/80 lg:text-xl">
+                        Convertimos desafíos estructurales en soluciones precisas,
+                        fabricables y duraderas, desde el cálculo hasta la ejecución.
+                    </p>
+                </div>
+            </div>
+
+        <div class="grid items-stretch gap-0 py-14 lg:grid-cols-12 lg:py-20">
+            <figure class="project-frame relative min-h-105 overflow-hidden lg:col-span-8 lg:min-h-150">
+                <Image
+                    src={specialtiesImage}
+                    alt="Equipo técnico trabajando en una estructura de hormigón"
+                    class="absolute inset-0 size-full object-cover"
+                />
+                <div class="absolute inset-0 bg-linear-to-t from-[#06182c]/90 via-transparent to-black/10"></div>
+                <figcaption class="absolute bottom-0 left-0 max-w-lg p-7 text-white md:p-10 lg:p-14" data-reveal="left">
+                    <p class="text-2xl font-medium leading-snug md:text-4xl">
+                        Precisión técnica que se convierte en infraestructura real.
+                    </p>
+                </figcaption>
+            </figure>
+
+            <div class="flex flex-col justify-center border-primary/15 pt-10 lg:col-span-4 lg:border-y lg:border-r lg:py-12 lg:pl-12 lg:pr-4" data-reveal="right">
+                <div class="mb-10 flex items-center justify-between">
+                    <p class="font-bold uppercase text-primary">
+                        Áreas de dominio
+                    </p>
+                    <span class="text-xs tracking-[0.18em] text-primary">01—04</span>
+                </div>
+
+                <ol>
+                    {
+                        specialties.map((specialty, index) => (
+                            <li class="group flex items-center gap-5 border-t border-primary/15 py-6 last:border-b">
+                                <span class="text-xs tracking-[0.14em] text-primary">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <span class="text-lg font-medium text-primary md:text-xl">
+                                    {specialty}
+                                </span>
+                            </li>
+                        ))
+                    }
+                </ol>
+            </div>
+        </div>
+        <div class="grid gap-10 lg:grid-cols-12 lg:items-start" data-reveal-children>
+            <div class="lg:col-span-5">
+                <p class="mb-5 text-sm font-bold uppercase text-primary">
+                    Grupo empresarial
+                </p>
+                <h3 class="max-w-lg text-3xl font-medium leading-tight md:text-4xl">
+                    Más capacidad para llevar cada proyecto más lejos.
+                </h3>
+            </div>
+
+            <nav class="lg:col-span-7" aria-label="Empresas del grupo">
+                {
+                    companyLinks.map((link) => {
+                        const isExternal = link.href.startsWith("http");
+
+                        return (
+                            <a
+                                href={link.href}
+                                target={isExternal ? "_blank" : undefined}
+                                rel={isExternal ? "noopener noreferrer" : undefined}
+                                title={link.title}
+                                aria-label={link.title}
+                                class="group flex min-h-16 items-center justify-between border-t border-primary/15 text-lg font-medium text-primary last:border-b md:text-xl"
+                            >
+                                <span>{link.label}</span>
+                                <span class="flex size-10 items-center justify-center rounded-full border border-primary/20 transition-all group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                                    <ChevronRight class="size-5 transition-transform group-hover:translate-x-0.5" />
+                                </span>
+                            </a>
+                        );
+                    })
+                }
+            </nav>
+        </div>
+    </div>
+</section>

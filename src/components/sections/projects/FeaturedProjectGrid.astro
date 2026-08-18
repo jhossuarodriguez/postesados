@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { featuredProjects } from "@/data/projects";
+---
+
+<div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16 md:py-24">
+    <div
+        class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12 mx-5 md:mx-0"
+        data-reveal-children
+    >
+        <div class="flex-1">
+            <p
+                class="flex items-center text-xs lg:text-base text-primary font-bold px-3 py-2 self-start bg-white rounded-full border border-gray-300 w-fit mb-6"
+            >
+                ● Proyectos
+            </p>
+            <h2
+                class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter text-primary leading-tight"
+            >
+                Construyendo el Futuro
+            </h2>
+        </div>
+        <div class="lg:max-w-md">
+            <p
+                class="text-gray-500 text-base lg:text-lg font-general-sans leading-relaxed"
+            >
+                Cada proyecto refleja nuestro compromiso con la precisión técnica,
+                la eficiencia estructural y la durabilidad de las soluciones en
+                hormigón armado, pretensado y postensado.
+            </p>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-5 md:mx-0" data-reveal-children>
+        {
+            featuredProjects.map((project) => (
+                <div class="group/card relative overflow-hidden h-96 md:h-120 cursor-pointer">
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                    />
+                    <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                        <span class="inline-block text-xs font-bold text-primary bg-white px-3 py-1.5 rounded-full mb-3">
+                            {project.category}
+                        </span>
+                        <h3 class="text-white text-xl md:text-2xl font-bold leading-snug">
+                            {project.title}
+                        </h3>
+                        <p class="text-white/80 text-sm md:text-base font-general-sans mt-2 leading-relaxed">
+                            {project.description}
+                        </p>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>

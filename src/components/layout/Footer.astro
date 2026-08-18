@@ -1,0 +1,74 @@
+---
+import MoveRight from "@/assets/icons/MoveRight.svg";
+import FooterColumns from "@/components/layout/footer/FooterColumns.astro";
+import FooterContact from "@/components/layout/footer/FooterContact.astro";
+import {
+    footerColumns,
+    footerContact,
+    footerSocialLinks,
+} from "@/data/footer";
+---
+
+<footer
+    class="bg-secondary text-white w-full py-12 lg:py-16 overflow-hidden"
+>
+    <div class="max-w-400 mx-auto px-6 lg:px-20 py-10">
+        <div
+            class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-14 lg:mb-20 gap-8"
+            data-reveal-children
+        >
+            <h2
+                class="text-[44px] md:text-5xl lg:text-7xl font-medium tracking-tight leading-tight"
+            >
+                Construyamos algo <br />
+                <span class="font-bold">grande juntos.</span>
+            </h2>
+
+            <a
+                href="/contact"
+                aria-label="Contáctanos"
+                title="Contáctanos para más información"
+                class="group min-h-12 bg-white text-secondary text-sm lg:text-lg px-4 py-2 md:px-8 md:py-3 rounded-full font-bold flex items-center gap-3"
+
+            >
+                Contáctanos
+                <MoveRight
+                    aria-hidden="true"
+                    class="inline-block ml-2 group-hover:translate-x-1 duration-75"
+                />
+            </a>
+        </div>
+
+        <div class="border-t border-white/20 mb-12"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8" data-reveal-children>
+            <FooterContact
+                contact={footerContact}
+                socialLinks={footerSocialLinks}
+            />
+            <FooterColumns columns={footerColumns} />
+        </div>
+
+        <div
+            class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-3"
+            data-reveal-children
+        >
+            <p>
+                &copy; {new Date().getFullYear()} Postesados JHP, S.R.L. Todos los
+                derechos reservados.
+            </p>
+            <div class="flex flex-col space-y-1">
+                <p>Ingeniería y tecnología en hormigón.</p>
+                <a
+                    href="https://managerord.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Desarrollada por el equipo de Managero"
+                    title="Visitar sitio web de Managero"
+                    class="inline-flex items-center leading-5 hover:text-white transition-colors underline decoration-white/30 underline-offset-4"
+                    >Desarrollada por el equipo de Managero</a
+                >
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,259 @@
+---
+import DesktopDropdown from "@/components/layout/header/DesktopDropdown.astro";
+import HeaderBar from "@/components/layout/header/HeaderBar.astro";
+import MobileNavigation from "@/components/layout/header/MobileNavigation.astro";
+---
+
+<HeaderBar />
+<DesktopDropdown />
+<MobileNavigation />
+
+<script>
+    const MobileMenu = () => {
+        //Mobile
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileMenuBtn = document.getElementById("mobile-menuBtn");
+        const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+        const mobileCloseIcon = document.getElementById("mobile-close-icon");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        const contactBtn = document.getElementById("contactBtn");
+
+        let isOpen = false;
+
+        const openMobileMenu = () => {
+            isOpen = true;
+            mobileMenu?.classList.remove(
+                "-translate-y-full",
+                "opacity-0",
+                "invisible",
+            );
+
+            mobileMenu?.classList.add(
+                "translate-y-0",
+                "opacity-100",
+                "visible",
+            );
+
+            mobileMenuIcon?.classList.add("opacity-0", "scale-0");
+            mobileCloseIcon?.classList.remove("opacity-0", "scale-0");
+            mobileCloseIcon?.classList.add("opacity-100", "scale-100");
+
+            mobileMenuBtn?.classList.add("bg-dark");
+            contactBtn?.classList.add("bg-dark");
+
+            mobileMenuBtn?.setAttribute("aria-expanded", "true");
+            mobileMenuBtn?.setAttribute(
+                "aria-label",
+                "Cerrar menú de navegación",
+            );
+            document.body.style.overflow = "hidden";
+
+            // Staggered reveal
+            mobileNavLinks.forEach((link, index) => {
+                setTimeout(
+                    () => {
+                        link.classList.add("mobile-nav-link--visible");
+                    },
+                    200 + index * 80,
+                );
+            });
+        };
+
+        const closeMobileMenu = () => {
+            isOpen = false;
+            mobileMenu?.classList.add("-translate-y-full");
+            mobileMenu?.classList.remove("translate-y-0");
+
+            // Show hamburger, hide X
+            mobileMenuIcon?.classList.remove("opacity-0", "scale-0");
+            mobileCloseIcon?.classList.remove("opacity-100", "scale-100");
+            mobileCloseIcon?.classList.add("opacity-0", "scale-0");
+
+            // Remove black circle background
+            mobileMenuBtn?.classList.remove("bg-dark");
+            contactBtn?.classList.remove("bg-dark");
+
+            mobileMenuBtn?.setAttribute("aria-expanded", "false");
+            mobileMenuBtn?.setAttribute(
+                "aria-label",
+                "Abrir menú de navegación",
+            );
+            document.body.style.overflow = "";
+
+            mobileNavLinks.forEach((link) => {
+                link.classList.remove("mobile-nav-link--visible");
+            });
+
+            mobileMenu?.classList.remove("opacity-100", "visible");
+            mobileMenu?.classList.add("opacity-0", "invisible");
+        };
+
+        const toggleMenu = () => {
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        };
+
+        mobileMenuBtn?.addEventListener("click", toggleMenu);
+
+        //Close Menu when click a link
+        mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(closeMobileMenu, 150);
+            });
+        });
+    };
+
+    MobileMenu();
+
+    const Menu = () => {
+        const DROPDOWN = document.getElementById("menu-dropdownn");
+        const OVERLAY = document.getElementById("desktop-overlay");
+        const MENU_BTN = document.getElementById("menuBtn");
+        const MENU_ICON = document.getElementById("menu-icon");
+        const MENU_CLOSE_ICON = document.getElementById("close-icon");
+        const DROPDOWN_LINKS = document.querySelectorAll(
+            ".menu-dropdownn-link",
+        );
+
+        // ── Tabs logic ──────────────────────────────────────
+
+        // 1) Seleccionar elementos
+        const allButtons = document.querySelectorAll<HTMLButtonElement>(".tab");
+        const allPanels = document.querySelectorAll<HTMLElement>(".nav-panel");
+        const slidingBar =
+            document.querySelector<HTMLDivElement>(".active-bar");
+
+        // 2) Mover la barrita debajo del botón clickeado
+        const moveBarTo = (button: HTMLButtonElement) => {
+            if (!slidingBar) return;
+            slidingBar.style.width = `${button.offsetWidth}px`;
+            slidingBar.style.transform = `translateX(${button.offsetLeft}px)`;
+        };
+
+        const changeTab = (clickedIndex: number) => {
+            allButtons.forEach((button, position) => {
+                const isSelected = position === clickedIndex;
+                button.classList.toggle("active", isSelected);
+                button.setAttribute("aria-selected", String(isSelected));
+            });
+
+            allPanels.forEach((panel, position) => {
+                panel.hidden = position !== clickedIndex;
+            });
+
+            if (allButtons[clickedIndex]) moveBarTo(allButtons[clickedIndex]);
+        };
+
+        allButtons.forEach((button, index) => {
+            button.addEventListener("click", () => changeTab(index));
+        });
+
+        if (allButtons[0]) {
+            requestAnimationFrame(() => moveBarTo(allButtons[0]));
+        }
+
+        let isOpen = false;
+
+        const openMenu = () => {
+            isOpen = true;
+
+            OVERLAY?.classList.remove("opacity-0", "invisible");
+            OVERLAY?.classList.add("opacity-100", "visible");
+
+            DROPDOWN?.classList.remove(
+                "-translate-y-8",
+                "opacity-0",
+                "invisible",
+            );
+            DROPDOWN?.classList.add("-translate-y-4", "opacity-100", "visible");
+
+            MENU_ICON?.classList.add("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.remove("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.add("opacity-100", "scale-100");
+            MENU_BTN?.classList.add("bg-quaternary");
+
+            MENU_BTN?.setAttribute("aria-expanded", "true");
+            MENU_BTN?.setAttribute("aria-label", "Cerrar menú principal");
+
+            const activeTab =
+                document.querySelector<HTMLButtonElement>(".tab.active");
+            if (activeTab) {
+                requestAnimationFrame(() => moveBarTo(activeTab));
+            }
+        };
+
+        const closeMenu = () => {
+            isOpen = false;
+
+            OVERLAY?.classList.add("opacity-0", "invisible");
+            OVERLAY?.classList.remove("opacity-100", "visible");
+
+            DROPDOWN?.classList.add("-translate-y-8", "opacity-0", "invisible");
+            DROPDOWN?.classList.remove(
+                "translate-y-0",
+                "opacity-100",
+                "visible",
+            );
+
+            MENU_ICON?.classList.remove("opacity-0", "scale-0");
+            MENU_CLOSE_ICON?.classList.remove("opacity-100", "scale-100");
+            MENU_CLOSE_ICON?.classList.add("opacity-0", "scale-0");
+            MENU_BTN?.classList.remove("bg-dark", "text-white");
+
+            MENU_BTN?.setAttribute("aria-expanded", "false");
+            MENU_BTN?.setAttribute("aria-label", "Abrir menú principal");
+        };
+
+        const toggleMenu = () => {
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        };
+
+        MENU_BTN?.addEventListener("click", toggleMenu);
+
+        DROPDOWN_LINKS.forEach((link) => {
+            link.addEventListener("click", () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
+
+        OVERLAY?.addEventListener("click", closeMenu);
+
+        document.addEventListener("click", (e) => {
+            if (
+                isOpen &&
+                !DROPDOWN?.contains(e.target as Node) &&
+                !MENU_BTN?.contains(e.target as Node)
+            ) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (isOpen && e.key === "Escape") {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 768 && isOpen) {
+                closeMenu();
+            }
+            // Recalculate active bar on resize
+            const activeTab =
+                document.querySelector<HTMLButtonElement>(".tab.active");
+            if (activeTab) moveBarTo(activeTab);
+        });
+    };
+
+    Menu();
+
+    document.addEventListener("astro:after-swap", MobileMenu);
+    document.addEventListener("astro:after-swap", Menu);
+</script>

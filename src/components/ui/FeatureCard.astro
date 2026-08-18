@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    title: string;
+    description: string;
+    image: ImageMetadata | string;
+    imageAlt: string;
+}
+
+const { title, description, image, imageAlt } = Astro.props;
+---
+
+<div
+    class="bg-white hover:bg-primary rounded-2xl p-6 flex flex-row gap-4 items-start transition duration-300 group/card 2xl:h-59.25"
+>
+    <div class="flex-1">
+        <h3
+            class="text-lg 2xl:text-xl font-bold mb-2 text-primary group-hover/card:text-white"
+        >
+            {title}
+        </h3>
+        <p
+            class="text-gray-500 group-hover/card:text-white text-sm 2xl:text-base leading-relaxed font-general-sans"
+        >
+            {description}
+        </p>
+    </div>
+    {
+        typeof image === "string" ? (
+            <img
+                src={image}
+                alt={imageAlt}
+                class="w-32 h-32 object-cover rounded-xl shrink-0"
+            />
+        ) : (
+            <Image
+                src={image}
+                alt={imageAlt}
+                class="w-32 h-32 object-cover rounded-xl shrink-0"
+            />
+        )
+    }
+</div>

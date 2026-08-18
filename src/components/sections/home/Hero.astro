@@ -1,0 +1,37 @@
+---
+import HeroCarousel from "@/components/sections/home/HeroCarousel.astro";
+import { heroSlides } from "@/data/home";
+---
+
+<section
+    class="relative isolate min-h-screen w-full overflow-hidden"
+>
+    <video
+        class="absolute inset-0 -z-20 size-full object-cover"
+        src="/new/plaza_multiuso_seibana.webm"
+        preload="metadata"
+        muted
+        loop
+        playsinline
+        data-viewport-video
+        aria-hidden="true"></video>
+    <div class="absolute inset-0 -z-10 bg-black/70"></div>
+
+    <div
+        class="mx-4 grid min-h-screen grid-cols-1 items-center gap-12 px-4 pb-12 pt-32 md:mx-8 lg:mx-16 lg:grid-cols-2 lg:gap-24 lg:px-10 lg:py-28 xl:gap-32"
+    >
+        <header
+            class="max-w-2xl text-4xl font-medium leading-[1.08] tracking-tighter text-white"
+            data-reveal="left"
+        >
+            <h1 class="font-bold sm:text-5xl lg:text-6xl leading-18">
+                Transformamos el concreto en soluciones eficientes, seguras y
+                duraderas.
+            </h1>
+        </header>
+
+        <div class="w-full min-w-0 lg:self-center">
+            <HeroCarousel slides={heroSlides} />
+        </div>
+    </div>
+</section>

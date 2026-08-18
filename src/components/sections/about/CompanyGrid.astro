@@ -1,0 +1,22 @@
+---
+import NumberedCard from "@/components/ui/NumberedCard.astro";
+import { companies } from "@/data/about";
+---
+
+<div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16" data-reveal-children>
+        {
+            companies.map((company) => (
+                <NumberedCard
+                    title={company.title}
+                    description={company.description}
+                    number={company.number}
+                    class={company.class}
+                    titleClass={company.titleClass}
+                    descriptionClass={company.descriptionClass}
+                    numberClass={company.numberClass}
+                />
+            ))
+        }
+    </div>
+</div>

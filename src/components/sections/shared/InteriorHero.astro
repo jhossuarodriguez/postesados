@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    image: ImageMetadata | string;
+    imageAlt: string;
+}
+
+const { image, imageAlt } = Astro.props;
+---
+
+<div class="relative h-120 w-full overflow-hidden pb-10 md:h-138 lg:pt-6">
+    {
+        typeof image === "string" ? (
+            <img
+                src={image}
+                alt={imageAlt}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+            />
+        ) : (
+            <Image
+                src={image}
+                alt={imageAlt}
+                class="absolute inset-0 w-full h-full object-cover object-center"
+            />
+        )
+    }
+    <div class="inset-0 bg-black/40 absolute"></div>
+    <div
+        class="pt-28 md:pt-44 pb-0 md:pb-18 md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 relative z-10"
+    >
+        <div
+            class="mt-24 ml-6 flex w-full flex-col items-start justify-between gap-x-20 space-y-3 lg:flex-row lg:space-y-0"
+            data-reveal-children
+        >
+            <p
+                class="w-full text-4xl font-bold leading-normal tracking-tighter text-white sm:text-4xl md:text-8xl md:leading-20 lg:mt-10"
+            >
+                <slot name="title" />
+            </p>
+            <div class="mb-5 flex justify-end w-full">
+                <p
+                    class="text-balance lg:text-[18px] pt-2 lg:pt-0 text-white md:mt-20 font-general-sans"
+                >
+                    <slot />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

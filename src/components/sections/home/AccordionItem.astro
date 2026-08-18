@@ -1,0 +1,53 @@
+---
+import MinusIcon from "@/assets/icons/minus.svg";
+import PlusIcon from "@/assets/icons/plus.svg";
+import type { Innovation } from "@/data/home";
+
+interface Props {
+    item: Innovation;
+    index: number;
+}
+
+const { item, index } = Astro.props;
+---
+
+<div
+    class={`group accordion-item bg-white rounded-xl overflow-hidden shadow-sm border border-transparent hover:border-gray-200 transition-all duration-500 ease-in-out ${index === 0 ? "open" : ""}`}
+    data-index={index}
+>
+    <button
+        type="button"
+        class="w-full flex items-center justify-between p-6 lg:p-8 text-left focus:outline-none"
+        aria-label={`Detalles sobre ${item.title}`}
+        aria-expanded={index === 0 ? "true" : "false"}
+    >
+        <div class="flex items-center gap-4 lg:gap-8">
+            <span class="text-2xl lg:text-4xl font-bold text-primary/80 group-hover:text-primary transition-colors w-12">{item.id}</span>
+            <h3 class="text-lg lg:text-2xl font-bold text-primary group-hover:text-[#0040c0] transition-colors">{item.title}</h3>
+        </div>
+
+        <div class="shrink-0 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary flex items-center justify-center text-white transition-transform duration-300 hover:bg-[#002080]">
+            <span aria-hidden="true" class="text-2xl font-light leading-none mb-1 block group-[.open]:hidden"><PlusIcon /></span>
+            <span aria-hidden="true" class="text-2xl font-light leading-none mb-1 hidden group-[.open]:block"><MinusIcon /></span>
+        </div>
+    </button>
+
+    <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-[.open]:grid-rows-[1fr]">
+        <div class="overflow-hidden">
+            <div class="px-6 lg:px-8 pb-8 flex flex-col lg:flex-row gap-8 items-start">
+                <div class="lg:w-1/2 pt-2">
+                    <p class="text-gray-600 text-base lg:text-lg leading-relaxed text-pretty border-l-4 border-primary pl-6 font-general-sans">{item.description}</p>
+                </div>
+                <div class="lg:w-1/2 w-full h-56 lg:h-72 rounded-xl overflow-hidden relative shadow-inner">
+                    <img
+                        src={item.image}
+                        alt={item.alt}
+                        class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

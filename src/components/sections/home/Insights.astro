@@ -1,0 +1,65 @@
+---
+import AccordionItem from "@/components/sections/home/AccordionItem.astro";
+import { innovations } from "@/data/home";
+---
+
+<section class="bg-tertiary flex flex-col w-full min-h-screen pb-10 mt-20">
+    <div class="flex flex-col px-4 lg:px-10 mx-16 space-y-10 mt-10" data-reveal-children>
+        <div class="rounded-full border border-gray-300 lg:px-6 px-3 py-2 w-48 lg:w-56 bg-white">
+            <p class="flex justify-center items-center text-xs lg:text-base text-primary font-bold gap-2">
+                ● Nuestros Servicios
+            </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center gap-x-20 space-y-3 lg:space-y-0">
+            <h2 class="text-3xl lg:text-6xl text-primary w-full lg:max-w-4xl leading-tight">
+                Ingeniería Avanzada que <br />
+                <span class="font-bold">Impulsa el Desarrollo</span>
+            </h2>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4 mt-8 max-w-5xl mx-auto" id="accordion-container" data-reveal-children>
+        {innovations.map((item, index) => <AccordionItem item={item} index={index} />)}
+    </div>
+</section>
+
+<script>
+    const initializeAccordion = () => {
+        const accordionContainer = document.getElementById(
+            "accordion-container",
+        );
+        if (accordionContainer?.dataset.accordionInitialized === "true") return;
+
+        const items = accordionContainer?.querySelectorAll(".accordion-item");
+
+        if (!accordionContainer || !items) return;
+        accordionContainer.dataset.accordionInitialized = "true";
+
+        items?.forEach((item) => {
+            const button = item.querySelector("button");
+
+            button?.addEventListener("click", () => {
+                const isOpen = item.classList.contains("open");
+
+                // 1. Cerrar todos los items primero
+                items.forEach((item) => {
+                    item.classList.remove("open");
+                    item.querySelector("button")?.setAttribute(
+                        "aria-expanded",
+                        "false",
+                    );
+                });
+
+                // 2. Si el clickeado NO estaba abierto, abrirlo
+                if (!isOpen) {
+                    item.classList.add("open");
+                    button?.setAttribute("aria-expanded", "true");
+                }
+            });
+        });
+    };
+
+    initializeAccordion();
+    document.addEventListener("astro:page-load", initializeAccordion);
+</script>

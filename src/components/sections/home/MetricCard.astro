@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Award from "@/assets/icons/award.svg";
+import Users from "@/assets/icons/users.svg";
+
+interface Props {
+    kind: "clients" | "years";
+    image: ImageMetadata;
+}
+
+const { kind, image } = Astro.props;
+const isClients = kind === "clients";
+---
+
+<div
+    class={isClients
+        ? "lg:col-span-4 border border-primary/10 rounded-4xl p-7 lg:p-8 flex flex-col justify-between min-h-48 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/25 hover:-translate-y-1 group relative overflow-hidden"
+        : "lg:col-span-4 rounded-4xl p-7 lg:p-8 flex flex-col justify-between min-h-48 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1 group relative overflow-hidden"}
+>
+    <Image
+        src={image}
+        alt={isClients ? "Equipo de trabajo" : "Experiencia en construcción"}
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
+    />
+    <div class="absolute inset-0 bg-linear-to-br from-primary/95 via-primary/90 to-[#001F66]/95"></div>
+
+    <div
+        class={isClients
+            ? "absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-all duration-500"
+            : "absolute -bottom-8 -right-8 w-32 h-32 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all duration-500"}
+    >
+    </div>
+
+    <div class="bg-white/10 backdrop-blur-sm w-14 h-14 flex items-center justify-center border border-white/10 group-hover:bg-white/20 transition-all duration-500 relative z-10">
+        {isClients ? <Users class="text-white size-6" /> : <Award class="text-white size-6" />}
+    </div>
+    <div class="space-y-1.5 relative z-10">
+        <p class="text-white/60 text-sm tracking-wide uppercase font-medium">
+            {isClients ? "Clientes Satisfechos" : "Años en el Mercado"}
+        </p>
+        <p class="text-5xl lg:text-6xl font-bold text-white leading-none">
+            <span class="inline-block">+</span><span
+                class="counter"
+                data-target={isClients ? "150" : "25"}>0</span>
+        </p>
+        <p class={isClients ? "text-white/70 text-sm font-general-sans" : "text-white/40 text-sm font-general-sans"}>
+            {isClients ? "En todo el país" : "De experiencia comprobada"}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,143 @@
+---
+export const prerender = false;
+
+import MoveRight from "@/assets/icons/MoveRight.svg";
+import imgPuente from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.avif";
+import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import { groupCompanies, integratedCapabilities } from "@/data/group";
+---
+
+<SiteLayout
+    title="Grupo empresarial | Postesados JHP"
+    description="Conoce las capacidades complementarias de Postesados JHP, DR Drilling y Tenax Construction para proyectos de ingeniería y construcción."
+>
+    <main>
+        <section class="relative isolate min-h-150 overflow-hidden bg-dark mt-2 lg:mt-6">
+            <img
+                src="/new/nave_industrial_prefabricada.avif"
+                alt="Estructura industrial desarrollada con soluciones integrales de ingeniería"
+                class="absolute inset-0 -z-20 size-full object-cover"
+                fetchpriority="high"
+            />
+            <div class="absolute inset-0 -z-10 bg-black/40"></div>
+            <div class="mx-auto flex min-h-150 max-w-400 flex-col justify-end px-6 pb-16 pt-36 md:px-10 md:pb-20 lg:px-20" data-reveal-children>
+                <h1 class="max-w-5xl text-5xl font-bold leading-[0.95] tracking-tighter text-white md:text-7xl lg:text-8xl">
+                    Capacidades que se integran para construir mejor.
+                </h1>
+                <p class="mt-8 max-w-2xl font-general-sans text-base leading-relaxed text-white/75 md:text-xl">
+                    Especialidades complementarias en geotecnia, construcción civil,
+                    prefabricación y hormigón presforzado para responder a cada etapa
+                    del proyecto.
+                </p>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-400 px-5 py-20 md:py-28 lg:px-10">
+            <div class="flex flex-col items-start gap-10" data-reveal-children>
+                <p class="w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-bold text-primary md:text-sm">
+                    ● Una visión integral
+                </p>
+                <h2 class="text-4xl font-medium leading-tight tracking-tighter text-primary md:text-6xl">
+                    Del terreno a la <br /><span class="font-bold">estructura terminada.</span>
+                </h2>
+            </div>
+            <div class="mt-14 grid gap-4 md:grid-cols-3" data-reveal-children>
+                {
+                    integratedCapabilities.map((capability) => (
+                        <article class="group min-h-72 rounded-3xl bg-tertiary p-7 transition duration-300 hover:bg-primary md:p-8">
+                            <p class="text-sm font-bold text-primary/50 group-hover:text-white/60">
+                                {capability.number}
+                            </p>
+                            <h3 class="text-2xl font-bold text-primary group-hover:text-white">
+                                {capability.title}
+                            </h3>
+                            <p class="mt-4 font-general-sans leading-relaxed text-gray-600 group-hover:text-white/80">
+                                {capability.description}
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="bg-tertiary px-5 py-20 md:px-10 md:py-28 lg:px-20">
+            <div class="mx-auto max-w-360">
+                <div class="mb-14 max-w-3xl" data-reveal-children>
+                    <p class="text-sm font-bold text-primary">NUESTRAS EMPRESAS</p>
+                    <h2 class="mt-4 text-4xl font-bold tracking-tighter text-primary md:text-6xl">
+                        Tres especialidades. Una respuesta coordinada.
+                    </h2>
+                </div>
+
+                <div class="space-y-6">
+                    {
+                        groupCompanies.map((company, index) => {
+                            const accentClasses = {
+                                blue: "bg-primary text-white",
+                                orange: "bg-accent-orange text-white",
+                                red: "bg-accent-red text-white",
+                            };
+                            const isExternal = company.website.startsWith("http");
+
+                            return (
+                                <article class="grid overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2" data-reveal-children>
+                                    <div class:list={["relative min-h-80 lg:min-h-130", index % 2 === 1 && "lg:order-2"]}>
+                                        <img
+                                            src={company.image}
+                                            alt={company.imageAlt}
+                                            class="absolute inset-0 size-full object-cover"
+                                            loading="lazy"
+                                        />
+                                        <div class="absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
+                                        <span class:list={["absolute left-6 top-6 rounded-full px-4 py-2 text-xs font-bold", accentClasses[company.accent]]}>
+                                            0{index + 1}
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col justify-center p-7 md:p-10 lg:p-14">
+                                        <p class="text-xs font-bold uppercase tracking-widest text-primary/55">
+                                            {company.eyebrow}
+                                        </p>
+                                        <h3 class="mt-3 text-3xl font-bold tracking-tight text-primary md:text-5xl">
+                                            {company.name}
+                                        </h3>
+                                        <p class="mt-6 font-general-sans text-base leading-relaxed text-gray-600 md:text-lg">
+                                            {company.description}
+                                        </p>
+                                        <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                                            {company.services.map((service) => (
+                                                <li class="flex items-start gap-2 font-general-sans text-sm text-gray-700">
+                                                    <span class="mt-1 text-primary">●</span>
+                                                    {service}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <a
+                                            href={company.website}
+                                            target={isExternal ? "_blank" : undefined}
+                                            rel={isExternal ? "noopener noreferrer" : undefined}
+                                            class="group mt-10 inline-flex min-h-12 w-fit items-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition hover:bg-secondary"
+                                        >
+                                            {company.websiteLabel}
+                                            <MoveRight class="ml-2 transition-transform group-hover:translate-x-1" />
+                                        </a>
+                                    </div>
+                                </article>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        </section>
+
+        <PhotoCta
+            image={imgPuente}
+            imageAlt="Equipo trabajando en soluciones integrales de ingeniería"
+            label="● Soluciones integrales"
+            title="Conversemos sobre las necesidades de tu proyecto."
+            description="Integramos capacidades técnicas y constructivas para responder a cada etapa de tu proyecto."
+            href="/contact"
+            linkLabel="Contáctanos"
+        />
+    </main>
+</SiteLayout>

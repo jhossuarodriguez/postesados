@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from "astro";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+
+interface Props {
+    image: ImageMetadata;
+    imageAlt: string;
+    label: string;
+    title: string;
+    description: string;
+    href: string;
+    linkLabel: string;
+}
+
+const { image, imageAlt, label, title, description, href, linkLabel } = Astro.props;
+---
+
+<div class="relative h-140">
+    <Image
+        class="w-full h-full object-cover object-center"
+        src={image}
+        alt={imageAlt}
+    />
+    <div class="inset-0 bg-black/50 absolute"></div>
+    <div class="md:ml-14 absolute top-24 bottom-6 left-6 right-6">
+        <div class="flex flex-col justify-between h-full" data-reveal-children>
+            <p
+                class="flex justify-start items-center text-xs lg:text-base text-primary font-bold lg:px-3 px-3 py-2 self-start bg-white rounded-full border border-gray-300"
+            >
+                {label}
+            </p>
+            <span
+                class="text-3xl md:text-6xl text-white font-bold mt-4 block lg:max-w-2xl leading-tight"
+                >{title}</span
+            >
+            <p
+                class="text-white mt-4 block lg:max-w-xl leading-tight font-general-sans text-base md:text-xl"
+            >
+                {description}
+            </p>
+
+            <a
+                href={href}
+                class="text-sm lg:text-base font-bold inline-flex min-h-12 items-center bg-white text-primary px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg mt-8 self-start"
+                >{linkLabel}
+                <MoveRight
+                    class="inline-block ml-2 group-hover:animate-slide-in-left duration-75"
+                />
+            </a>
+        </div>
+    </div>
+</div>
