@@ -9,7 +9,12 @@ interface Props {
     showArrows?: boolean;
 }
 
-const { count, carouselName, class: className, showArrows = true } = Astro.props;
+const {
+    count,
+    carouselName,
+    class: className,
+    showArrows = true,
+} = Astro.props;
 ---
 
 <div class={className} data-carousel-controls={carouselName}>
@@ -55,28 +60,80 @@ const { count, carouselName, class: className, showArrows = true } = Astro.props
             </button>
         )
     }
+
+    <p class="sr-only" aria-live="polite" aria-atomic="true" data-carousel-status>
+        Elemento 1 de {count} de {carouselName}
+    </p>
 </div>
 
 
 <script>
+    const carouselCleanups = new Map<HTMLElement, () => void>();
+
     const initializeCarousels = () => {
         document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((carousel) => {
-            if (carousel.dataset.carouselInitialized === "true") return;
+            if (carouselCleanups.has(carousel)) return;
 
+            const viewport = carousel.querySelector<HTMLElement>("[data-carousel-viewport]");
             const track = carousel.querySelector<HTMLElement>("[data-carousel-track]");
             const slides = Array.from(track?.children ?? []) as HTMLElement[];
             const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"));
             const previous = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]");
             const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
+            const status = carousel.querySelector<HTMLElement>("[data-carousel-status]");
+            const carouselName = carousel.querySelector<HTMLElement>("[data-carousel-controls]")?.dataset.carouselControls ?? "carrusel";
+            const autoplayDelay = Number(carousel.dataset.carouselAutoplay ?? 0);
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            const controller = new AbortController();
             let activeIndex = 0;
+            let autoplayTimer: number | null = null;
+            let pointerInside = false;
+            let focusInside = false;
+            let availableIndices: number[] = [];
 
             if (!track || slides.length === 0) return;
 
             carousel.dataset.carouselInitialized = "true";
 
-            const showSlide = (index: number) => {
+            const clearAutoplay = () => {
+                if (autoplayTimer !== null) window.clearTimeout(autoplayTimer);
+                autoplayTimer = null;
+            };
+
+            const getSlideOffset = (index: number) => {
+                const desiredOffset = slides[index].offsetLeft - slides[0].offsetLeft;
+                const maxOffset = Math.max(0, track.scrollWidth - (viewport?.clientWidth ?? track.clientWidth));
+                return Math.min(desiredOffset, maxOffset);
+            };
+
+            const updateAvailableIndices = () => {
+                const offsets: number[] = [];
+                const focusedDotIndex = dots.findIndex((dot) => dot === document.activeElement);
+                availableIndices = slides.reduce<number[]>((indices, _, index) => {
+                    const offset = getSlideOffset(index);
+                    if (offsets.some((existingOffset) => Math.abs(existingOffset - offset) < 1)) return indices;
+                    offsets.push(offset);
+                    indices.push(index);
+                    return indices;
+                }, []);
+
+                dots.forEach((dot, index) => {
+                    dot.hidden = !availableIndices.includes(index);
+                });
+                if (previous) previous.hidden = availableIndices.length < 2;
+                if (next) next.hidden = availableIndices.length < 2;
+
+                if (focusedDotIndex >= 0 && dots[focusedDotIndex].hidden) {
+                    const replacementIndex = availableIndices.reduce((closest, index) =>
+                        Math.abs(index - focusedDotIndex) < Math.abs(closest - focusedDotIndex) ? index : closest,
+                    );
+                    dots[replacementIndex]?.focus();
+                }
+            };
+
+            const showSlide = (index: number, announce = false) => {
                 activeIndex = Math.max(0, Math.min(index, slides.length - 1));
-                track.style.transform = `translateX(-${slides[activeIndex].offsetLeft}px)`;
+                track.style.transform = `translateX(-${getSlideOffset(activeIndex)}px)`;
 
                 dots.forEach((dot, dotIndex) => {
                     const isActive = dotIndex === activeIndex;
@@ -84,15 +141,133 @@ const { count, carouselName, class: className, showArrows = true } = Astro.props
                     dot.querySelector("span")?.classList.toggle("bg-primary", isActive);
                     dot.querySelector("span")?.classList.toggle("bg-gray-300", !isActive);
                 });
+
+                if (carousel.hasAttribute("data-carousel-single-slide")) {
+                    slides.forEach((slide, slideIndex) => {
+                        const isActive = slideIndex === activeIndex;
+                        slide.toggleAttribute("inert", !isActive);
+                        if (isActive) slide.removeAttribute("aria-hidden");
+                        else slide.setAttribute("aria-hidden", "true");
+                    });
+                }
+
+                if (announce && status) {
+                    status.textContent = `Elemento ${activeIndex + 1} de ${slides.length} de ${carouselName}`;
+                }
             };
 
-            previous?.addEventListener("click", () => showSlide(activeIndex - 1));
-            next?.addEventListener("click", () => showSlide(activeIndex + 1));
-            dots.forEach((dot, index) => dot.addEventListener("click", () => showSlide(index)));
-            window.addEventListener("resize", () => showSlide(activeIndex));
+            const canAutoplay = () =>
+                autoplayDelay > 0 &&
+                availableIndices.length > 1 &&
+                !pointerInside &&
+                !focusInside &&
+                !document.hidden &&
+                !reducedMotion.matches;
+
+            const scheduleAutoplay = () => {
+                clearAutoplay();
+                if (!canAutoplay()) return;
+
+                autoplayTimer = window.setTimeout(() => {
+                    const currentPosition = Math.max(0, availableIndices.indexOf(activeIndex));
+                    showSlide(availableIndices[(currentPosition + 1) % availableIndices.length]);
+                    scheduleAutoplay();
+                }, autoplayDelay);
+            };
+
+            const navigate = (index: number) => {
+                showSlide(index, true);
+                scheduleAutoplay();
+            };
+
+            const navigateBy = (direction: -1 | 1) => {
+                const currentPosition = Math.max(0, availableIndices.indexOf(activeIndex));
+                const nextPosition = (currentPosition + direction + availableIndices.length) % availableIndices.length;
+                navigate(availableIndices[nextPosition]);
+            };
+
+            previous?.addEventListener("click", () => navigateBy(-1), { signal: controller.signal });
+            next?.addEventListener("click", () => navigateBy(1), { signal: controller.signal });
+            dots.forEach((dot, index) =>
+                dot.addEventListener("click", () => navigate(index), { signal: controller.signal }),
+            );
+            carousel.addEventListener(
+                "keydown",
+                (event) => {
+                    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                    event.preventDefault();
+                    navigateBy(event.key === "ArrowRight" ? 1 : -1);
+                },
+                { signal: controller.signal },
+            );
+            carousel.addEventListener(
+                "pointerenter",
+                () => {
+                    pointerInside = true;
+                    scheduleAutoplay();
+                },
+                { signal: controller.signal },
+            );
+            carousel.addEventListener(
+                "pointerleave",
+                () => {
+                    pointerInside = false;
+                    scheduleAutoplay();
+                },
+                { signal: controller.signal },
+            );
+            carousel.addEventListener(
+                "focusin",
+                () => {
+                    focusInside = true;
+                    scheduleAutoplay();
+                },
+                { signal: controller.signal },
+            );
+            carousel.addEventListener(
+                "focusout",
+                (event) => {
+                    const nextTarget = event.relatedTarget;
+                    if (nextTarget instanceof Node && carousel.contains(nextTarget)) return;
+                    focusInside = false;
+                    scheduleAutoplay();
+                },
+                { signal: controller.signal },
+            );
+            window.addEventListener(
+                "resize",
+                () => {
+                    updateAvailableIndices();
+                    if (!availableIndices.includes(activeIndex)) {
+                        activeIndex = availableIndices.at(-1) ?? 0;
+                    }
+                    showSlide(activeIndex);
+                    scheduleAutoplay();
+                },
+                { signal: controller.signal },
+            );
+            document.addEventListener("visibilitychange", scheduleAutoplay, { signal: controller.signal });
+            reducedMotion.addEventListener("change", scheduleAutoplay);
+
+            carouselCleanups.set(carousel, () => {
+                clearAutoplay();
+                controller.abort();
+                reducedMotion.removeEventListener("change", scheduleAutoplay);
+                delete carousel.dataset.carouselInitialized;
+                carouselCleanups.delete(carousel);
+            });
+
+            updateAvailableIndices();
+            showSlide(availableIndices[0] ?? 0);
+            scheduleAutoplay();
         });
+    };
+
+    const destroyCarousels = () => {
+        Array.from(carouselCleanups.values()).forEach((cleanup) => cleanup());
     };
 
     initializeCarousels();
     document.addEventListener("astro:page-load", initializeCarousels);
+    document.addEventListener("astro:before-swap", destroyCarousels);
 </script>
