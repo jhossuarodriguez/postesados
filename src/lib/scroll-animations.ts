@@ -66,7 +66,10 @@ export const initializeScrollAnimations = () => {
             .forEach((container, index) => {
                 const children = Array.from(container.children);
                 if (children.length === 0) return;
-                const offset = revealDirections[index % revealDirections.length];
+                const isGrid = container.classList.contains("grid");
+                const offset = isGrid
+                    ? { x: 0, y: 32 }
+                    : revealDirections[index % revealDirections.length];
 
                 gsap.fromTo(
                     children,
@@ -75,8 +78,10 @@ export const initializeScrollAnimations = () => {
                         autoAlpha: 1,
                         x: 0,
                         y: 0,
-                        duration: 0.35,
-                        ease: "power3.out",
+                        duration: isGrid ? 1.1 : 0.35,
+                        ease: isGrid
+                            ? "cubic-bezier(0.22, 1, 0.36, 1)"
+                            : "power3.out",
                         scrollTrigger: {
                             trigger: container,
                             start: "top 88%",
