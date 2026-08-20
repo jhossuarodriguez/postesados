@@ -73,10 +73,10 @@ export const initializeScrollAnimations = () => {
                     { autoAlpha: 0, ...offset },
                     {
                         autoAlpha: 1,
+                        x: 0,
                         y: 0,
-                        duration: 0.55,
-                        stagger: 0.08,
-                        ease: "power2.out",
+                        duration: 0.35,
+                        ease: "power3.out",
                         scrollTrigger: {
                             trigger: container,
                             start: "top 88%",
