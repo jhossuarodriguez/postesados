@@ -9,7 +9,7 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<div data-carousel="services">
+<div data-carousel="services" data-carousel-autoplay="5000">
     <div
         class="w-full h-125 lg:h-134.75 mt-20 overflow-hidden"
         role="region"
@@ -18,7 +18,7 @@ const { slides } = Astro.props;
         data-carousel-viewport
     >
         <ul
-            class="h-full flex items-center gap-6 px-5 lg:px-10 2xl:pl-28 transition-transform duration-500 ease-out"
+            class="h-full flex items-center gap-6 px-5 lg:px-10 2xl:pl-28 transition-transform duration-500 ease-out motion-reduce:transition-none"
             data-carousel-track
         >
             {
@@ -29,7 +29,7 @@ const { slides } = Astro.props;
                             <img
                                 src={slide.src}
                                 alt={slide.alt}
-                                class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110"
+                                class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
                                 loading={index === 0 ? "eager" : "lazy"}
                                 fetchpriority={index === 0 ? "auto" : "low"}
                                 decoding="async"
