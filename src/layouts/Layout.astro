@@ -45,10 +45,21 @@ const {
 		destroyViewportVideos,
 		initializeViewportVideos,
 	} from "@/lib/viewport-videos";
+	import {
+		destroyScrollAnimations,
+		initializeScrollAnimations,
+	} from "@/lib/scroll-animations";
 
+	initializeScrollAnimations();
 	initializeViewportVideos();
-	document.addEventListener("astro:page-load", initializeViewportVideos);
-	document.addEventListener("astro:before-swap", destroyViewportVideos);
+	document.addEventListener("astro:page-load", () => {
+		initializeScrollAnimations();
+		initializeViewportVideos();
+	});
+	document.addEventListener("astro:before-swap", () => {
+		destroyScrollAnimations();
+		destroyViewportVideos();
+	});
 </script>
 
 <style>
@@ -65,5 +76,10 @@ const {
 		height: 100%;
 		font-family: "Montserrat", sans-serif;
 		overflow-y: scroll;
+	}
+
+	html.lenis,
+	html.lenis body {
+		height: auto;
 	}
 </style>
