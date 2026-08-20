@@ -9,28 +9,38 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<div data-carousel="hero">
+<div
+    data-carousel="hero"
+    data-carousel-autoplay="5000"
+    data-carousel-single-slide
+    role="region"
+    aria-label="Proyectos destacados"
+    aria-roledescription="carrusel"
+>
     <div class="w-full overflow-hidden">
         <div
             class="h-72 w-full overflow-hidden rounded-xl shadow-2xl md:h-100"
-            role="region"
-            aria-label="Proyectos destacados"
-            aria-roledescription="carrusel"
             data-carousel-viewport
         >
             <ul
-                class="flex h-full items-center transition-transform duration-500 ease-out"
+                class="flex h-full items-center transition-transform duration-500 ease-out motion-reduce:transition-none"
                 data-carousel-track
             >
                 {
                     slides.map((slide, index) => (
-                        <li class="relative isolate flex h-full w-full shrink-0 items-center justify-center">
+                        <li
+                            class="relative isolate flex h-full w-full shrink-0 items-center justify-center"
+                            aria-label={`${index + 1} de ${slides.length}`}
+                            aria-roledescription="diapositiva"
+                            aria-hidden={index === 0 ? undefined : "true"}
+                            inert={index === 0 ? undefined : true}
+                        >
                             <div class="group relative isolate h-full w-full overflow-hidden rounded-xl">
                                 <div class="pointer-events-none absolute inset-0 z-10 bg-black/25" />
                                 <img
                                     src={slide.src}
                                     alt={slide.alt}
-                                    class="relative z-0 w-full h-full object-cover transform transition-transform duration-400 group-hover:scale-110"
+                                    class="relative z-0 w-full h-full object-cover transform transition-transform duration-400 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
                                     loading={index === 0 ? "eager" : "lazy"}
                                     fetchpriority={index === 0 ? "high" : "low"}
                                     decoding="async"
