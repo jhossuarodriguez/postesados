@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import ClientRouter from "astro/components/ClientRouter.astro";
 
 interface Props {
 	title?: string;
@@ -37,6 +38,7 @@ const {
 		<link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/montserrat-v31-latin-500.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<ClientRouter />
 	</head>
 	<body class="w-full mx-auto">
 		<slot />
@@ -66,13 +68,6 @@ const {
 </script>
 
 <style>
-	html {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		font-family: "Montserrat", sans-serif;
-	}
-
 	body {
 		margin: 0;
 		width: 100%;
