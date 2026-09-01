@@ -1,5 +1,5 @@
-import imgTuberia from "@/assets/images/HERO/instalacion-tuberia-rio.avif";
-import imgBackgroundCompany from "@/assets/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.avif";
+import imgTuberia from "@/assets/images/hero/instalacion-tuberia-rio.avif";
+import imgBackgroundCompany from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
 import imgTetrapodos from "@/assets/images/tetrapodos-rompeolas-san-pedro-macoris.avif";
 
 export interface HomeSlide {

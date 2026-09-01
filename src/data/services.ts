@@ -1,12 +1,12 @@
 import type { ImageMetadata } from "astro";
 
-import imgEncofrado from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-encofrado-lateral.avif";
-import imgVaciado from "@/assets/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.avif";
-import imgMixer from "@/assets/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.avif";
-import imgMontaje from "@/assets/images/SERVICE_SECTION/montaje-losas-prefabricadas-camion.avif";
-import imgGrua from "@/assets/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.avif";
-import imgPlanta from "@/assets/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.avif";
-import imgAcueducto from "@/assets/images/SERVICE_SECTION/acueducto-vista-aerea-rio.avif";
+import imgEncofrado from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
+import imgVaciado from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
+import imgMixer from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
+import imgMontaje from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
+import imgGrua from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
+import imgPlanta from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
+import imgAcueducto from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
 
 export interface Service {
     id: string;

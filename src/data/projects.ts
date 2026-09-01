@@ -1,18 +1,18 @@
 import type { ImageMetadata } from "astro";
 
-import imgArmadoPuente from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-encofrado-lateral.avif";
-import imgPilar from "@/assets/images/SERVICE_SECTION/acueducto-vista-aerea-rio.avif";
-import imgSoldadura from "@/assets/images/SERVICE_SECTION/montaje-losas-prefabricadas-camion.avif";
-import imgConstruccionPuente from "@/assets/images/HERO/construccion-puente.avif";
-import imgPlanta from "@/assets/images/HERO/planta-de-tratamiento-de-agua.avif";
-import imgTuberia from "@/assets/images/HERO/instalacion-tuberia-rio.avif";
-import imgEncofrado from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-encofrado-lateral.avif";
-import imgVaciado from "@/assets/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.avif";
-import imgMixer from "@/assets/images/SERVICE_SECTION/mixer-vaciado-valvulas-azules.avif";
-import imgMontaje from "@/assets/images/SERVICE_SECTION/montaje-losas-prefabricadas-camion.avif";
-import imgGrua from "@/assets/images/SERVICE_SECTION/planta-tratamiento-ingenieros-gran-angular.avif";
-import imgAcueducto from "@/assets/images/SERVICE_SECTION/acueducto-vista-aerea-rio.avif";
-import imgPuenteAerea from "@/assets/images/SERVICE_SECTION/puente-rio-cachon-vista-aerea-lateral.avif";
+import imgArmadoPuente from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
+import imgPilar from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
+import imgSoldadura from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
+import imgConstruccionPuente from "@/assets/images/hero/construccion-puente.avif";
+import imgPlanta from "@/assets/images/hero/planta-de-tratamiento-de-agua.avif";
+import imgTuberia from "@/assets/images/hero/instalacion-tuberia-rio.avif";
+import imgEncofrado from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
+import imgVaciado from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
+import imgMixer from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
+import imgMontaje from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
+import imgGrua from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
+import imgAcueducto from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
+import imgPuenteAerea from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 
 export interface Project {
     image: ImageMetadata;
