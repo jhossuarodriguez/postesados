@@ -2,7 +2,6 @@
 import Instagram from "@/assets/icons/social-media/instagram.svg";
 import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
 import type { FooterContact, FooterSocialLink } from "@/data/footer";
-import { Image } from "astro:assets";
 import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
 
 interface Props {
@@ -17,8 +16,8 @@ const { contact, socialLinks } = Astro.props;
     <div class="space-y-4">
         <div class="flex items-center gap-2">
             <div class="text-2xl font-bold tracking-tighter uppercase italic">
-                <Image
-                    src={logoPostesados}
+                <img
+                    src={logoPostesados.src}
                     alt="Postesados Logo"
                     class="h-20 w-auto"
                     loading="lazy"
