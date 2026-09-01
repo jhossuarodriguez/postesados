@@ -5,7 +5,7 @@ import type { ImageMetadata } from "astro";
 interface Props {
     title: string;
     description: string;
-    image: ImageMetadata | string;
+    image: ImageMetadata;
     imageAlt: string;
 }
 
@@ -27,19 +27,9 @@ const { title, description, image, imageAlt } = Astro.props;
             {description}
         </p>
     </div>
-    {
-        typeof image === "string" ? (
-            <img
-                src={image}
-                alt={imageAlt}
-                class="w-32 h-32 object-cover rounded-xl shrink-0"
-            />
-        ) : (
-            <Image
-                src={image}
-                alt={imageAlt}
-                class="w-32 h-32 object-cover rounded-xl shrink-0"
-            />
-        )
-    }
+    <Image
+        src={image}
+        alt={imageAlt}
+        class="w-32 h-32 object-cover rounded-xl shrink-0"
+    />
 </div>

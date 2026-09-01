@@ -1,5 +1,6 @@
 ---
 import type { HomeSlide } from "@/data/home";
+import { Image } from "astro:assets";
 import CarouselControls from "./CarouselControls.astro";
 
 interface Props {
@@ -26,12 +27,12 @@ const { slides } = Astro.props;
                     <li class="relative isolate flex items-center justify-center shrink-0 w-[calc(100vw-3.5rem)] sm:w-106.75">
                         <div class="isolate w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
-                            <img
+                            <Image
                                 src={slide.src}
                                 alt={slide.alt}
                                 class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
                                 loading={index === 0 ? "eager" : "lazy"}
-                                fetchpriority={index === 0 ? "auto" : "low"}
+                                fetchpriority={index === 0 ? "high" : "low"}
                                 decoding="async"
                             />
                             <div class="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end items-start z-20 pointer-events-none pb-8">

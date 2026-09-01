@@ -2,7 +2,9 @@
 export const prerender = false;
 
 import MoveRight from "@/assets/icons/MoveRight.svg";
+import { Image } from "astro:assets";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
+import imgNaveIndustrial from "@/assets/images/projects/nave_industrial_prefabricada.avif";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { groupCompanies, integratedCapabilities } from "@/data/group";
@@ -14,8 +16,8 @@ import { groupCompanies, integratedCapabilities } from "@/data/group";
 >
     <main>
         <section class="relative isolate min-h-150 overflow-hidden bg-dark mt-2 lg:mt-6">
-            <img
-                src="/new/nave_industrial_prefabricada.avif"
+            <Image
+                src={imgNaveIndustrial}
                 alt="Estructura industrial desarrollada con soluciones integrales de ingeniería"
                 class="absolute inset-0 -z-20 size-full object-cover"
                 fetchpriority="high"
@@ -83,12 +85,23 @@ import { groupCompanies, integratedCapabilities } from "@/data/group";
                             return (
                                 <article class="grid overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2" data-reveal-children>
                                     <div class:list={["relative min-h-80 lg:min-h-130", index % 2 === 1 && "lg:order-2"]}>
-                                        <img
-                                            src={company.image}
-                                            alt={company.imageAlt}
-                                            class="absolute inset-0 size-full object-cover"
-                                            loading="lazy"
-                                        />
+                                        {
+                                            typeof company.image === "string" ? (
+                                                <img
+                                                    src={company.image}
+                                                    alt={company.imageAlt}
+                                                    class="absolute inset-0 size-full object-cover"
+                                                    loading="lazy"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={company.image}
+                                                    alt={company.imageAlt}
+                                                    class="absolute inset-0 size-full object-cover"
+                                                    loading="lazy"
+                                                />
+                                            )
+                                        }
                                         <div class="absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
                                         <span class:list={["absolute left-6 top-6 rounded-full px-4 py-2 text-xs font-bold", accentClasses[company.accent]]}>
                                             0{index + 1}

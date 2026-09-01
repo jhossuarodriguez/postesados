@@ -3,6 +3,7 @@ export const prerender = false
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
+import imgHormigonPostensado from "@/assets/images/projects/nuestros_servicios_hormigon_postensado_proyecto_2.avif";
 import ServiceGrid from "@/components/sections/services/ServiceGrid.astro";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
 import ServiceStats from "@/components/sections/services/ServiceStats.astro";
@@ -14,7 +15,7 @@ import ServiceStats from "@/components/sections/services/ServiceStats.astro";
 >
     <section>
         <InteriorHero
-            image="/new/nuestros_servicios_hormigon_postensado_proyecto_2.avif"
+            image={imgHormigonPostensado}
             imageAlt="Estructura de hormigón postensado ejecutada por Postesados JHP"
         >
             <Fragment slot="title">Servicios</Fragment>

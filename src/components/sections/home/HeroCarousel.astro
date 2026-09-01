@@ -1,5 +1,6 @@
 ---
 import type { HomeSlide } from "@/data/home";
+import { Image } from "astro:assets";
 import CarouselControls from "./CarouselControls.astro";
 
 interface Props {
@@ -37,7 +38,7 @@ const { slides } = Astro.props;
                         >
                             <div class="group relative isolate h-full w-full overflow-hidden rounded-xl">
                                 <div class="pointer-events-none absolute inset-0 z-10 bg-black/25" />
-                                <img
+                                <Image
                                     src={slide.src}
                                     alt={slide.alt}
                                     class="relative z-0 w-full h-full object-cover transform transition-transform duration-400 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"

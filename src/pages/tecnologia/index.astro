@@ -3,6 +3,7 @@ export const prerender = false
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
+import imgGatosHidraulicos from "@/assets/images/projects/nuestros_servicios_gatos_hidraulicos_para_pretensar_3.avif";
 import TechnologyGrid from "@/components/sections/technology/TechnologyGrid.astro";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
 import TechnologyStats from "@/components/sections/technology/TechnologyStats.astro";
@@ -14,7 +15,7 @@ import TechnologyStats from "@/components/sections/technology/TechnologyStats.as
 >
     <section>
         <InteriorHero
-            image="/new/nuestros_servicios_gatos_hidraulicos_para_pretensar_3.avif"
+            image={imgGatosHidraulicos}
             imageAlt="Equipos hidráulicos para sistemas de hormigón presforzado"
         >
             <Fragment slot="title">Tecnología</Fragment>

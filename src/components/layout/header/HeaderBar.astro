@@ -3,6 +3,8 @@ import Menu from "@/assets/icons/Menu.svg";
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import X from "@/assets/icons/XButton.svg";
 import { navItems } from "@/data/navigation";
+import { Image } from "astro:assets";
+import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
 ---
 
 <header
@@ -59,8 +61,8 @@ import { navItems } from "@/data/navigation";
                     aria-label="Logo Postesados"
                     aria-labelledby="Logo Postesados"
                 >
-                    <img
-                        src="/logo_postesados_nobg.webp"
+                    <Image
+                        src={logoPostesados}
                         alt="Postesados Logo"
                         class="h-16 w-auto md:translate-x-14 xl:translate-x-24 2xl:translate-x-48"
                         width="120"

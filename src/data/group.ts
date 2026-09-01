@@ -5,7 +5,7 @@ export interface GroupCompany {
     services: string[];
     website: string;
     websiteLabel: string;
-    image: string;
+    image: ImageMetadata | string;
     imageAlt: string;
     accent: "blue" | "orange" | "red";
 }
@@ -24,7 +24,7 @@ export const groupCompanies: GroupCompany[] = [
         ],
         website: "/servicios",
         websiteLabel: "Conocer Postesados JHP",
-        image: "/new/destacado_viga_pretensada_bulb_t_2.avif",
+        image: imgVigaBulbT,
         imageAlt: "Viga pretensada Bulb-T de Postesados JHP",
         accent: "blue",
     },
@@ -84,3 +84,5 @@ export const integratedCapabilities = [
             "Producción controlada de elementos prefabricados, suministro de componentes especializados y montaje eficiente en obra.",
     },
 ];
+import type { ImageMetadata } from "astro";
+import imgVigaBulbT from "@/assets/images/projects/destacado_viga_pretensada_bulb_t_2.avif";

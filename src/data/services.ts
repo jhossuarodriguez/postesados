@@ -7,12 +7,15 @@ import imgMontaje from "@/assets/images/service_section/montaje-losas-prefabrica
 import imgGrua from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
 import imgPlanta from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
 import imgAcueducto from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
+import imgHormigonPostensado from "@/assets/images/projects/nuestros_servicios_hormigon_postensado_proyecto_2.avif";
+import imgHormigonArmado from "@/assets/images/projects/nuestros_servicios_hormigon_armado_proyecto_3.avif";
+import imgTetrapodos from "@/assets/images/projects/tetrapodos_rompeolas_san_pedro_macoris.avif";
 
 export interface Service {
     id: string;
     title: string;
     description: string;
-    image: ImageMetadata | string;
+    image: ImageMetadata;
     imageAlt: string;
 }
 
@@ -24,9 +27,9 @@ export const services: Service[] = [
     { id: "tensado", title: "Tensado hidráulico", description: "Aplicación y control de la fuerza de presfuerzo con gatos hidráulicos, equipos calibrados y verificación de presión y alargamientos.", image: imgGrua, imageAlt: "Operación de tensado hidráulico" },
     { id: "hormigon-armado", title: "Hormigón armado", description: "Elementos estructurales y prefabricados que combinan la resistencia a compresión del concreto con la capacidad a tracción del acero de refuerzo.", image: imgPlanta, imageAlt: "Elementos estructurales de hormigón armado" },
     { id: "puentes", title: "Puentes y viaductos", description: "Soluciones pretensadas y postensadas para mayores luces, menos apoyos intermedios y construcción eficiente en cauces o zonas de difícil acceso.", image: imgAcueducto, imageAlt: "Puente ejecutado con soluciones de hormigón presforzado" },
-    { id: "losas", title: "Losas de grandes luces", description: "Losas postensadas para hoteles, villas, torres, estacionamientos y espacios que requieren flexibilidad arquitectónica y secciones esbeltas.", image: "/new/nuestros_servicios_hormigon_postensado_proyecto_2.avif", imageAlt: "Losa estructural postensada" },
-    { id: "infraestructura", title: "Infraestructura prefabricada", description: "Box culverts, barreras New Jersey y muros de contención tipo L fabricados bajo condiciones controladas para agilizar su instalación en obra.", image: "/new/nuestros_servicios_hormigon_armado_proyecto_3.avif", imageAlt: "Elementos prefabricados para infraestructura" },
-    { id: "proteccion-costera", title: "Protección costera", description: "Tetrápodos de hormigón dimensionados según el oleaje, la profundidad, la pendiente y las condiciones particulares de cada proyecto marítimo.", image: "/new/tetrapodos_rompeolas_san_pedro_macoris.avif", imageAlt: "Tetrápodos de hormigón para protección costera" },
+    { id: "losas", title: "Losas de grandes luces", description: "Losas postensadas para hoteles, villas, torres, estacionamientos y espacios que requieren flexibilidad arquitectónica y secciones esbeltas.", image: imgHormigonPostensado, imageAlt: "Losa estructural postensada" },
+    { id: "infraestructura", title: "Infraestructura prefabricada", description: "Box culverts, barreras New Jersey y muros de contención tipo L fabricados bajo condiciones controladas para agilizar su instalación en obra.", image: imgHormigonArmado, imageAlt: "Elementos prefabricados para infraestructura" },
+    { id: "proteccion-costera", title: "Protección costera", description: "Tetrápodos de hormigón dimensionados según el oleaje, la profundidad, la pendiente y las condiciones particulares de cada proyecto marítimo.", image: imgTetrapodos, imageAlt: "Tetrápodos de hormigón para protección costera" },
     { id: "anclajes-activos", title: "Anclajes activos", description: "Sistemas para estabilizar taludes, excavaciones y muros mediante tendones tensionados que transmiten las cargas a estratos resistentes.", image: imgEncofrado, imageAlt: "Sistema estructural de anclajes activos" },
     { id: "estructuras-combinadas", title: "Estructuras combinadas", description: "Integración de hormigón pretensado, hormigón armado, elementos prefabricados y estructuras metálicas para optimizar materiales y montaje.", image: imgMontaje, imageAlt: "Estructura combinada de hormigón y acero" },
 ];

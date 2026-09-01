@@ -2,6 +2,7 @@
 import MinusIcon from "@/assets/icons/minus.svg";
 import PlusIcon from "@/assets/icons/plus.svg";
 import type { Innovation } from "@/data/home";
+import { Image } from "astro:assets";
 
 interface Props {
     item: Innovation;
@@ -39,7 +40,7 @@ const { item, index } = Astro.props;
                     <p class="text-gray-600 text-base lg:text-lg leading-relaxed text-pretty border-l-4 border-primary pl-6 font-general-sans">{item.description}</p>
                 </div>
                 <div class="lg:w-1/2 w-full h-56 lg:h-72 rounded-xl overflow-hidden relative shadow-inner">
-                    <img
+                    <Image
                         src={item.image}
                         alt={item.alt}
                         class="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"

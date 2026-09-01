@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 import ClientRouter from "astro/components/ClientRouter.astro";
+import favicon96 from "@/assets/images/branding/favicon-96x96.png";
 
 interface Props {
 	title?: string;
@@ -29,7 +30,7 @@ const {
 		<link
 			rel="icon"
 			type="image/png"
-			href="/favicon-96x96.png"
+				href={favicon96.src}
 			sizes="96x96"
 		/>
 		<!-- Preload fuentes críticas para LCP -->
