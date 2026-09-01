@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+import anclajeTresTorones from "@/assets/images/order_form/pieza.webp";
+import anclajeSieteTorones from "@/assets/images/order_form/pieza_2.webp";
+---
+
+<section class="w-full overflow-hidden pt-16 lg:pt-24">
+    <div class="mx-4 grid max-w-7xl gap-12 md:mx-8 lg:mx-auto lg:grid-cols-2 lg:gap-20 lg:px-10">
+        <div class="flex min-h-96 items-center justify-center p-8 md:min-h-140 lg:p-14" data-reveal-children>
+            <Image
+                src={anclajeSieteTorones}
+                alt="Kit de anclaje para postensado de siete torones con espiral de confinamiento"
+                class="max-h-96 w-full object-contain lg:max-h-120"
+                data-product-image="7"
+            />
+            <Image
+                src={anclajeTresTorones}
+                alt="Cabezal de anclaje para sistema de postensado de tres torones"
+                class="hidden max-h-96 w-full object-contain lg:max-h-120"
+                data-product-image="3"
+            />
+        </div>
+
+        <div class="flex flex-col justify-center" data-reveal-children>
+            <p class="text-sm font-bold text-primary">Suministros para postensado</p>
+            <h2 class="mt-4 text-4xl font-bold leading-[1.02] tracking-tight text-primary md:text-6xl">
+                Kit de anclaje para postensado
+            </h2>
+            <p class="mt-6 max-w-xl text-base leading-relaxed text-black/70 lg:text-xl">
+                Sistema de anclaje para tendones de postensado. Incluye cabezal de anclaje, cuñas y espiral de confinamiento según la configuración requerida para su proyecto.
+            </p>
+
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-primary md:text-3xl">Configuraciones disponibles</h3>
+                <div class="mt-5 flex flex-wrap items-center gap-4">
+                    <button type="button" class="flex size-18 cursor-pointer items-center justify-center border border-primary/20 p-2 transition hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-label="Mostrar anclaje de 3 torones" aria-pressed="false" data-product-option="3">
+                        <Image src={anclajeTresTorones} alt="" class="max-h-full max-w-full object-contain" />
+                    </button>
+                    <button type="button" class="flex size-18 cursor-pointer items-center justify-center border-2 border-primary p-2 transition hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-label="Mostrar anclaje de 7 torones" aria-pressed="true" data-product-option="7">
+                        <Image src={anclajeSieteTorones} alt="" class="max-h-full max-w-full object-contain" />
+                    </button>
+                    <span class="text-sm text-black/60">3 torones · 7 torones</span>
+                </div>
+            </div>
+
+            <div class="mt-12 flex flex-wrap items-center gap-6">
+                <a href="/contact" class="inline-flex min-h-12 items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-white transition hover:bg-secondary">
+                    Solicitar este producto
+                    <MoveRight aria-hidden="true" class="size-4" />
+                </a>
+                <a href="/servicios" class="text-sm font-bold text-primary underline underline-offset-4 transition hover:text-secondary">Ver nuestras soluciones</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const options = document.querySelectorAll<HTMLButtonElement>("[data-product-option]");
+    const images = document.querySelectorAll<HTMLElement>("[data-product-image]");
+
+    options.forEach((option) => {
+        option.addEventListener("click", () => {
+            const selectedProduct = option.dataset.productOption;
+
+            options.forEach((item) => {
+                const isSelected = item.dataset.productOption === selectedProduct;
+                item.setAttribute("aria-pressed", String(isSelected));
+                item.classList.toggle("border-2", isSelected);
+                item.classList.toggle("border-primary", isSelected);
+                item.classList.toggle("border", !isSelected);
+                item.classList.toggle("border-primary/20", !isSelected);
+            });
+
+            images.forEach((image) => {
+                image.classList.toggle("hidden", image.dataset.productImage !== selectedProduct);
+            });
+        });
+    });
+</script>
