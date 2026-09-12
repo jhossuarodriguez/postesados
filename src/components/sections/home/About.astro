@@ -1,23 +1,47 @@
 ---
 import MoveRight from "@/assets/icons/MoveRight.svg";
+import { getImage } from "astro:assets";
+import aboutPhoto from "@/assets/images/projects/nave_industrial_prefabricada.avif";
+
+const poster = await getImage({
+    src: aboutPhoto,
+    width: 1280,
+    widths: [480, 768, 1280, 1920],
+    format: "avif",
+    quality: 45,
+});
 ---
 
 <section class="w-full py-10">
-    <div class="relative w-full overflow-hidden">
+    <div class="relative w-full overflow-hidden" data-video-container>
         <div class="absolute inset-0 bg-secondary opacity-80 z-10"></div>
 
+        <img
+            class="absolute inset-0 size-full object-cover"
+            src={poster.src}
+            srcset={poster.srcSet.attribute}
+            sizes="100vw"
+            width={poster.attributes.width}
+            height={poster.attributes.height}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            data-video-fallback
+        />
         <video
-            class="w-full h-150 lg:h-screen object-cover"
-            src="/new/nave_industrial_con_viga_doble_t.webm"
-            preload="metadata"
+            id="home-about-video"
+            class="absolute inset-0 size-full object-cover"
+            data-video-src="/new/nave_industrial_con_viga_doble_t.webm"
+            preload="none"
             muted
             loop
             playsinline
+            hidden
             aria-hidden="true"
             data-viewport-video></video>
 
         <div
-            class="absolute z-20 inset-0 flex flex-col justify-center items-center text-center px-4 md:px-0 2xl:pt-20"
+            class="relative z-20 min-h-150 lg:min-h-screen flex flex-col justify-center items-center text-center px-4 py-20 md:px-8 2xl:pt-20"
         >
             <div class="flex flex-col items-center" data-reveal="up">
                 <p
@@ -31,10 +55,18 @@ import MoveRight from "@/assets/icons/MoveRight.svg";
                     class="text-sm lg:text-base inline-flex min-h-12 items-center bg-white text-secondary font-medium px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg group"
                     >Contactanos
                     <MoveRight
+                        aria-hidden="true"
                         class="inline-block ml-2 group-hover:translate-x-1 duration-75"
                     />
                 </a>
             </div>
         </div>
+        <button
+            type="button"
+            class="absolute bottom-4 right-4 z-30 inline-flex min-h-12 items-center rounded-full border border-white/40 bg-black/70 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&[hidden]]:hidden"
+            aria-controls="home-about-video"
+            data-video-toggle
+            hidden
+        >Reproducir video</button>
     </div>
 </section>

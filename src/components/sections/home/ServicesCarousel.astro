@@ -10,12 +10,9 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<div data-carousel="services" data-carousel-autoplay="5000">
+<div data-carousel="services" role="region" aria-label="Soluciones destacadas" aria-roledescription="carrusel">
     <div
         class="w-full h-125 lg:h-134.75 mt-20 overflow-hidden"
-        role="region"
-        aria-label="Soluciones destacadas"
-        aria-roledescription="carrusel"
         data-carousel-viewport
     >
         <ul
@@ -24,20 +21,26 @@ const { slides } = Astro.props;
         >
             {
                 slides.map((slide, index) => (
-                    <li class="relative isolate flex items-center justify-center shrink-0 w-[calc(100vw-3.5rem)] sm:w-106.75">
+                    <li class="relative isolate flex items-center justify-center shrink-0 w-[calc(100vw-3.5rem)] sm:w-106.75" aria-label={`${index + 1} de ${slides.length}`} aria-roledescription="diapositiva">
                         <div class="isolate w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
                             <Image
                                 src={slide.src}
                                 alt={slide.alt}
+                                width={640}
+                                height={800}
+                                fit="cover"
+                                widths={[320, 480, 640, 960]}
+                                sizes="(min-width: 640px) 427px, calc(100vw - 56px)"
+                                format="avif"
+                                quality={55}
                                 class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
-                                loading={index === 0 ? "eager" : "lazy"}
-                                fetchpriority={index === 0 ? "high" : "low"}
+                                loading="lazy"
                                 decoding="async"
                             />
                             <div class="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end items-start z-20 pointer-events-none pb-8">
                                 <div class="relative z-20">
-                                    <h3 class="text-white text-3xl md:text-4xl font-extrabold tracking-tight drop-shadow-md">
+                                    <h3 class="text-white text-3xl md:text-4xl font-bold tracking-tight drop-shadow-md">
                                         {slide.category}
                                     </h3>
                                 </div>

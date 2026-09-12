@@ -24,6 +24,7 @@ export interface Innovation {
     description: string;
     image: ImageMetadata;
     alt: string;
+    href: string;
 }
 
 export interface CompanyLink {
@@ -95,6 +96,7 @@ export const innovations: Innovation[] = [
         description: "El hormigón pretensado es un material excelente que combina cables de acero de alta resistencia y concreto con resistencias que oscilan de 35.0 MPa a 70.0 MPa, en el que los torones de acero se tensan con gatos hidráulicos antes del vaciado del concreto.",
         image: imgHormigonPretensado,
         alt: "Vista aérea de puente con viga pretensada sobre río Cachón",
+        href: "/servicios/pretensado",
     },
     {
         id: "02",
@@ -102,6 +104,7 @@ export const innovations: Innovation[] = [
         description: "El hormigón postensado es una técnica de presfuerzo en la que los cables de acero se colocan dentro de ductos embebidos en la estructura y se tensan después de que el hormigón ha alcanzado la resistencia de diseño requerida.",
         image: imgHormigonPostensado,
         alt: "Vista aérea de construcción de acueducto sobre río",
+        href: "/servicios/postesado",
     },
     {
         id: "03",
@@ -109,6 +112,7 @@ export const innovations: Innovation[] = [
         description: "El hormigón armado es un sistema constructivo que combina la resistencia a compresión del concreto con la capacidad del acero de refuerzo para resistir esfuerzos de tracción.",
         image: imgHormigonArmado,
         alt: "Montaje de panel prefabricado con grúa en obra",
+        href: "/servicios/hormigon-armado",
     },
     {
         id: "04",
@@ -116,6 +120,7 @@ export const innovations: Innovation[] = [
         description: "Importadores especializados de cables (torones) de acero, cable de acero recubierto HDPE, anclajes y ductos. Proveemos soporte técnico y servicios de tensado y inyección para proyectos de ingeniería.",
         image: imgGatosHidraulicos,
         alt: "Vista aérea de patio de suministro con equipos y elementos prefabricados",
+        href: "/servicios/suministro",
     },
 ];
 

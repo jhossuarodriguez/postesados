@@ -2,43 +2,173 @@
 import "@/styles/global.css";
 import ClientRouter from "astro/components/ClientRouter.astro";
 import favicon96 from "@/assets/images/branding/favicon-96x96.png";
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import {
+	organizationSchema,
+	pageDetails,
+	SITE_URL,
+	ORGANIZATION_ID,
+	type Breadcrumb,
+} from "@/data/seo";
 
 interface Props {
 	title?: string;
 	description?: string;
+	canonicalPath?: string;
+	image?: string | ImageMetadata;
+	imageAlt?: string;
+	noindex?: boolean;
+	schema?: Record<string, unknown> | Record<string, unknown>[];
+	breadcrumbs?: Breadcrumb[];
 }
 
 const {
 	title = "Postesados JHP | Soluciones estructurales en hormigón",
 	description = "Diseño, fabricación y suministro de elementos prefabricados de hormigón armado, pretensado y postensado para infraestructura y edificación.",
+	canonicalPath = Astro.url.pathname === "/"
+		? "/"
+		: Astro.url.pathname.replace(/\/+$/, ""),
+	image,
+	imageAlt,
+	noindex = false,
+	schema,
+	breadcrumbs = [],
 } = Astro.props;
+const canonical = new URL(canonicalPath, Astro.site);
+const details = pageDetails[canonicalPath];
+const sourceImage = image ?? details?.image ?? "/images/og-postesados.jpg";
+const socialImage = new URL(
+	typeof sourceImage === "string"
+		? sourceImage
+		: (
+				await getImage({
+					src: sourceImage,
+					width: 1200,
+					height: 630,
+					fit: "cover",
+					format: "jpg",
+					quality: 80,
+				})
+			).src,
+	Astro.site,
+);
+const socialImageAlt =
+	imageAlt ??
+	details?.imageAlt ??
+	"Postesados JHP: ingeniería que sostiene el futuro";
+const preventIndexing = noindex || import.meta.env.SITE_NOINDEX;
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": [
+		organizationSchema,
+		{
+			"@type": "WebSite",
+			"@id": `${SITE_URL}/#website`,
+			url: `${SITE_URL}/`,
+			name: "Postesados JHP",
+			inLanguage: "es-DO",
+			publisher: { "@id": ORGANIZATION_ID },
+		},
+		{
+			"@type": details?.type ?? "WebPage",
+			"@id": `${canonical.href}#webpage`,
+			url: canonical.href,
+			name: title,
+			description,
+			inLanguage: "es-DO",
+			isPartOf: { "@id": `${SITE_URL}/#website` },
+			about: { "@id": ORGANIZATION_ID },
+			primaryImageOfPage: {
+				"@type": "ImageObject",
+				url: socialImage.href,
+				width: 1200,
+				height: 630,
+			},
+			...(breadcrumbs.length
+				? { breadcrumb: { "@id": `${canonical.href}#breadcrumb` } }
+				: {}),
+		},
+		...(breadcrumbs.length
+			? [
+					{
+						"@type": "BreadcrumbList",
+						"@id": `${canonical.href}#breadcrumb`,
+						itemListElement: breadcrumbs.map((item, index) => ({
+							"@type": "ListItem",
+							position: index + 1,
+							name: item.name,
+							item: new URL(item.path, Astro.site).href,
+						})),
+					},
+				]
+			: []),
+		...(schema ? (Array.isArray(schema) ? schema : [schema]) : []),
+	],
+};
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta
+			name="robots"
+			content={preventIndexing
+				? "noindex, follow"
+				: "index, follow, max-image-preview:large"}
+		/>
+		{!noindex && <link rel="canonical" href={canonical} />}
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="theme-color" content="#000070" />
+		<meta name="referrer" content="strict-origin-when-cross-origin" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_DO" />
 		<meta property="og:site_name" content="Postesados JHP" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={socialImageAlt} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image:alt" content={socialImageAlt} />
+		{
+			!noindex && (
+				<script
+					is:inline
+					type="application/ld+json"
+					set:html={JSON.stringify(structuredData).replace(
+						/</g,
+						"\\u003c",
+					)}
+				/>
+			)
+		}
+		<link rel="icon" type="image/png" href={favicon96.src} sizes="96x96" />
 		<link
-			rel="icon"
-			type="image/png"
-				href={favicon96.src}
-			sizes="96x96"
+			rel="preload"
+			href="/fonts/montserrat-v31-latin-700.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
 		/>
-		<!-- Preload fuentes críticas para LCP -->
-		<link rel="preload" href="/fonts/montserrat-v31-latin-300.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/montserrat-v31-latin-700.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/montserrat-v31-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/montserrat-v31-latin-500.woff2" as="font" type="font/woff2" crossorigin />
-		<link rel="preload" href="/fonts/GeneralSans-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link
+			rel="preload"
+			href="/fonts/montserrat-v31-latin-regular.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
 		<ClientRouter />
 	</head>
 	<body class="w-full mx-auto">
@@ -56,8 +186,6 @@ const {
 		initializeScrollAnimations,
 	} from "@/lib/scroll-animations";
 
-	initializeScrollAnimations();
-	initializeViewportVideos();
 	document.addEventListener("astro:page-load", () => {
 		initializeScrollAnimations();
 		initializeViewportVideos();
@@ -69,16 +197,24 @@ const {
 </script>
 
 <style>
+	html {
+		scroll-behavior: smooth;
+		overflow-x: clip;
+	}
+
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
 		font-family: "Montserrat", sans-serif;
-		overflow-y: scroll;
+		overflow-x: clip;
 	}
 
 	html.lenis,
 	html.lenis body {
 		height: auto;
+	}
+
+	.lenis.lenis-smooth {
+		scroll-behavior: auto;
 	}
 </style>

@@ -7,7 +7,7 @@ import { companyLinks, specialties, specialtiesImage } from "@/data/home";
 
 <section class="relative w-full overflow-hidden bg-white text-primary">
     <div class="pointer-events-none absolute -right-40 top-16 size-120 rounded-full bg-primary/10 blur-3xl"></div>
-    <div class="flex flex-col px-4 lg:px-10 mx-16 space-y-10 mt-10">
+    <div class="flex flex-col px-4 lg:px-10 mx-4 md:mx-8 lg:mx-16 space-y-10 mt-10">
              <div class="flex flex-col space-y-10" data-reveal-children>
                 <div class="w-fit rounded-full border border-gray-300 px-5 py-2.5">
                     <p class="flex items-center justify-center gap-2 text-sm font-bold text-primary lg:text-base">
@@ -32,6 +32,12 @@ import { companyLinks, specialties, specialtiesImage } from "@/data/home";
                 <Image
                     src={specialtiesImage}
                     alt="Equipo técnico trabajando en una estructura de hormigón"
+                    width={1200}
+                    widths={[320, 480, 768, 1200, 1600]}
+                    sizes="(min-width: 1024px) calc((100vw - 208px) * 0.667), (min-width: 768px) calc(100vw - 96px), calc(100vw - 64px)"
+                    format="avif"
+                    loading="lazy"
+                    decoding="async"
                     class="absolute inset-0 size-full object-cover"
                 />
                 <div class="absolute inset-0 bg-linear-to-t from-[#06182c]/90 via-transparent to-black/10"></div>
@@ -91,7 +97,7 @@ import { companyLinks, specialties, specialtiesImage } from "@/data/home";
                                 class="group flex min-h-16 items-center justify-between border-t border-primary/15 text-lg font-medium text-primary last:border-b md:text-xl"
                             >
                                 <span>{link.label}</span>
-                                <span class="flex size-10 items-center justify-center rounded-full border border-primary/20 transition-all group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                                <span class="flex size-10 shrink-0 items-center justify-center rounded-full border border-primary/20 transition-all group-hover:border-primary group-hover:bg-primary group-hover:text-white">
                                     <ChevronRight class="size-5 transition-transform group-hover:translate-x-0.5" />
                                 </span>
                             </a>

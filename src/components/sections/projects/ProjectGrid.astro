@@ -10,11 +10,17 @@ import { projects } from "@/data/projects";
     >
         {
             projects.map((project) => (
-                <div class="group/card relative overflow-hidden h-72 md:h-80 cursor-pointer">
+                <div class="group/card relative overflow-hidden h-72 md:h-80">
                     <Image
                         src={project.image}
                         alt={project.title}
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105"
+                        width={640}
+                        widths={[320, 480, 640, 960, 1200]}
+                        sizes="(min-width: 1600px) 504px, (min-width: 1024px) calc((100vw - 88px) / 3), (min-width: 640px) calc((100vw - 64px) / 2), calc(100vw - 40px)"
+                        format="avif"
+                        loading="lazy"
+                        decoding="async"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
                     />
                     <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
                     <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6">

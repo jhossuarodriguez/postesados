@@ -1,18 +1,44 @@
 ---
 import HeroCarousel from "@/components/sections/home/HeroCarousel.astro";
 import { heroSlides } from "@/data/home";
+import { getImage } from "astro:assets";
+import heroPhoto from "@/assets/images/projects/destacado_puente_sobre_rio_cachon.avif";
+
+const poster = await getImage({
+    src: heroPhoto,
+    width: 1280,
+    widths: [480, 768, 1280, 1920],
+    format: "avif",
+    quality: 45,
+});
 ---
 
 <section
     class="relative isolate min-h-screen w-full overflow-hidden"
+    data-video-container
 >
-    <video
+    <img
         class="absolute inset-0 -z-20 size-full object-cover"
-        src="/new/plaza_multiuso_seibana.webm"
-        preload="metadata"
+        src={poster.src}
+        srcset={poster.srcSet.attribute}
+        sizes="100vw"
+        width={poster.attributes.width}
+        height={poster.attributes.height}
+        alt=""
+        loading="eager"
+        fetchpriority="auto"
+        decoding="async"
+        data-video-fallback
+    />
+    <video
+        id="home-hero-video"
+        class="absolute inset-0 -z-20 size-full object-cover"
+        data-video-src="/new/plaza_multiuso_seibana.webm"
+        preload="none"
         muted
         loop
         playsinline
+        hidden
         data-viewport-video
         aria-hidden="true"></video>
     <div class="absolute inset-0 -z-10 bg-black/70"></div>
@@ -21,7 +47,7 @@ import { heroSlides } from "@/data/home";
         class="mx-4 flex flex-col items-center gap-10 px-4 pb-10 pt-40 md:mx-8 md:min-h-screen md:justify-center md:gap-12 md:pb-12 md:pt-32 lg:mx-8 lg:flex-row lg:gap-16 lg:px-4 lg:py-28 xl:gap-20"
     >
         <header
-            class="max-w-2xl text-4xl font-medium leading-[1.08] tracking-tighter text-white lg:flex-1"
+            class="max-w-2xl text-4xl font-medium leading-[1.08] tracking-tighter text-white lg:flex-1 mt-20 md:mt-0 lg:mt-0 2xl:mt-0"
         >
             <h1 class="page-intro font-bold sm:text-5xl lg:text-5xl leading-[1.15]">
                 Transformamos el concreto en soluciones eficientes, seguras y
@@ -33,4 +59,11 @@ import { heroSlides } from "@/data/home";
             <HeroCarousel slides={heroSlides} />
         </div>
     </div>
+    <button
+        type="button"
+        class="absolute bottom-4 right-4 z-30 inline-flex min-h-12 items-center rounded-full border border-white/40 bg-black/70 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [[hidden]]:hidden"
+        aria-controls="home-hero-video"
+        data-video-toggle
+        hidden
+    >Reproducir video</button>
 </section>

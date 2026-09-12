@@ -2,17 +2,40 @@
 import Footer from "@/components/layout/Footer.astro";
 import Header from "@/components/layout/Header.astro";
 import Layout from "@/layouts/Layout.astro";
+import type { ImageMetadata } from "astro";
+import { pageDetails, type Breadcrumb } from "@/data/seo";
 
 interface Props {
 	title?: string;
 	description?: string;
+	canonicalPath?: string;
+	image?: string | ImageMetadata;
+	imageAlt?: string;
+	noindex?: boolean;
+	schema?: Record<string, unknown> | Record<string, unknown>[];
+	breadcrumbs?: Breadcrumb[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonicalPath, image, imageAlt, noindex, schema } = Astro.props;
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const label = pageDetails[path]?.label;
+const breadcrumbs = Astro.props.breadcrumbs ?? (label ? [{ name: "Inicio", path: "/" }, { name: label, path }] : []);
 ---
 
-<Layout title={title} description={description}>
+<Layout
+	title={title}
+	description={description}
+	canonicalPath={canonicalPath}
+	image={image}
+	imageAlt={imageAlt}
+	noindex={noindex}
+	schema={schema}
+	breadcrumbs={breadcrumbs}
+>
+	<a href="#contenido" class="skip-link">Saltar al contenido</a>
 	<Header />
-	<slot />
+	<main id="contenido" tabindex="-1">
+		<slot />
+	</main>
 	<Footer />
 </Layout>

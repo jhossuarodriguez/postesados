@@ -21,6 +21,12 @@ const isClients = kind === "clients";
     <Image
         src={image}
         alt={isClients ? "Equipo de trabajo" : "Experiencia en construcción"}
+        width={640}
+        widths={[320, 480, 640, 960, 1280]}
+        sizes="(min-width: 1024px) 33vw, calc(100vw - 64px)"
+        format="webp"
+        loading="lazy"
+        decoding="async"
         class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
     />
     <div class="absolute inset-0 bg-linear-to-br from-primary/95 via-primary/90 to-[#001F66]/95"></div>
@@ -44,7 +50,7 @@ const isClients = kind === "clients";
                 class="counter"
                 data-target={isClients ? "150" : "25"}>0</span>
         </p>
-        <p class={isClients ? "text-white/70 text-sm font-general-sans" : "text-white/40 text-sm font-general-sans"}>
+        <p class="text-white/80 text-sm font-general-sans">
             {isClients ? "En todo el país" : "De experiencia comprobada"}
         </p>
     </div>

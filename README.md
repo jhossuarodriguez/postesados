@@ -1,50 +1,72 @@
-> [!WARNING]
-> EN DESARROLLO
+# Postesados JHP
 
+Sitio corporativo en Astro y Tailwind CSS. El contenido se genera como HTML
+estatico; no necesita funciones de servidor para servir sus paginas.
 
-# Astro Starter Kit: Basics
+## Desarrollo
+
+Requisitos: Node.js 24 y pnpm 11.25.0.
 
 ```sh
-pnpm create astro@latest -- --template basics
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Verificacion
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```sh
+pnpm verify
+pnpm audit
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+`verify` ejecuta el chequeo de tipos Astro/TypeScript y genera el build en `dist`.
 
-## 🧞 Commands
+Para inspeccion manual: `pnpm build` seguido de `pnpm preview`. Astro puede iniciar
+el preview en segundo plano en entornos de agentes; `pnpm astro preview stop`
+detiene ese proceso.
 
-All commands are run from the root of the project, from a terminal:
+## Publicacion y SEO
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+- Vercel: preset Astro, comando `pnpm build`, directorio de salida `dist`.
+- `SITE_URL` define el origen HTTPS canonico en el entorno de build. Por defecto
+  se conserva `https://postesados.vercel.app`; confirmar el dominio definitivo.
+- Canonicals, Open Graph y entidades JSON-LD se derivan de ese mismo origen.
+- Vercel Preview (`VERCEL_ENV=preview`) genera paginas con `noindex`. Para staging
+  en otro proveedor, establecer esa variable o proteger el acceso.
+- `@astrojs/sitemap` incluye automaticamente las paginas prerenderizadas y las
+  fichas de `src/data/services.ts`; excluye la pagina de error.
+- Enviar `/sitemap-index.xml` a Search Console. `/sitemap.xml` redirige al indice
+  en Vercel. No se inventan fechas `lastmod`, precios, valoraciones ni certificaciones.
+- `vercel.json` normaliza las URLs sin slash final, configura cabeceras de
+  seguridad y cache de assets con hash. La documentacion de arquitectura que
+  permanece en `public` tiene `X-Robots-Tag: noindex` en Vercel.
+- Las URLs desconocidas se sirven con `404.html` y estado 404. No configurar
+  un fallback de SPA que responda 200 para cualquier ruta.
 
-## 👀 Want to learn more?
+## Contenido y contacto
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Los datos comerciales estan en `src/data`. Cada servicio incluye descripcion,
+aplicaciones, consideraciones tecnicas y enlaces relacionados. Revisar cualquier
+nueva afirmacion tecnica o comercial con la empresa antes de publicarla.
+
+El formulario de contacto valida sus campos con Zod y prepara la consulta en la
+aplicacion de correo del visitante. No existe un backend de formularios y el sitio
+no afirma que el mensaje haya sido entregado automaticamente. Un envio directo
+futuro necesitara validacion en servidor, proteccion contra abuso y confirmacion
+real del proveedor de correo.
+
+## Rendimiento
+
+Imagenes responsivas AVIF/WebP procesadas en build, fuentes locales y JavaScript
+sin framework de UI. Motion gestiona reveals; Lenis se descarga en idle solo con
+puntero preciso y sin reduced motion. Los videos decorativos no se descargan en
+movil, con ahorro de datos o reduced motion. Los carruseles son manuales.
+
+Las fotos del grupo empresarial alojadas en sus dominios se optimizan en build
+y se sirven desde este sitio; un build sin cache necesita acceso a esos dos
+origenes autorizados.
+
+Las puntuaciones Lighthouse locales son mediciones de laboratorio, no una
+garantia de posicionamiento. Tras publicar, verificar status/headers, canonical,
+robots y sitemap por HTTP; comprobar Search Console, Schema.org Validator y
+Core Web Vitals con datos reales.

@@ -2,19 +2,28 @@
 import Menu from "@/assets/icons/Menu.svg";
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import X from "@/assets/icons/XButton.svg";
-import { navItems } from "@/data/navigation";
+import { dropdownPanels, navItems } from "@/data/navigation";
 import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
+import { Image } from "astro:assets";
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const isActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+const fallbackItems = [...navItems, ...dropdownPanels.flatMap((panel) => panel.links)]
+    .filter((item, index, items) => items.findIndex((link) => link.href === item.href) === index);
 ---
 
 <header
     class="fixed mt-5 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 shadow-3xl z-50 bg-secondary rounded-xl px-4"
     id="main-header"
 >
-    <nav class="py-2 relative z-50" id="header-content">
+    <nav class="py-2 relative z-50" id="header-content" aria-label="Navegación principal">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-1">
                 <div
                     class="hidden lg:flex items-center justify-center rounded-full hover:bg-quaternary transition-all duration-200 ease-in-out mr-7"
+                    data-header-toggle
+                    hidden
                 >
                     <button
                         type="button"
@@ -38,13 +47,12 @@ import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
                 </div>
 
                 {
-                    navItems.map((item, index) => (
+                    navItems.map((item) => (
                         <a
                             href={item.href}
-                            title="Menu de Navegacion"
-                            aria-label="Menu de Navegacion"
-                            class={`nav-links hidden md:inline-flex md:min-h-12 md:items-center opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-quaternary rounded-full transition-colors ${
-                                index === 0
+                            aria-current={isActive(item.href) ? (pathname === item.href ? "page" : "true") : undefined}
+                            class={`nav-links hidden lg:inline-flex lg:min-h-12 lg:items-center opacity-80 hover:opacity-100 px-6 py-2 text-white text-base hover:bg-quaternary rounded-full transition-colors ${
+                                isActive(item.href)
                                     ? "bg-quaternary rounded-full opacity-100"
                                     : ""
                             } ${item.class || ""}`}
@@ -55,16 +63,16 @@ import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
                 }
                 <a
                     href="/"
-                    title="Logo Postesados"
-                    aria-label="Logo Postesados"
+                    aria-label="Postesados, inicio"
                 >
-                    <img
-                        src={logoPostesados.src}
-                        alt="Postesados Logo"
-                        class="h-16 w-auto md:translate-x-14 xl:translate-x-24 2xl:translate-x-48"
-                        width="120"
-                        height="64"
-                        fetchpriority="high"
+                    <Image
+                        src={logoPostesados}
+                        alt="Postesados"
+                        class="h-16 w-auto lg:translate-x-14 xl:translate-x-24 2xl:translate-x-20"
+                        width={83}
+                        densities={[1, 2]}
+                        loading="eager"
+                        format="webp"
                     />
                 </a>
             </div>
@@ -74,10 +82,10 @@ import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
                     href="/contact"
                     class="flex min-h-12 items-center gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 bg-quaternary px-3 py-2 group"
                     id="contactBtn"
-                    title="Contactanos"
-                    aria-label="Contactanos"
-                    >Contactanos
+                    aria-current={pathname === "/contact" ? "page" : undefined}
+                    >Contáctanos
                     <MoveRight
+                        aria-hidden="true"
                         class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100"
                     />
                 </a>
@@ -89,6 +97,8 @@ import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
                     aria-label="Abrir menú de navegación"
                     aria-expanded="false"
                     aria-controls="mobile-menu"
+                    data-header-toggle
+                    hidden
                 >
                     <Menu
                         aria-hidden="true"
@@ -101,7 +111,57 @@ import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
                         class="size-6 text-white absolute opacity-0 scale-0 transition-all duration-300"
                     />
                 </button>
+
+                <details id="header-fallback">
+                    <summary class="flex cursor-pointer list-none size-12 items-center justify-center rounded-full text-white hover:bg-quaternary">
+                        <span class="sr-only">Menú de navegación</span>
+                        <Menu aria-hidden="true" class="size-6" />
+                    </summary>
+                    <div class="fixed top-28 inset-x-0 mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 max-h-[calc(100dvh-8rem)] overflow-y-auto overscroll-contain rounded-xl bg-secondary shadow-xl p-6" data-lenis-prevent>
+                        <ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                            {fallbackItems.map((item) => (
+                                <li>
+                                    <a href={item.href} class="flex min-h-12 items-center rounded-lg px-4 py-2 text-white hover:bg-quaternary">
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </details>
             </div>
         </div>
     </nav>
 </header>
+
+<style>
+    [data-header-toggle][hidden],
+    #header-fallback[hidden] {
+        display: none;
+    }
+
+    #header-fallback summary::-webkit-details-marker {
+        display: none;
+    }
+
+    :global([data-desktop-open]) #menuBtn {
+        background-color: var(--color-quaternary);
+    }
+
+    :global([data-mobile-open]) #mobile-menuBtn,
+    :global([data-mobile-open]) #contactBtn {
+        background-color: var(--color-dark);
+    }
+
+    :global([data-desktop-open]) #menu-icon,
+    :global([data-mobile-open]) #mobile-menu-icon {
+        opacity: 0;
+        scale: 0;
+    }
+
+    :global([data-desktop-open]) #close-icon,
+    :global([data-mobile-open]) #mobile-close-icon {
+        opacity: 1;
+        scale: 1;
+    }
+</style>

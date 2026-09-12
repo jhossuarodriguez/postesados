@@ -1,12 +1,13 @@
 ---
-export const prerender = false
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import NotFoundSection from "@/components/sections/not-found/NotFoundSection.astro";
+
 ---
 
 <SiteLayout
     title="Página no encontrada | Postesados JHP"
     description="La página solicitada no está disponible."
+    noindex
 >
     <NotFoundSection />
 </SiteLayout>

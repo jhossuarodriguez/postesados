@@ -8,6 +8,12 @@ import { specialties, specialtiesImage } from "@/data/home";
     <Image
         src={specialtiesImage}
         alt="Especialidades construcción"
+        width={1200}
+        widths={[320, 480, 768, 1200, 1600]}
+        sizes="(min-width: 1024px) 67vw, calc(100vw - 64px)"
+        format="webp"
+        loading="lazy"
+        decoding="async"
         class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
     />
     <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/10 group-hover:from-black/90 transition-all duration-500"></div>

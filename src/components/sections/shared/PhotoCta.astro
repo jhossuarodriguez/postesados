@@ -16,23 +16,29 @@ interface Props {
 const { image, imageAlt, label, title, description, href, linkLabel } = Astro.props;
 ---
 
-<div class="relative h-140">
+<div class="relative min-h-140">
     <Image
-        class="w-full h-full object-cover object-center"
+        class="absolute inset-0 w-full h-full object-cover object-center"
         src={image}
         alt={imageAlt}
+        width={1280}
+        widths={[480, 768, 1280, 1920]}
+        sizes="100vw"
+        format="avif"
+        loading="lazy"
+        decoding="async"
     />
     <div class="inset-0 bg-black/50 absolute"></div>
-    <div class="md:ml-14 absolute top-24 bottom-6 left-6 right-6">
-        <div class="flex flex-col justify-between h-full" data-reveal-children>
+    <div class="relative px-6 pt-24 pb-6 md:pl-20">
+        <div class="flex flex-col justify-between min-h-110" data-reveal-children>
             <p
                 class="flex justify-start items-center text-xs lg:text-base text-primary font-bold lg:px-3 px-3 py-2 self-start bg-white rounded-full border border-gray-300"
             >
                 {label}
             </p>
-            <span
+            <h2
                 class="text-3xl md:text-6xl text-white font-bold mt-4 block lg:max-w-2xl leading-tight"
-                >{title}</span
+                >{title}</h2
             >
             <p
                 class="text-white mt-4 block lg:max-w-xl leading-tight font-general-sans text-base md:text-xl"

@@ -25,6 +25,7 @@ import { services } from "@/data/services";
                         image={service.image}
                         imageAlt={service.imageAlt}
                     />
+                    <a href={`/servicios/${service.id}`} class="mt-2 flex min-h-12 items-center px-4 text-sm font-bold text-primary underline underline-offset-4">Explorar {service.title.toLowerCase()}</a>
                 </div>
             ))
         }

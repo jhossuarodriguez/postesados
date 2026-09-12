@@ -42,7 +42,6 @@ export const navItems: readonly NavigationItem[] = [
     { label: "Servicios", href: "/servicios" },
     { label: "Proyectos", href: "/proyectos", class: "md:hidden lg:hidden" },
     { label: "Tecnología", href: "/tecnologia" },
-    { label: "Contacto", href: "/contact", class: "md:hidden lg:hidden" },
 ];
 
 export const dropdownTabs: readonly DropdownTab[] = [
@@ -62,28 +61,28 @@ export const dropdownPanels: readonly DropdownPanel[] = [
         listClass: "grid grid-cols-2 gap-x-12 content-start max-w-6xl",
         links: [
             {
-                href: "/servicios#postesado",
+                href: "/servicios/postesado",
                 class: defaultLinkClass,
                 title: "Servicio de postensado",
                 label: "Postensado",
                 description: "Sistemas de postensado de alta calidad",
             },
             {
-                href: "/servicios#inyeccion",
+                href: "/servicios/inyeccion",
                 class: `${defaultLinkClass} gap-x-2`,
                 title: "Servicio Inyección de Lechada",
                 label: "Inyección de Lechada",
                 description: "Inyección especializada para estructuras",
             },
             {
-                href: "/servicios#suministro",
+                href: "/servicios/suministro",
                 class: defaultLinkClass,
                 title: "Servicio Suministro de Materiales",
                 label: "Suministro de Materiales",
-                description: "Materiales certificados para su obra",
+                description: "Componentes compatibles para su obra",
             },
             {
-                href: "/servicios#prefabricados",
+                href: "/servicios/prefabricados",
                 class: defaultLinkClass,
                 title: "Servicio Prefabricados",
                 label: "Prefabricados",
@@ -113,7 +112,7 @@ export const dropdownPanels: readonly DropdownPanel[] = [
                 class: `${defaultLinkClass} gap-x-10`,
                 title: "Nosotros",
                 label: "Nosotros",
-                description: "Conoce nuestra historia y misión",
+                description: "Conoce nuestras capacidades técnicas",
             },
             {
                 href: "/nosotros#compromiso-tecnico",
@@ -177,8 +176,8 @@ export const dropdownPanels: readonly DropdownPanel[] = [
         ],
         image: DropdownImage3,
         imageAlt: "Infraestructura legal",
-        overviewLabel: "Legal Overview",
-        ctaHref: "/servicios",
-        ctaTitle: "Ver todos los servicios",
+        overviewLabel: "Información legal",
+        ctaHref: "/privacidad",
+        ctaTitle: "Consultar la política de privacidad",
     },
 ];

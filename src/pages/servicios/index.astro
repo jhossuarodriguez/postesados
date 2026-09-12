@@ -1,5 +1,4 @@
 ---
-export const prerender = false
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
@@ -7,11 +6,32 @@ import imgHormigonPostensado from "@/assets/images/projects/nuestros_servicios_h
 import ServiceGrid from "@/components/sections/services/ServiceGrid.astro";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
 import ServiceStats from "@/components/sections/services/ServiceStats.astro";
+import { services } from "@/data/services";
+import { ORGANIZATION_ID } from "@/data/seo";
+
+const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Servicios y productos de Postesados JHP",
+    itemListElement: services.map((service, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+            "@type": "Service",
+            name: service.title,
+            description: service.description,
+            "@id": new URL(`/servicios/${service.id}#service`, Astro.site).href,
+            url: new URL(`/servicios/${service.id}`, Astro.site).href,
+            provider: { "@id": ORGANIZATION_ID },
+        },
+    })),
+};
 ---
 
 <SiteLayout
     title="Servicios y productos | Postesados JHP"
     description="Diseño, fabricación y suministro de hormigón pretensado, postensado y armado, prefabricados, tensado e inyección de lechada."
+    schema={schema}
 >
     <section>
         <InteriorHero

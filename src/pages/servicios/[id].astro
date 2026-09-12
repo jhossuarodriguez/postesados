@@ -1,0 +1,76 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import SiteLayout from "@/layouts/SiteLayout.astro";
+import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
+import { services } from "@/data/services";
+import { ORGANIZATION_ID } from "@/data/seo";
+
+export const getStaticPaths = (() => services.map((service) => ({
+    params: { id: service.id }, props: { service },
+}))) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { service } = Astro.props;
+const path = `/servicios/${service.id}`;
+const schema = {
+    "@type": "Service",
+    "@id": new URL(`${path}#service`, Astro.site).href,
+    url: new URL(path, Astro.site).href,
+    name: service.title,
+    serviceType: service.title,
+    description: service.description,
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed: { "@type": "Country", name: "República Dominicana" },
+    mainEntityOfPage: { "@id": new URL(`${path}#webpage`, Astro.site).href },
+};
+---
+
+<SiteLayout
+    title={`${service.title} | Postesados JHP`}
+    description={service.description}
+    image={service.image}
+    imageAlt={service.imageAlt}
+    schema={schema}
+    breadcrumbs={[{ name: "Inicio", path: "/" }, { name: "Servicios", path: "/servicios" }, { name: service.title, path }]}
+>
+    <InteriorHero image={service.image} imageAlt={service.imageAlt}>
+        <Fragment slot="title">{service.title}</Fragment>
+        {service.description}
+    </InteriorHero>
+    <div class="mx-auto grid max-w-350 gap-12 px-6 py-16 lg:grid-cols-[2fr_1fr] lg:gap-20 lg:py-24">
+        <div class="space-y-12">
+            <section>
+                <h2 class="text-3xl font-bold tracking-tight text-primary">Cómo funciona esta solución</h2>
+                <p class="mt-6 font-general-sans text-lg leading-relaxed text-gray-700">{service.overview}</p>
+            </section>
+            <section>
+                <h2 class="text-3xl font-bold tracking-tight text-primary">Aplicaciones</h2>
+                <ul class="mt-6 list-disc space-y-3 pl-5 font-general-sans text-lg text-gray-700">
+                    {service.applications.map((application) => <li>{application}</li>)}
+                </ul>
+            </section>
+            <section>
+                <h2 class="text-3xl font-bold tracking-tight text-primary">Aspectos técnicos a evaluar</h2>
+                <ul class="mt-6 list-disc space-y-4 pl-5 font-general-sans text-lg text-gray-700">
+                    {service.considerations.map((consideration) => <li>{consideration}</li>)}
+                </ul>
+                <p class="mt-6 font-general-sans text-gray-600">El alcance y las especificaciones se definen mediante la evaluación de cada proyecto. Esta información es orientativa y no sustituye el diseño estructural.</p>
+            </section>
+        </div>
+        <aside class="space-y-8">
+            <section class="rounded-2xl bg-tertiary p-6 sm:p-8">
+                <h2 class="text-2xl font-bold text-primary">Consulta tu proyecto</h2>
+                <p class="mt-4 font-general-sans leading-relaxed text-gray-700">Comparte la ubicación, los planos disponibles y las necesidades de tu obra para evaluar la solución adecuada.</p>
+                <a href="/contact" class="mt-6 inline-flex min-h-12 items-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white hover:bg-secondary">Solicitar información</a>
+            </section>
+            <nav aria-label="Servicios relacionados" class="px-2">
+                <h2 class="text-xl font-bold text-primary">Servicios relacionados</h2>
+                <ul class="mt-4 divide-y divide-primary/15">
+                    {services.filter((item) => service.related.includes(item.id)).map((item) => <li><a href={`/servicios/${item.id}`} class="flex min-h-12 items-center py-3 text-primary underline underline-offset-4">{item.title}</a></li>)}
+                </ul>
+                <a href="/tecnologia" class="mt-4 inline-flex min-h-12 items-center text-primary underline underline-offset-4">Tecnología y control de producción</a>
+                <a href="/proyectos" class="inline-flex min-h-12 items-center text-primary underline underline-offset-4">Ver proyectos y aplicaciones</a>
+            </nav>
+        </aside>
+    </div>
+</SiteLayout>

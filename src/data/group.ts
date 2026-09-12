@@ -58,7 +58,7 @@ export const groupCompanies: GroupCompany[] = [
         ],
         website: "https://tenaxconstruction.com.do/",
         websiteLabel: "Visitar Tenax Construction",
-        image: "https://tenaxconstruction.com.do/images/banner3.webp",
+        image: "https://www.tenaxconstruction.com.do/images/banner3.webp",
         imageAlt: "Proyecto de construcción ejecutado por Tenax Construction",
         accent: "orange",
     },

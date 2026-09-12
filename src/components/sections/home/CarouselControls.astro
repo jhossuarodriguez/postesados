@@ -23,7 +23,7 @@ const {
             <button
                 type="button"
                 aria-label={`Mostrar elemento anterior de ${carouselName}`}
-                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer [&[hidden]]:hidden"
                 data-carousel-prev
             >
                 <PrevButton aria-hidden="true" />
@@ -38,7 +38,7 @@ const {
                     type="button"
                     aria-label={`Mostrar elemento ${index + 1} de ${carouselName}`}
                     aria-current={index === 0 ? "true" : undefined}
-                    class="size-12 shrink-0 inline-flex items-center justify-center rounded-full"
+                    class="size-12 shrink-0 inline-flex items-center justify-center rounded-full [&[hidden]]:hidden"
                     data-carousel-dot
                     data-slide={index}
                 >
@@ -53,7 +53,7 @@ const {
             <button
                 type="button"
                 aria-label={`Mostrar elemento siguiente de ${carouselName}`}
-                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer"
+                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer [&[hidden]]:hidden"
                 data-carousel-next
             >
                 <NextButton aria-hidden="true" />
@@ -82,23 +82,13 @@ const {
             const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
             const status = carousel.querySelector<HTMLElement>("[data-carousel-status]");
             const carouselName = carousel.querySelector<HTMLElement>("[data-carousel-controls]")?.dataset.carouselControls ?? "carrusel";
-            const autoplayDelay = Number(carousel.dataset.carouselAutoplay ?? 0);
-            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
             const controller = new AbortController();
             let activeIndex = 0;
-            let autoplayTimer: number | null = null;
-            let pointerInside = false;
-            let focusInside = false;
             let availableIndices: number[] = [];
 
             if (!track || slides.length === 0) return;
 
             carousel.dataset.carouselInitialized = "true";
-
-            const clearAutoplay = () => {
-                if (autoplayTimer !== null) window.clearTimeout(autoplayTimer);
-                autoplayTimer = null;
-            };
 
             const getSlideOffset = (index: number) => {
                 const desiredOffset = slides[index].offsetLeft - slides[0].offsetLeft;
@@ -156,28 +146,8 @@ const {
                 }
             };
 
-            const canAutoplay = () =>
-                autoplayDelay > 0 &&
-                availableIndices.length > 1 &&
-                !pointerInside &&
-                !focusInside &&
-                !document.hidden &&
-                !reducedMotion.matches;
-
-            const scheduleAutoplay = () => {
-                clearAutoplay();
-                if (!canAutoplay()) return;
-
-                autoplayTimer = window.setTimeout(() => {
-                    const currentPosition = Math.max(0, availableIndices.indexOf(activeIndex));
-                    showSlide(availableIndices[(currentPosition + 1) % availableIndices.length]);
-                    scheduleAutoplay();
-                }, autoplayDelay);
-            };
-
             const navigate = (index: number) => {
                 showSlide(index, true);
-                scheduleAutoplay();
             };
 
             const navigateBy = (direction: -1 | 1) => {
@@ -200,40 +170,6 @@ const {
                 },
                 { signal: controller.signal },
             );
-            carousel.addEventListener(
-                "pointerenter",
-                () => {
-                    pointerInside = true;
-                    scheduleAutoplay();
-                },
-                { signal: controller.signal },
-            );
-            carousel.addEventListener(
-                "pointerleave",
-                () => {
-                    pointerInside = false;
-                    scheduleAutoplay();
-                },
-                { signal: controller.signal },
-            );
-            carousel.addEventListener(
-                "focusin",
-                () => {
-                    focusInside = true;
-                    scheduleAutoplay();
-                },
-                { signal: controller.signal },
-            );
-            carousel.addEventListener(
-                "focusout",
-                (event) => {
-                    const nextTarget = event.relatedTarget;
-                    if (nextTarget instanceof Node && carousel.contains(nextTarget)) return;
-                    focusInside = false;
-                    scheduleAutoplay();
-                },
-                { signal: controller.signal },
-            );
             window.addEventListener(
                 "resize",
                 () => {
@@ -242,24 +178,17 @@ const {
                         activeIndex = availableIndices.at(-1) ?? 0;
                     }
                     showSlide(activeIndex);
-                    scheduleAutoplay();
                 },
                 { signal: controller.signal },
             );
-            document.addEventListener("visibilitychange", scheduleAutoplay, { signal: controller.signal });
-            reducedMotion.addEventListener("change", scheduleAutoplay);
-
             carouselCleanups.set(carousel, () => {
-                clearAutoplay();
                 controller.abort();
-                reducedMotion.removeEventListener("change", scheduleAutoplay);
                 delete carousel.dataset.carouselInitialized;
                 carouselCleanups.delete(carousel);
             });
 
             updateAvailableIndices();
             showSlide(availableIndices[0] ?? 0);
-            scheduleAutoplay();
         });
     };
 

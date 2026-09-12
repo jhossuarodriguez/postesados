@@ -46,14 +46,14 @@ export const footerContact: FooterContact = {
     phones: [
         {
             label: "(809) 222-5652",
-            href: "tel:8092225652",
+            href: "tel:+18092225652",
             ariaLabel: "Llamar al (809) 222-5652",
             title: "Llamar al (809) 222-5652",
             className: "flex items-center leading-6 hover:text-white transition-colors",
         },
         {
             label: "(809) 518-9910",
-            href: "tel:8095189910",
+            href: "tel:+18095189910",
             ariaLabel: "Llamar al (809) 518-9910",
             title: "Llamar al (809) 518-9910",
             className: "flex items-center leading-6 hover:text-white transition-colors",
@@ -95,10 +95,10 @@ export const footerColumns: FooterColumn[] = [
         label: "Nosotros",
         links: [
             {
-                label: "Nuestra Historia",
+                label: "Sobre Postesados JHP",
                 href: "/nosotros",
-                ariaLabel: "Nuestra Historia",
-                title: "Ir a Nuestra Historia",
+                ariaLabel: "Sobre Postesados JHP",
+                title: "Conocer Postesados JHP",
             },
             {
                 label: "Compromiso Técnico",
@@ -118,26 +118,32 @@ export const footerColumns: FooterColumn[] = [
         label: "Qué Hacemos",
         links: [
             {
-                label: "Postensado y Pretensado",
-                href: "/servicios#postesado",
-                ariaLabel: "Postensado y Pretensado",
-                title: "Ir a Postensado y Pretensado",
+                label: "Postensado",
+                href: "/servicios/postesado",
+                ariaLabel: "Postensado",
+                title: "Soluciones de postensado",
+            },
+            {
+                label: "Pretensado",
+                href: "/servicios/pretensado",
+                ariaLabel: "Pretensado",
+                title: "Soluciones de pretensado",
             },
             {
                 label: "Infraestructura Vial",
-                href: "/servicios#infraestructura",
+                href: "/servicios/infraestructura",
                 ariaLabel: "Infraestructura Vial",
                 title: "Ir a Infraestructura Vial",
             },
             {
                 label: "Prefabricados",
-                href: "/servicios#prefabricados",
+                href: "/servicios/prefabricados",
                 ariaLabel: "Prefabricados",
                 title: "Ir a Prefabricados",
             },
             {
                 label: "Suministro y Equipos",
-                href: "/servicios#suministro",
+                href: "/servicios/suministro",
                 ariaLabel: "Suministro y Equipos",
                 title: "Ir a Suministro y Equipos",
             },
@@ -154,15 +160,9 @@ export const footerColumns: FooterColumn[] = [
             },
             {
                 label: "Puentes y Viaductos",
-                href: "/servicios#puentes",
+                href: "/servicios/puentes",
                 ariaLabel: "Puentes y Viaductos",
                 title: "Ir a Puentes y Viaductos",
-            },
-            {
-                label: "Puentes",
-                href: "/servicios#puentes",
-                ariaLabel: "Puentes",
-                title: "Ir a Puentes",
             },
         ],
     },

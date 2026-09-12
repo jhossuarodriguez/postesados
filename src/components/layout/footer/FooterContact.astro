@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Instagram from "@/assets/icons/social-media/instagram.svg";
 import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
 import type { FooterContact, FooterSocialLink } from "@/data/footer";
@@ -16,11 +17,16 @@ const { contact, socialLinks } = Astro.props;
     <div class="space-y-4">
         <div class="flex items-center gap-2">
             <div class="text-2xl font-bold tracking-tighter uppercase italic">
-                <img
-                    src={logoPostesados.src}
+                <Image
+                    src={logoPostesados}
                     alt="Postesados Logo"
+                    width={Math.round(80 * logoPostesados.width / logoPostesados.height)}
+                    height={80}
+                    densities={[1, 2]}
+                    format="webp"
                     class="h-20 w-auto"
                     loading="lazy"
+                    decoding="async"
                 />
                 Postesados JHP
             </div>

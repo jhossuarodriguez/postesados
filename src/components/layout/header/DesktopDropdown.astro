@@ -6,9 +6,12 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
 ---
 
 <!-- Desktop Dropdown Menu -->
-<div
-    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 bg-secondary rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
+<nav
+    class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain bg-secondary rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-[opacity,translate] duration-300 ease-out hidden lg:block"
     id="menu-dropdownn"
+    aria-label="Menú principal"
+    data-lenis-prevent
+    inert
 >
     <div class="nav-container px-8 py-8 mt-8">
         <!-- Tabs -->
@@ -23,10 +26,9 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                         <button
                             id={tab.id}
                             type="button"
-                            aria-label={`Mostrar ${tab.label}`}
-                            class={`tab bg-transparent border-none text-white/55 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white/85${index === 0 ? " active" : ""}`}
+                            class={`tab bg-transparent border-none text-white/80 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white${index === 0 ? " active" : ""}`}
                             role="tab"
-                            tabindex="0"
+                            tabindex={index === 0 ? 0 : -1}
                             aria-selected={index === 0 ? "true" : "false"}
                             aria-controls={tab.panelId}
                         >
@@ -35,10 +37,12 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                     </li>
                 ))
             }
-            <div
+            <li
                 class="active-bar absolute -bottom-px left-0 h-0.5 bg-white rounded-sm transition-[width,transform] duration-300 ease-in-out"
+                role="presentation"
+                aria-hidden="true"
             >
-            </div>
+            </li>
         </ul>
 
         {
@@ -63,7 +67,7 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                                         <p class="text-white text-base font-semibold leading-[1.3]">
                                             {link.label}
                                         </p>
-                                        <p class="text-white/50 text-xs mt-1 leading-[1.3] font-general-sans">
+                                        <p class="text-white/80 text-xs mt-1 leading-[1.3] font-general-sans">
                                             {link.description}
                                         </p>
                                     </div>
@@ -79,6 +83,11 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                             class="w-160 2xl:w-190 object-cover rounded-2xl"
                             src={panel.image}
                             alt={panel.imageAlt}
+                            width={760}
+                            widths={[480, 760, 1200]}
+                            sizes="45vw"
+                            format="webp"
+                            loading="lazy"
                         />
                         <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
                         <div class="absolute inset-0">
@@ -107,15 +116,31 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
             ))
         }
     </div>
-</div>
+</nav>
 
 <div
     class="fixed inset-0 backdrop-blur-sm z-30 opacity-0 invisible transition-all duration-300 hidden lg:block"
     id="desktop-overlay"
+    aria-hidden="true"
 >
 </div>
 
 <style>
+    :global([data-desktop-open]) #menu-dropdownn {
+        translate: -50% -1rem;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    :global([data-desktop-open]) #desktop-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .nav-panel[hidden] {
+        display: none;
+    }
+
     .tab.active {
         color: #ffffff;
     }

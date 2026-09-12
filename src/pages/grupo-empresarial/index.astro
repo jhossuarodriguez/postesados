@@ -1,26 +1,33 @@
 ---
-export const prerender = false;
 
 import MoveRight from "@/assets/icons/MoveRight.svg";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 import imgNaveIndustrial from "@/assets/images/projects/nave_industrial_prefabricada.avif";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import { groupCompanies, integratedCapabilities } from "@/data/group";
+
+const companyImages = await Promise.all(groupCompanies.map((company) => getImage({
+    src: company.image, width: 800, height: 600, fit: "cover", widths: [400, 800, 1200], format: "avif", quality: 55,
+})));
 ---
 
 <SiteLayout
     title="Grupo empresarial | Postesados JHP"
     description="Conoce las capacidades complementarias de Postesados JHP, DR Drilling y Tenax Construction para proyectos de ingeniería y construcción."
 >
-    <main>
         <section class="relative isolate min-h-150 overflow-hidden bg-dark mt-2 lg:mt-6">
             <Image
                 src={imgNaveIndustrial}
                 alt="Estructura industrial desarrollada con soluciones integrales de ingeniería"
                 class="absolute inset-0 -z-20 size-full object-cover"
                 fetchpriority="high"
+                loading="eager"
+                width={1600}
+                widths={[480, 768, 1280, 1600, 1920]}
+                sizes="100vw"
+                format="avif"
             />
             <div class="absolute inset-0 -z-10 bg-black/40"></div>
             <div class="page-intro mx-auto flex min-h-150 max-w-400 flex-col justify-end px-6 pb-16 pt-36 md:px-10 md:pb-20 lg:px-20">
@@ -48,7 +55,7 @@ import { groupCompanies, integratedCapabilities } from "@/data/group";
                 {
                     integratedCapabilities.map((capability) => (
                         <article class="group min-h-72 rounded-3xl bg-tertiary p-7 transition duration-300 hover:bg-primary md:p-8">
-                            <p class="text-sm font-bold text-primary/50 group-hover:text-white/60">
+                            <p class="text-sm font-bold text-primary group-hover:text-white">
                                 {capability.number}
                             </p>
                             <h3 class="text-2xl font-bold text-primary group-hover:text-white">
@@ -85,30 +92,24 @@ import { groupCompanies, integratedCapabilities } from "@/data/group";
                             return (
                                 <article class="grid overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2" data-reveal-children>
                                     <div class:list={["relative min-h-80 lg:min-h-130", index % 2 === 1 && "lg:order-2"]}>
-                                        {
-                                            typeof company.image === "string" ? (
-                                                <img
-                                                    src={company.image}
-                                                    alt={company.imageAlt}
-                                                    class="absolute inset-0 size-full object-cover"
-                                                    loading="lazy"
-                                                />
-                                            ) : (
-                                                <Image
-                                                    src={company.image}
-                                                    alt={company.imageAlt}
-                                                    class="absolute inset-0 size-full object-cover"
-                                                    loading="lazy"
-                                                />
-                                            )
-                                        }
+                                        <img
+                                            src={companyImages[index].src}
+                                            srcset={companyImages[index].srcSet.attribute}
+                                            alt={company.imageAlt}
+                                            class="absolute inset-0 size-full object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                            width="800"
+                                            height="600"
+                                            sizes="(min-width: 1024px) 45vw, 90vw"
+                                        />
                                         <div class="absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
                                         <span class:list={["absolute left-6 top-6 rounded-full px-4 py-2 text-xs font-bold", accentClasses[company.accent]]}>
                                             0{index + 1}
                                         </span>
                                     </div>
                                     <div class="flex flex-col justify-center p-7 md:p-10 lg:p-14">
-                                        <p class="text-xs font-bold uppercase tracking-widest text-primary/55">
+                                        <p class="text-xs font-bold uppercase tracking-widest text-primary">
                                             {company.eyebrow}
                                         </p>
                                         <h3 class="mt-3 text-3xl font-bold tracking-tight text-primary md:text-5xl">
@@ -152,5 +153,4 @@ import { groupCompanies, integratedCapabilities } from "@/data/group";
             href="/contact"
             linkLabel="Contáctanos"
         />
-    </main>
 </SiteLayout>
