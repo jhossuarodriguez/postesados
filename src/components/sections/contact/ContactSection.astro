@@ -1,7 +1,7 @@
 ---
-import { actions } from "astro:actions";
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import { footerContact } from "@/data/footer";
+import { CONTACT_TOPICS, contactTopicLabels } from "@/lib/contact-schema";
 
 const fieldClass =
     "w-full min-h-12 rounded-full border border-gray-300 bg-tertiary px-5 py-3 font-general-sans text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 aria-invalid:border-red-700 aria-invalid:ring-2 aria-invalid:ring-red-200";
@@ -84,14 +84,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
                     Escríbenos
                 </h2>
                 <p class="mb-8 font-general-sans text-sm text-gray-600">
-                    Completa los datos y prepararemos tu consulta por correo.
+                    Completa los datos y envíanos tu consulta.
                 </p>
 
                 <form
                     class="flex flex-col gap-4"
                     method="POST"
-                    action={actions.send}
-                    novalidate
                     data-contact-form
                 >
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -186,15 +184,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
                                 aria-describedby="contact-tema-error"
                             >
                                 <option value="">Selecciona un tema</option>
-                                <option value="postensado">Postensado</option>
-                                <option value="pretensado">Pretensado</option>
-                                <option value="prefabricados"
-                                    >Prefabricados</option
-                                >
-                                <option value="suministros"
-                                    >Suministro de materiales</option
-                                >
-                                <option value="otro">Otro</option>
+                                {
+                                    CONTACT_TOPICS.map((topic) => (
+                                        <option value={topic}>
+                                            {contactTopicLabels[topic]}
+                                        </option>
+                                    ))
+                                }
                             </select>
                             <p
                                 id="contact-tema-error"
@@ -352,8 +348,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
 }
 
 <script>
-    import { actions } from "astro:actions";
-    import { contactSchema } from "@/lib/contact-schema";
+    import { actions, isInputError } from "astro:actions";
 
     declare global {
         interface Window {
@@ -381,6 +376,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
         ) as HTMLTextAreaElement;
         const counter = form.querySelector<HTMLElement>("[data-message-count]");
         const turnstileWidget = form.querySelector<HTMLElement>(".cf-turnstile");
+        let isSubmitting = false;
         if (submit) submit.disabled = false;
 
         const setStatus = (text: string, tone: "error" | "success") => {
@@ -411,7 +407,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
                 }
                 if (counter)
                     counter.textContent = `${message.value.length} / 2000`;
-                if (status) status.textContent = "";
+                if (status && !isSubmitting) status.textContent = "";
             },
             { signal },
         );
@@ -420,17 +416,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
             "submit",
             async (event) => {
                 event.preventDefault();
-
-                const entries = Array.from(
-                    new FormData(form).entries(),
-                    ([key, value]) =>
-                        [
-                            key,
-                            typeof value === "string" ? value.trim() : value,
-                        ] as [string, FormDataEntryValue],
-                );
-                const values = Object.fromEntries(entries);
-                const result = contactSchema.safeParse(values);
+                if (isSubmitting) return;
 
                 form.querySelectorAll<HTMLElement>("[data-field-error]").forEach(
                     (error) => {
@@ -442,62 +428,64 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
                         field.removeAttribute("aria-invalid");
                 });
 
-                if (!result.success) {
-                    const displayed = new Set<string>();
-                    for (const issue of result.error.issues) {
-                        const name = String(issue.path[0] ?? "");
-                        if (!name || displayed.has(name)) continue;
-                        displayed.add(name);
-
-                        if (name === "cf-turnstile-response") {
-                            setStatus(issue.message, "error");
-                            continue;
-                        }
-
-                        const field = form.elements.namedItem(name);
-                        if (field instanceof HTMLElement)
-                            field.setAttribute("aria-invalid", "true");
-                        const error = form.querySelector<HTMLElement>(
-                            `[data-field-error="${name}"]`,
-                        );
-                        if (error) error.textContent = issue.message;
-                    }
-                    const firstInvalid = form.querySelector<HTMLElement>(
-                        "[aria-invalid='true']",
-                    );
-                    if (firstInvalid) {
-                        firstInvalid.focus();
-                    } else {
-                        setStatus(
-                            "Revisa los campos indicados antes de continuar.",
-                            "error",
-                        );
-                    }
-                    return;
-                }
-
+                isSubmitting = true;
                 if (submit) submit.disabled = true;
                 setStatus("Enviando tu consulta...", "success");
 
-                const submission = new FormData();
-                for (const [key, value] of entries) submission.append(key, value);
+                let resetTurnstile = true;
+                try {
+                    const { data, error } = await actions.send(new FormData(form));
+                    if (signal.aborted) return;
 
-                const { data, error } = await actions.send(submission);
+                    if (isInputError(error)) {
+                        // La validación falla antes del handler: el token sigue sin usarse.
+                        resetTurnstile = false;
+                        for (const [name, messages] of Object.entries(error.fields)) {
+                            if (name === "cf-turnstile-response" || !messages?.[0]) continue;
 
-                if (submit) submit.disabled = false;
-                window.turnstile?.reset(turnstileWidget ?? undefined);
+                            const field = form.elements.namedItem(name);
+                            if (field instanceof HTMLElement)
+                                field.setAttribute("aria-invalid", "true");
+                            const fieldError = form.querySelector<HTMLElement>(
+                                `[data-field-error="${name}"]`,
+                            );
+                            if (fieldError) fieldError.textContent = messages[0];
+                        }
+                        setStatus(
+                            error.fields["cf-turnstile-response"]?.[0] ||
+                                "Revisa los campos indicados antes de continuar.",
+                            "error",
+                        );
+                        form.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
+                        return;
+                    }
 
-                if (error) {
-                    setStatus(
-                        error.message || "No pudimos enviar tu consulta. Inténtalo de nuevo.",
-                        "error",
-                    );
-                    return;
+                    if (error) {
+                        setStatus(
+                            error.message || "No pudimos enviar tu consulta. Inténtalo de nuevo.",
+                            "error",
+                        );
+                        return;
+                    }
+
+                    form.reset();
+                    if (counter) counter.textContent = "0 / 2000";
+                    setStatus(data.message, "success");
+                } catch {
+                    if (!signal.aborted) {
+                        setStatus(
+                            "No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
+                            "error",
+                        );
+                    }
+                } finally {
+                    isSubmitting = false;
+                    if (!signal.aborted) {
+                        if (submit) submit.disabled = false;
+                        if (resetTurnstile && turnstileWidget)
+                            window.turnstile?.reset(turnstileWidget);
+                    }
                 }
-
-                setStatus(data.message, "success");
-                form.reset();
-                if (counter) counter.textContent = "0 / 2000";
             },
             { signal },
         );

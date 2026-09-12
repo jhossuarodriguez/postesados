@@ -1,7 +1,7 @@
 # Postesados JHP
 
-Sitio corporativo en Astro y Tailwind CSS. El contenido se genera como HTML
-estatico; no necesita funciones de servidor para servir sus paginas.
+Sitio corporativo en Astro y Tailwind CSS. Las paginas se generan como HTML
+estatico; el formulario de contacto usa una Astro Action en el servidor.
 
 ## Desarrollo
 
@@ -49,11 +49,16 @@ Los datos comerciales estan en `src/data`. Cada servicio incluye descripcion,
 aplicaciones, consideraciones tecnicas y enlaces relacionados. Revisar cualquier
 nueva afirmacion tecnica o comercial con la empresa antes de publicarla.
 
-El formulario de contacto valida sus campos con Zod y prepara la consulta en la
-aplicacion de correo del visitante. No existe un backend de formularios y el sitio
-no afirma que el mensaje haya sido entregado automaticamente. Un envio directo
-futuro necesitara validacion en servidor, proteccion contra abuso y confirmacion
-real del proveedor de correo.
+El formulario de contacto usa validacion HTML en el navegador y envia los datos a
+`actions.send` con `accept: "form"`. La action valida con el esquema de
+`src/lib/contact-schema.ts`, que importa Zod desde `astro/zod`, verifica Cloudflare
+Turnstile y envia la consulta y su confirmacion mediante Resend. Los errores de
+validacion del servidor se muestran junto a cada campo con `isInputError()`.
+
+Configurar `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` y `RESEND_API_KEY` en el
+entorno de despliegue. La clave publica de Turnstile se incorpora al HTML durante
+el build. El formulario requiere JavaScript para Turnstile y para invocar la
+action desde la pagina estatica; el adaptador de Vercel sirve el endpoint.
 
 ## Rendimiento
 
