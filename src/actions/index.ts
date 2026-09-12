@@ -2,8 +2,6 @@ import { ActionError, defineAction } from "astro:actions";
 import { Resend } from "resend";
 import { contactSchema, contactTopicLabels } from "@/lib/contact-schema";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-
 const FROM_EMAIL = "Postesados <no-reply@postesados.com>";
 const NOTIFICATION_EMAIL = "postesados@gmail.com";
 const GENERIC_ERROR = "No pudimos enviar tu consulta. Inténtalo de nuevo más tarde.";
@@ -21,8 +19,9 @@ export const server = {
         accept: "form",
         input: contactSchema,
         handler: async (input, context) => {
+            const resendApiKey = import.meta.env.RESEND_API_KEY;
             const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
-            if (!import.meta.env.RESEND_API_KEY || !turnstileSecret) {
+            if (!resendApiKey || !turnstileSecret) {
                 throw new ActionError({ code: "INTERNAL_SERVER_ERROR", message: GENERIC_ERROR });
             }
 
@@ -89,6 +88,7 @@ export const server = {
             `;
 
             try {
+                const resend = new Resend(resendApiKey);
                 const [notification, confirmation] = await Promise.all([
                     resend.emails.send({
                         from: FROM_EMAIL,
