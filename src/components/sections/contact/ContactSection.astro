@@ -1,135 +1,365 @@
 ---
+import { actions } from "astro:actions";
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import { footerContact } from "@/data/footer";
 
-const fieldClass = "w-full min-h-12 rounded-full border border-gray-300 bg-tertiary px-5 py-3 font-general-sans text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 aria-invalid:border-red-700 aria-invalid:ring-2 aria-invalid:ring-red-200";
+const fieldClass =
+    "w-full min-h-12 rounded-full border border-gray-300 bg-tertiary px-5 py-3 font-general-sans text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-500 focus:border-primary focus:ring-2 focus:ring-primary/20 aria-invalid:border-red-700 aria-invalid:ring-2 aria-invalid:ring-red-200";
+const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
 ---
 
 <section class="bg-tertiary mt-2 w-full pb-10 lg:mt-6 lg:pt-6">
-    <div class="mx-auto pt-28 pb-0 md:max-w-335 md:px-5 md:pt-44 md:pb-18 lg:max-w-400 lg:px-5">
-        <div class="mx-4 flex flex-col items-start gap-12 lg:flex-row lg:gap-20">
+    <div
+        class="mx-auto pt-28 pb-0 md:max-w-335 md:px-5 md:pt-44 md:pb-18 lg:max-w-400 lg:px-5"
+    >
+        <div
+            class="mx-4 flex flex-col items-start gap-12 lg:flex-row lg:gap-20"
+        >
             <div class="flex-1">
-                <h1 class="mb-12 text-4xl font-bold leading-normal tracking-tighter text-primary md:text-8xl md:leading-20 lg:mb-16">Contáctanos</h1>
+                <h1
+                    class="mb-12 text-4xl font-bold leading-normal tracking-tighter text-primary md:text-8xl md:leading-20 lg:mb-16"
+                >
+                    Contáctanos
+                </h1>
 
                 <div class="flex flex-col gap-12 sm:flex-row sm:gap-20">
                     <div>
-                        <h2 class="mb-3 text-base font-bold text-black">Oficina principal</h2>
+                        <h2 class="mb-3 text-base font-bold text-black">
+                            Oficina principal
+                        </h2>
                         <address class="font-general-sans not-italic">
-                            <p class="text-sm leading-relaxed text-gray-700">{footerContact.address.label}</p>
-                            <a href={footerContact.address.href} target="_blank" rel="noopener noreferrer" class="mt-3 flex min-h-12 items-center text-sm text-primary underline underline-offset-4">Ver ubicación</a>
-                            {footerContact.phones.map((phone) => <a href={phone.href} class="flex min-h-12 items-center text-sm text-black underline underline-offset-4 hover:text-primary">{phone.label}</a>)}
-                            <a href={footerContact.email.href} class="flex min-h-12 items-center break-all text-sm text-black underline underline-offset-4 hover:text-primary">{footerContact.email.label}</a>
+                            <p class="text-sm leading-relaxed text-gray-700">
+                                {footerContact.address.label}
+                            </p>
+                            <a
+                                href={footerContact.address.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="mt-3 flex min-h-12 items-center text-sm text-primary underline underline-offset-4"
+                                >Ver ubicación</a
+                            >
+                            {
+                                footerContact.phones.map((phone) => (
+                                    <a
+                                        href={phone.href}
+                                        class="flex min-h-12 items-center text-sm text-black underline underline-offset-4 hover:text-primary"
+                                    >
+                                        {phone.label}
+                                    </a>
+                                ))
+                            }
+                            <a
+                                href={footerContact.email.href}
+                                class="flex min-h-12 items-center break-all text-sm text-black underline underline-offset-4 hover:text-primary"
+                                >{footerContact.email.label}</a
+                            >
                         </address>
                     </div>
 
                     <div>
-                        <h2 class="mb-3 text-base font-bold text-black">Consultas comerciales</h2>
-                        <p class="font-general-sans text-sm leading-relaxed text-gray-700">Departamento comercial<br />Ventas y proyectos</p>
-                        <a href={footerContact.phones[0].href} class="mt-3 flex min-h-12 items-center text-sm text-black underline underline-offset-4 hover:text-primary">{footerContact.phones[0].label}</a>
-                        <a href={footerContact.email.href} class="flex min-h-12 items-center break-all text-sm text-black underline underline-offset-4 hover:text-primary">{footerContact.email.label}</a>
+                        <h2 class="mb-3 text-base font-bold text-black">
+                            Consultas comerciales
+                        </h2>
+                        <p
+                            class="font-general-sans text-sm leading-relaxed text-gray-700"
+                        >
+                            Departamento comercial<br />Ventas y proyectos
+                        </p>
+                        <a
+                            href={footerContact.phones[0].href}
+                            class="mt-3 flex min-h-12 items-center text-sm text-black underline underline-offset-4 hover:text-primary"
+                            >{footerContact.phones[0].label}</a
+                        >
+                        <a
+                            href={footerContact.email.href}
+                            class="flex min-h-12 items-center break-all text-sm text-black underline underline-offset-4 hover:text-primary"
+                            >{footerContact.email.label}</a
+                        >
                     </div>
                 </div>
             </div>
 
             <div class="w-full flex-1 bg-white p-6 sm:p-8 lg:p-10">
-                <h2 class="mb-2 text-3xl font-bold text-primary md:text-5xl">Escríbenos</h2>
-                <p class="mb-8 font-general-sans text-sm text-gray-600">Completa los datos y prepararemos tu consulta por correo.</p>
+                <h2 class="mb-2 text-3xl font-bold text-primary md:text-5xl">
+                    Escríbenos
+                </h2>
+                <p class="mb-8 font-general-sans text-sm text-gray-600">
+                    Completa los datos y prepararemos tu consulta por correo.
+                </p>
 
-                <form class="flex flex-col gap-4" novalidate data-contact-form>
+                <form
+                    class="flex flex-col gap-4"
+                    method="POST"
+                    action={actions.send}
+                    novalidate
+                    data-contact-form
+                >
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="contact-nombre" class="mb-2 block text-sm font-bold text-gray-800">Nombre <span aria-hidden="true">*</span></label>
-                            <input id="contact-nombre" type="text" name="nombre" autocomplete="given-name" required minlength="2" maxlength="60" placeholder="Tu nombre" class={fieldClass} aria-describedby="contact-nombre-error" />
-                            <p id="contact-nombre-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="nombre"></p>
+                            <label
+                                for="contact-nombre"
+                                class="mb-2 block text-sm font-bold text-gray-800"
+                                >Nombre <span aria-hidden="true">*</span></label
+                            >
+                            <input
+                                id="contact-nombre"
+                                type="text"
+                                name="nombre"
+                                autocomplete="given-name"
+                                required
+                                minlength="2"
+                                maxlength="60"
+                                placeholder="Tu nombre"
+                                class={fieldClass}
+                                aria-describedby="contact-nombre-error"
+                            />
+                            <p
+                                id="contact-nombre-error"
+                                class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                                data-field-error="nombre"
+                            >
+                            </p>
                         </div>
                         <div>
-                            <label for="contact-apellido" class="mb-2 block text-sm font-bold text-gray-800">Apellido</label>
-                            <input id="contact-apellido" type="text" name="apellido" autocomplete="family-name" maxlength="60" placeholder="Tu apellido" class={fieldClass} aria-describedby="contact-apellido-error" />
-                            <p id="contact-apellido-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="apellido"></p>
+                            <label
+                                for="contact-apellido"
+                                class="mb-2 block text-sm font-bold text-gray-800"
+                                >Apellido</label
+                            >
+                            <input
+                                id="contact-apellido"
+                                type="text"
+                                name="apellido"
+                                autocomplete="family-name"
+                                maxlength="60"
+                                placeholder="Tu apellido"
+                                class={fieldClass}
+                                aria-describedby="contact-apellido-error"
+                            />
+                            <p
+                                id="contact-apellido-error"
+                                class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                                data-field-error="apellido"
+                            >
+                            </p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                            <label for="contact-correo" class="mb-2 block text-sm font-bold text-gray-800">Correo electrónico <span aria-hidden="true">*</span></label>
-                            <input id="contact-correo" type="email" name="correo" autocomplete="email" required maxlength="254" placeholder="nombre@empresa.com" class={fieldClass} aria-describedby="contact-correo-error" />
-                            <p id="contact-correo-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="correo"></p>
+                            <label
+                                for="contact-correo"
+                                class="mb-2 block text-sm font-bold text-gray-800"
+                                >Correo electrónico <span aria-hidden="true"
+                                    >*</span
+                                ></label
+                            >
+                            <input
+                                id="contact-correo"
+                                type="email"
+                                name="correo"
+                                autocomplete="email"
+                                required
+                                maxlength="254"
+                                placeholder="nombre@empresa.com"
+                                class={fieldClass}
+                                aria-describedby="contact-correo-error"
+                            />
+                            <p
+                                id="contact-correo-error"
+                                class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                                data-field-error="correo"
+                            >
+                            </p>
                         </div>
                         <div>
-                            <label for="contact-tema" class="mb-2 block text-sm font-bold text-gray-800">Tema <span aria-hidden="true">*</span></label>
-                            <select id="contact-tema" name="tema" required class={`${fieldClass} appearance-auto`} aria-describedby="contact-tema-error">
+                            <label
+                                for="contact-tema"
+                                class="mb-2 block text-sm font-bold text-gray-800"
+                                >Tema <span aria-hidden="true">*</span></label
+                            >
+                            <select
+                                id="contact-tema"
+                                name="tema"
+                                required
+                                class={`${fieldClass} appearance-auto`}
+                                aria-describedby="contact-tema-error"
+                            >
                                 <option value="">Selecciona un tema</option>
                                 <option value="postensado">Postensado</option>
                                 <option value="pretensado">Pretensado</option>
-                                <option value="prefabricados">Prefabricados</option>
-                                <option value="suministros">Suministro de materiales</option>
+                                <option value="prefabricados"
+                                    >Prefabricados</option
+                                >
+                                <option value="suministros"
+                                    >Suministro de materiales</option
+                                >
                                 <option value="otro">Otro</option>
                             </select>
-                            <p id="contact-tema-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="tema"></p>
+                            <p
+                                id="contact-tema-error"
+                                class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                                data-field-error="tema"
+                            >
+                            </p>
                         </div>
                     </div>
 
                     <div>
-                        <label for="contact-telefono" class="mb-2 block text-sm font-bold text-gray-800">Teléfono</label>
-                        <input id="contact-telefono" type="tel" name="telefono" autocomplete="tel" maxlength="25" inputmode="tel" placeholder="+1 (809) 000-0000" class={fieldClass} aria-describedby="contact-telefono-error" />
-                        <p id="contact-telefono-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="telefono"></p>
+                        <label
+                            for="contact-telefono"
+                            class="mb-2 block text-sm font-bold text-gray-800"
+                            >Teléfono</label
+                        >
+                        <input
+                            id="contact-telefono"
+                            type="tel"
+                            name="telefono"
+                            autocomplete="tel"
+                            maxlength="25"
+                            inputmode="tel"
+                            placeholder="+1 (809) 000-0000"
+                            class={fieldClass}
+                            aria-describedby="contact-telefono-error"
+                        />
+                        <p
+                            id="contact-telefono-error"
+                            class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                            data-field-error="telefono"
+                        >
+                        </p>
                     </div>
 
                     <div>
-                        <label for="contact-mensaje" class="mb-2 block text-sm font-bold text-gray-800">Mensaje <span aria-hidden="true">*</span></label>
-                        <textarea id="contact-mensaje" name="mensaje" required minlength="10" maxlength="2000" placeholder="Cuéntanos sobre el proyecto, su ubicación y el servicio que necesitas." rows="6" class={`${fieldClass} min-h-36 rounded-none resize-y`} aria-describedby="contact-mensaje-help contact-mensaje-error"></textarea>
-                        <div class="mt-1 flex justify-between gap-4 font-general-sans text-sm">
-                            <p id="contact-mensaje-help" class="text-gray-600">Entre 10 y 2,000 caracteres.</p>
-                            <span class="text-gray-600" data-message-count>0 / 2000</span>
+                        <label
+                            for="contact-mensaje"
+                            class="mb-2 block text-sm font-bold text-gray-800"
+                            >Mensaje <span aria-hidden="true">*</span></label
+                        >
+                        <textarea
+                            id="contact-mensaje"
+                            name="mensaje"
+                            required
+                            minlength="10"
+                            maxlength="2000"
+                            placeholder="Cuéntanos sobre el proyecto, su ubicación y el servicio que necesitas."
+                            rows="6"
+                            class={`${fieldClass} min-h-36 rounded-none resize-y`}
+                            aria-describedby="contact-mensaje-help contact-mensaje-error"
+                        ></textarea>
+                        <div
+                            class="mt-1 flex justify-between gap-4 font-general-sans text-sm"
+                        >
+                            <p id="contact-mensaje-help" class="text-gray-600">
+                                Entre 10 y 2,000 caracteres.
+                            </p>
+                            <span class="text-gray-600" data-message-count
+                                >0 / 2000</span
+                            >
                         </div>
-                        <p id="contact-mensaje-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="mensaje"></p>
+                        <p
+                            id="contact-mensaje-error"
+                            class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                            data-field-error="mensaje"
+                        >
+                        </p>
                     </div>
 
                     <div>
-                        <label class="flex items-start gap-3 font-general-sans text-sm leading-relaxed text-gray-700">
-                            <input type="checkbox" name="privacidad" value="accepted" required class="mt-1 size-5 shrink-0 accent-primary" aria-describedby="contact-privacidad-error" />
-                            <span>Acepto que mis datos se utilicen para responder esta consulta. Consulta la <a href="/privacidad" class="text-primary underline underline-offset-4">política de privacidad</a>. <span aria-hidden="true">*</span></span>
+                        <label
+                            class="flex items-start gap-3 font-general-sans text-sm leading-relaxed text-gray-700"
+                        >
+                            <input
+                                type="checkbox"
+                                name="privacidad"
+                                value="accepted"
+                                required
+                                class="mt-1 size-5 shrink-0 accent-primary"
+                                aria-describedby="contact-privacidad-error"
+                            />
+                            <span
+                                >Acepto que mis datos se utilicen para responder
+                                esta consulta. Consulta la <a
+                                    href="/privacidad"
+                                    class="text-primary underline underline-offset-4"
+                                    >política de privacidad</a
+                                >
+                            </span>
                         </label>
-                        <p id="contact-privacidad-error" class="mt-1 min-h-5 font-general-sans text-sm text-red-700" data-field-error="privacidad"></p>
+                        <p
+                            id="contact-privacidad-error"
+                            class="mt-1 min-h-5 font-general-sans text-sm text-red-700"
+                            data-field-error="privacidad"
+                        >
+                        </p>
                     </div>
 
-                    <p class="font-general-sans text-sm text-gray-600">Los campos marcados con * son obligatorios. Al continuar se abrirá tu aplicación de correo; el sitio no enviará información automáticamente.</p>
-                    <p class="min-h-6 font-general-sans text-sm font-medium" role="status" aria-live="polite" data-form-status></p>
+                    {
+                        turnstileSiteKey && (
+                            <div
+                                class="cf-turnstile"
+                                data-sitekey={turnstileSiteKey}
+                                data-theme="light"
+                            />
+                        )
+                    }
 
-                    <button type="submit" disabled class="group mt-2 inline-flex min-h-12 self-start items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-[#002080] disabled:cursor-not-allowed disabled:opacity-60" data-submit>
+                    <p class="font-general-sans text-sm text-gray-600">
+                        Los campos marcados con * son obligatorios.
+                    </p>
+                    <p
+                        class="min-h-6 font-general-sans text-sm font-medium"
+                        role="status"
+                        aria-live="polite"
+                        data-form-status
+                    >
+                    </p>
+
+                    <button
+                        type="submit"
+                        disabled
+                        class="group mt-2 inline-flex min-h-12 self-start items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:bg-[#002080] disabled:cursor-not-allowed disabled:opacity-60"
+                        data-submit
+                    >
                         Enviar
-                        <MoveRight aria-hidden="true" class="ml-1 size-4 transition-transform group-hover:translate-x-1" />
+                        <MoveRight
+                            aria-hidden="true"
+                            class="ml-1 size-4 transition-transform group-hover:translate-x-1"
+                        />
                     </button>
-                    <noscript><p class="font-general-sans text-sm text-red-700">Activa JavaScript para validar el formulario o escríbenos directamente a {footerContact.email.label}.</p></noscript>
+                    <noscript
+                        ><p class="font-general-sans text-sm text-red-700">
+                            Activa JavaScript para completar la verificación de
+                            seguridad y enviar el formulario, o escríbenos
+                            directamente a {footerContact.email.label}.
+                        </p></noscript
+                    >
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<script>
-    import { z } from "zod/mini";
+{
+    turnstileSiteKey && (
+        <script
+            is:inline
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            async
+            defer
+        />
+    )
+}
 
-    const personName = (required: boolean) => z.string().check(
-        ...(required ? [z.minLength(2, "Escribe al menos 2 caracteres.")] : []),
-        z.maxLength(60, "No puede superar 60 caracteres."),
-        z.regex(/^[\p{L}\p{M}' -]*$/u, "Utiliza únicamente letras, espacios, apóstrofes o guiones."),
-    );
-    const contactSchema = z.object({
-        nombre: personName(true),
-        apellido: personName(false),
-        correo: z.email("Introduce un correo electrónico válido.").check(z.maxLength(254, "El correo es demasiado largo.")),
-        tema: z.enum(["postensado", "pretensado", "prefabricados", "suministros", "otro"], "Selecciona un tema."),
-        telefono: z.string().check(
-            z.maxLength(25, "El teléfono es demasiado largo."),
-            z.regex(/^(?:\+?[\d\s().-]{7,25})?$/, "Introduce un teléfono válido."),
-        ),
-        mensaje: z.string().check(
-            z.minLength(10, "El mensaje debe tener al menos 10 caracteres."),
-            z.maxLength(2000, "El mensaje no puede superar 2,000 caracteres."),
-        ),
-        privacidad: z.literal("accepted", "Debes aceptar el tratamiento de datos para continuar."),
-    });
+<script>
+    import { actions } from "astro:actions";
+    import { contactSchema } from "@/lib/contact-schema";
+
+    declare global {
+        interface Window {
+            turnstile?: { reset: (widget?: string | HTMLElement) => void };
+        }
+    }
 
     let cleanupContactForm: VoidFunction | undefined;
 
@@ -137,85 +367,140 @@ const fieldClass = "w-full min-h-12 rounded-full border border-gray-300 bg-terti
         cleanupContactForm?.();
         cleanupContactForm = undefined;
 
-        const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+        const form = document.querySelector<HTMLFormElement>(
+            "[data-contact-form]",
+        );
         if (!form) return;
 
         const controller = new AbortController();
         const { signal } = controller;
         const submit = form.querySelector<HTMLButtonElement>("[data-submit]");
         const status = form.querySelector<HTMLElement>("[data-form-status]");
-        const message = form.elements.namedItem("mensaje") as HTMLTextAreaElement;
+        const message = form.elements.namedItem(
+            "mensaje",
+        ) as HTMLTextAreaElement;
         const counter = form.querySelector<HTMLElement>("[data-message-count]");
+        const turnstileWidget = form.querySelector<HTMLElement>(".cf-turnstile");
         if (submit) submit.disabled = false;
+
+        const setStatus = (text: string, tone: "error" | "success") => {
+            if (!status) return;
+            status.className = `min-h-6 font-general-sans text-sm font-medium ${tone === "error" ? "text-red-700" : "text-primary"}`;
+            status.textContent = text;
+        };
 
         const clearError = (name: string) => {
             const field = form.elements.namedItem(name);
-            if (field instanceof HTMLElement) field.removeAttribute("aria-invalid");
-            const error = form.querySelector<HTMLElement>(`[data-field-error="${name}"]`);
+            if (field instanceof HTMLElement)
+                field.removeAttribute("aria-invalid");
+            const error = form.querySelector<HTMLElement>(
+                `[data-field-error="${name}"]`,
+            );
             if (error) error.textContent = "";
         };
 
-        form.addEventListener("input", (event) => {
-            if (event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement || event.target instanceof HTMLTextAreaElement) {
-                clearError(event.target.name);
-            }
-            if (counter) counter.textContent = `${message.value.length} / 2000`;
-            if (status) status.textContent = "";
-        }, { signal });
-
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const values = Object.fromEntries(
-                Array.from(new FormData(form).entries(), ([key, value]) => [key, typeof value === "string" ? value.trim() : value]),
-            );
-            const result = contactSchema.safeParse(values);
-
-            form.querySelectorAll<HTMLElement>("[data-field-error]").forEach((error) => { error.textContent = ""; });
-            Array.from(form.elements).forEach((field) => {
-                if (field instanceof HTMLElement) field.removeAttribute("aria-invalid");
-            });
-
-            if (!result.success) {
-                const displayed = new Set<string>();
-                for (const issue of result.error.issues) {
-                    const name = String(issue.path[0] ?? "");
-                    if (!name || displayed.has(name)) continue;
-                    displayed.add(name);
-                    const field = form.elements.namedItem(name);
-                    if (field instanceof HTMLElement) field.setAttribute("aria-invalid", "true");
-                    const error = form.querySelector<HTMLElement>(`[data-field-error="${name}"]`);
-                    if (error) error.textContent = issue.message;
+        form.addEventListener(
+            "input",
+            (event) => {
+                if (
+                    event.target instanceof HTMLInputElement ||
+                    event.target instanceof HTMLSelectElement ||
+                    event.target instanceof HTMLTextAreaElement
+                ) {
+                    clearError(event.target.name);
                 }
-                const firstInvalid = form.querySelector<HTMLElement>("[aria-invalid='true']");
-                firstInvalid?.focus();
-                if (status) {
-                    status.className = "min-h-6 font-general-sans text-sm font-medium text-red-700";
-                    status.textContent = "Revisa los campos indicados antes de continuar.";
+                if (counter)
+                    counter.textContent = `${message.value.length} / 2000`;
+                if (status) status.textContent = "";
+            },
+            { signal },
+        );
+
+        form.addEventListener(
+            "submit",
+            async (event) => {
+                event.preventDefault();
+
+                const entries = Array.from(
+                    new FormData(form).entries(),
+                    ([key, value]) =>
+                        [
+                            key,
+                            typeof value === "string" ? value.trim() : value,
+                        ] as [string, FormDataEntryValue],
+                );
+                const values = Object.fromEntries(entries);
+                const result = contactSchema.safeParse(values);
+
+                form.querySelectorAll<HTMLElement>("[data-field-error]").forEach(
+                    (error) => {
+                        error.textContent = "";
+                    },
+                );
+                Array.from(form.elements).forEach((field) => {
+                    if (field instanceof HTMLElement)
+                        field.removeAttribute("aria-invalid");
+                });
+
+                if (!result.success) {
+                    const displayed = new Set<string>();
+                    for (const issue of result.error.issues) {
+                        const name = String(issue.path[0] ?? "");
+                        if (!name || displayed.has(name)) continue;
+                        displayed.add(name);
+
+                        if (name === "cf-turnstile-response") {
+                            setStatus(issue.message, "error");
+                            continue;
+                        }
+
+                        const field = form.elements.namedItem(name);
+                        if (field instanceof HTMLElement)
+                            field.setAttribute("aria-invalid", "true");
+                        const error = form.querySelector<HTMLElement>(
+                            `[data-field-error="${name}"]`,
+                        );
+                        if (error) error.textContent = issue.message;
+                    }
+                    const firstInvalid = form.querySelector<HTMLElement>(
+                        "[aria-invalid='true']",
+                    );
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    } else {
+                        setStatus(
+                            "Revisa los campos indicados antes de continuar.",
+                            "error",
+                        );
+                    }
+                    return;
                 }
-                return;
-            }
 
-            const topicLabels: Record<string, string> = {
-                postensado: "Postensado", pretensado: "Pretensado", prefabricados: "Prefabricados",
-                suministros: "Suministro de materiales", otro: "Otra consulta",
-            };
-            const fullName = [result.data.nombre, result.data.apellido].filter(Boolean).join(" ");
-            const body = [
-                `Nombre: ${fullName}`,
-                `Correo: ${result.data.correo}`,
-                `Teléfono: ${result.data.telefono || "No indicado"}`,
-                `Tema: ${topicLabels[result.data.tema]}`,
-                "",
-                result.data.mensaje,
-            ].join("\n");
-            const mailto = `mailto:postesados@gmail.com?subject=${encodeURIComponent(`Consulta web: ${topicLabels[result.data.tema]}`)}&body=${encodeURIComponent(body)}`;
+                if (submit) submit.disabled = true;
+                setStatus("Enviando tu consulta...", "success");
 
-            if (status) {
-                status.className = "min-h-6 font-general-sans text-sm font-medium text-primary";
-                status.textContent = "Validación completada. Abriendo tu aplicación de correo para confirmar el envío.";
-            }
-            window.location.assign(mailto);
-        }, { signal });
+                const submission = new FormData();
+                for (const [key, value] of entries) submission.append(key, value);
+
+                const { data, error } = await actions.send(submission);
+
+                if (submit) submit.disabled = false;
+                window.turnstile?.reset(turnstileWidget ?? undefined);
+
+                if (error) {
+                    setStatus(
+                        error.message || "No pudimos enviar tu consulta. Inténtalo de nuevo.",
+                        "error",
+                    );
+                    return;
+                }
+
+                setStatus(data.message, "success");
+                form.reset();
+                if (counter) counter.textContent = "0 / 2000";
+            },
+            { signal },
+        );
 
         cleanupContactForm = () => controller.abort();
     };
