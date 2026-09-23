@@ -31,14 +31,16 @@ const poster = await getImage({
         <video
             id="home-about-video"
             class="absolute inset-0 size-full object-cover"
-            data-video-src="/new/nave_industrial_con_viga_doble_t.webm"
             preload="none"
             muted
             loop
             playsinline
             hidden
             aria-hidden="true"
-            data-viewport-video></video>
+            data-viewport-video
+        >
+            <source data-video-src="/new/nave_industrial_con_viga_doble_t.webm" type="video/webm" />
+        </video>
 
         <div
             class="relative z-20 min-h-150 lg:min-h-screen flex flex-col justify-center items-center text-center px-4 py-20 md:px-8 2xl:pt-20"
