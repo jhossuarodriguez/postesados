@@ -170,6 +170,22 @@ const structuredData = {
 			crossorigin
 		/>
 		<ClientRouter />
+
+		<script
+			is:inline
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-VTNCTL8TCE"
+		></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-VTNCTL8TCE");
+			gtag("config", "AW-18447790368");
+		</script>
 	</head>
 	<body class="w-full mx-auto">
 		<slot />
