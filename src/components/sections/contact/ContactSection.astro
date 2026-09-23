@@ -353,6 +353,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
     declare global {
         interface Window {
             turnstile?: { reset: (widget?: string | HTMLElement) => void };
+            gtag?: (
+                command: "event",
+                event: "conversion",
+                parameters: { send_to: string },
+            ) => void;
         }
     }
 
@@ -471,6 +476,17 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY;
                     form.reset();
                     if (counter) counter.textContent = "0 / 2000";
                     setStatus(data.message, "success");
+
+                    if (data.success) {
+                        try {
+                            window.gtag?.("event", "conversion", {
+                                send_to: "AW-18447790368/jjx-CMW47PYcEKDiy9xE",
+                            });
+                        } catch {
+                            // Un fallo de medición no debe invalidar una consulta enviada.
+                            console.warn("No se pudo registrar la conversión de contacto.");
+                        }
+                    }
                 } catch {
                     if (!signal.aborted) {
                         setStatus(
