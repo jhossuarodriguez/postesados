@@ -15,17 +15,18 @@ export const initializeViewportVideos = () => {
         const video = container.querySelector<HTMLVideoElement>("[data-viewport-video]");
         const button = container.querySelector<HTMLButtonElement>("[data-video-toggle]");
         const poster = container.querySelector<HTMLImageElement>("[data-video-fallback]");
-        const src = video?.dataset.videoSrc;
+        const sources = Array.from(
+            video?.querySelectorAll<HTMLSourceElement>("source[data-video-src]") ?? [],
+        );
+        const src = sources[0]?.dataset.videoSrc;
 
         if (!video || !button || !poster || !src) return [];
-        return [{ container, video, button, poster, src, inViewport: false }];
+        return [{ container, video, button, sources, src, inViewport: false }];
     });
 
     if (players.length === 0) return;
 
-    const staticMedia = window.matchMedia(
-        "(prefers-reduced-motion: reduce), (max-width: 1023px), (hover: none), (pointer: coarse)",
-    );
+    const staticMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
     const connection = (navigator as Navigator & {
         connection?: EventTarget & { saveData?: boolean };
     }).connection;
@@ -33,34 +34,34 @@ export const initializeViewportVideos = () => {
     const { signal } = controller;
 
     const updatePlayback = () => {
-        if (document.readyState !== "complete") return;
         const allowed = !staticMedia.matches && !connection?.saveData;
         const activePlayer = allowed && !document.hidden
             ? players.find((player) => player.inViewport && !manuallyPaused.has(player.src))
             : undefined;
 
         players.forEach((player) => {
-            const { video, button, poster, src } = player;
+            const { video, button, sources } = player;
             button.hidden = !allowed;
 
             if (player !== activePlayer) video.pause();
             if (!allowed) {
                 video.hidden = true;
-                if (video.hasAttribute("src")) {
-                    video.removeAttribute("src");
-                    video.removeAttribute("poster");
+                if (sources.some((source) => source.hasAttribute("src"))) {
+                    sources.forEach((source) => source.removeAttribute("src"));
                     video.load();
                 }
                 return;
             }
             if (player !== activePlayer) return;
 
-            // Keep media URLs out of the loading path until playback is appropriate.
-            if (!video.hasAttribute("src")) {
-                video.poster = poster.currentSrc || poster.src;
-                video.src = src;
+            // Let the browser select a supported format, only when in view.
+            if (!sources[0].hasAttribute("src")) {
+                sources.forEach((source) => {
+                    source.src = source.dataset.videoSrc!;
+                });
+                video.muted = true;
+                video.load();
             }
-            video.hidden = false;
             if (video.paused) {
                 void video.play().catch(() => {
                     button.textContent = "Reproducir video";
@@ -91,6 +92,15 @@ export const initializeViewportVideos = () => {
         }, { signal });
         video.addEventListener("play", updateButton, { signal });
         video.addEventListener("pause", updateButton, { signal });
+        // Keep the cover image visible until playback actually starts, including
+        // when a mobile browser blocks autoplay. Both layers use object-cover.
+        video.addEventListener("playing", () => {
+            video.hidden = false;
+        }, { signal });
+        video.addEventListener("error", () => {
+            video.hidden = true;
+            updateButton();
+        }, { signal });
         updateButton();
         observer.observe(container);
     });
@@ -98,18 +108,16 @@ export const initializeViewportVideos = () => {
     staticMedia.addEventListener("change", updatePlayback, { signal });
     connection?.addEventListener("change", updatePlayback, { signal });
     document.addEventListener("visibilitychange", updatePlayback, { signal });
-    window.addEventListener("load", updatePlayback, { once: true, signal });
     updatePlayback();
 
     cleanupVideos = () => {
         observer.disconnect();
         controller.abort();
-        players.forEach(({ video }) => {
+        players.forEach(({ video, sources }) => {
             video.pause();
             video.hidden = true;
-            if (video.hasAttribute("src")) {
-                video.removeAttribute("src");
-                video.removeAttribute("poster");
+            if (sources.some((source) => source.hasAttribute("src"))) {
+                sources.forEach((source) => source.removeAttribute("src"));
                 video.load();
             }
         });

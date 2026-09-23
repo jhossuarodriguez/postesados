@@ -2,12 +2,12 @@
 import HeroCarousel from "@/components/sections/home/HeroCarousel.astro";
 import { heroSlides } from "@/data/home";
 import { getImage } from "astro:assets";
-import heroPhoto from "@/assets/images/projects/destacado_puente_sobre_rio_cachon.avif";
+import heroPhoto from "@/assets/images/hero/hero-poster.avif";
 
 const poster = await getImage({
     src: heroPhoto,
     width: 1280,
-    widths: [480, 768, 1280, 1920],
+    widths: [480, 768, 1280],
     format: "avif",
     quality: 45,
 });
@@ -26,21 +26,24 @@ const poster = await getImage({
         height={poster.attributes.height}
         alt=""
         loading="eager"
-        fetchpriority="auto"
+        fetchpriority="high"
         decoding="async"
         data-video-fallback
     />
     <video
         id="home-hero-video"
         class="absolute inset-0 -z-20 size-full object-cover"
-        data-video-src="/new/plaza_multiuso_seibana.webm"
         preload="none"
         muted
         loop
         playsinline
         hidden
         data-viewport-video
-        aria-hidden="true"></video>
+        aria-hidden="true"
+    >
+        <source data-video-src="/new/hero-optimized.webm" type='video/webm; codecs="vp9"' />
+        <source data-video-src="/new/hero-optimized.mp4" type="video/mp4" />
+    </video>
     <div class="absolute inset-0 -z-10 bg-black/70"></div>
 
     <div
@@ -61,7 +64,7 @@ const poster = await getImage({
     </div>
     <button
         type="button"
-        class="absolute bottom-4 right-4 z-30 inline-flex min-h-12 items-center rounded-full border border-white/40 bg-black/70 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [[hidden]]:hidden"
+        class="absolute bottom-4 right-4 z-30 inline-flex min-h-12 items-center rounded-full border border-white/40 bg-black/70 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&[hidden]]:hidden"
         aria-controls="home-hero-video"
         data-video-toggle
         hidden
