@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # vercel deployment folder
 .vercel/
+
+# photos staged for upload to Google Business Profile, not used by the site
+public/google-business-images/
