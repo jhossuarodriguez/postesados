@@ -24,14 +24,18 @@ export const contactSchema = z.object({
     tema: z.enum(CONTACT_TOPICS, "Selecciona un tema."),
     telefono: z.string("Introduce un teléfono válido.")
         .trim()
+        .min(1, "Introduce un teléfono.")
         .max(25, "El teléfono es demasiado largo.")
-        .regex(/^(?:\+?[\d\s().-]{7,25})?$/, "Introduce un teléfono válido.")
-        .optional(),
+        .regex(/^\+?[\d\s().-]*$/, "Utiliza solo números, espacios, +, paréntesis o guiones.")
+        .refine((v) => /^\d{7,15}$/.test(v.replace(/\D/g, "")), "El teléfono debe tener entre 7 y 15 dígitos."),
     mensaje: z.string("Escribe un mensaje de al menos 10 caracteres.")
         .trim()
         .min(10, "El mensaje debe tener al menos 10 caracteres.")
         .max(2000, "El mensaje no puede superar 2,000 caracteres."),
     privacidad: z.literal("accepted", "Debes aceptar el tratamiento de datos para continuar."),
+    // Anti-spam: campo trampa oculto (debe llegar vacío) y marca de tiempo de carga del formulario.
+    sitio_web: z.string().optional(),
+    form_ts: z.string().optional(),
     "cf-turnstile-response": z.string("Completa la verificación de seguridad.")
         .trim()
         .min(1, "Completa la verificación de seguridad."),
