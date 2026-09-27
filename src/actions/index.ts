@@ -5,6 +5,28 @@ import { contactSchema, contactTopicLabels } from "@/lib/contact-schema";
 const FROM_EMAIL = "Postesados <no-reply@postesados.com>";
 const NOTIFICATION_EMAIL = "postesados@gmail.com";
 const GENERIC_ERROR = "No pudimos enviar tu consulta. Inténtalo de nuevo más tarde.";
+const SUCCESS_MESSAGE = "Consulta enviada correctamente. Nos pondremos en contacto pronto.";
+const MIN_FILL_MS = 3_000;
+const MAX_FILL_MS = 24 * 60 * 60 * 1000;
+
+// Un humano no rellena el campo oculto ni envía el formulario en menos de unos segundos;
+// los bots que hacen POST directo tampoco traen la marca de tiempo que pone el JS del cliente.
+const looksLikeBot = (honeypot: string | undefined, formTs: string | undefined) => {
+    if (honeypot?.trim()) return true;
+    const elapsed = Date.now() - Number(formTs);
+    return !Number.isFinite(elapsed) || elapsed < MIN_FILL_MS || elapsed > MAX_FILL_MS;
+};
+
+// Texto aleatorio tipo "nROhzlnyKnlYLPmwQXYnz": muchas transiciones minúscula→mayúscula dentro de una palabra.
+// Nombres reales como "McDonald" o "DeLaCruz" tienen como mucho dos.
+const isGibberish = (text: string | undefined) =>
+    (text ?? "").split(/\s+/).some((word) => (word.match(/\p{Ll}\p{Lu}/gu)?.length ?? 0) >= 3);
+
+// Gmail ignora los puntos; los bots los intercalan ("sa.m.pan.m.o.ei.noi@gmail.com") para esquivar filtros.
+const isDottedGmail = (email: string) => {
+    const [local, domain] = email.toLowerCase().split("@");
+    return (domain === "gmail.com" || domain === "googlemail.com") && (local.match(/\./g)?.length ?? 0) >= 3;
+};
 
 const escapeHtml = (value: string) =>
     value
@@ -23,6 +45,15 @@ export const server = {
             const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
             if (!resendApiKey || !turnstileSecret) {
                 throw new ActionError({ code: "INTERNAL_SERVER_ERROR", message: GENERIC_ERROR });
+            }
+
+            if (
+                looksLikeBot(input.sitio_web, input.form_ts) ||
+                isDottedGmail(input.correo) ||
+                [input.nombre, input.apellido, input.mensaje].some(isGibberish)
+            ) {
+                // Respuesta de éxito falsa para no darle pistas al bot.
+                return { success: false, message: SUCCESS_MESSAGE };
             }
 
             const verifyBody = new URLSearchParams({
@@ -48,7 +79,7 @@ export const server = {
             const topic = contactTopicLabels[input.tema];
             const safeName = escapeHtml(fullName);
             const safeEmail = escapeHtml(input.correo);
-            const safePhone = escapeHtml(input.telefono || "No indicado");
+            const safePhone = escapeHtml(input.telefono);
             const safeTopic = escapeHtml(topic);
             const safeMessage = escapeHtml(input.mensaje);
 
@@ -73,45 +104,24 @@ export const server = {
                 </div>
             `;
 
-            const confirmationHtml = `
-                <div style="font-family: Arial, sans-serif; background-color: #f3f4f6; padding: 40px 20px; color: #111827;">
-                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #e5e7eb;">
-                        <div style="height: 6px; background: #002d80;"></div>
-                        <div style="padding: 32px;">
-                            <h2 style="margin: 0 0 16px; font-size: 20px; color: #002d80;">¡Hemos recibido tu consulta!</h2>
-                            <p style="font-size: 14px; line-height: 1.6; color: #374151; margin: 0;">
-                                Gracias por contactarnos sobre "${safeTopic}". Nuestro equipo revisará tu mensaje y se pondrá en contacto contigo lo antes posible.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-
             try {
+                // Sin correo de confirmación al remitente: los bots lo usaban para enviar correo a terceros.
                 const resend = new Resend(resendApiKey);
-                const [notification, confirmation] = await Promise.all([
-                    resend.emails.send({
-                        from: FROM_EMAIL,
-                        to: NOTIFICATION_EMAIL,
-                        replyTo: input.correo,
-                        subject: `Nueva consulta web: ${topic}`,
-                        html: notificationHtml,
-                    }),
-                    resend.emails.send({
-                        from: FROM_EMAIL,
-                        to: input.correo,
-                        subject: "Hemos recibido tu consulta",
-                        html: confirmationHtml,
-                    }),
-                ]);
+                const notification = await resend.emails.send({
+                    from: FROM_EMAIL,
+                    to: NOTIFICATION_EMAIL,
+                    replyTo: input.correo,
+                    subject: `Nueva consulta web: ${topic}`,
+                    html: notificationHtml,
+                });
 
-                if (notification.error || confirmation.error) {
+                if (notification.error) {
                     throw new ActionError({ code: "INTERNAL_SERVER_ERROR", message: GENERIC_ERROR });
                 }
 
                 return {
                     success: true,
-                    message: "Consulta enviada correctamente. Nos pondremos en contacto pronto.",
+                    message: SUCCESS_MESSAGE,
                 };
             } catch (error) {
                 if (error instanceof ActionError) throw error;
