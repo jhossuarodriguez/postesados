@@ -1,36 +1,32 @@
 ---
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
-import imgAboutFooter from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
-import PrivacyDetails from "@/components/sections/privacy/PrivacyDetails.astro";
+import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
 import imgBgBackground from "@/assets/images/bgBackground.avif";
-import PrivacyPrinciples from "@/components/sections/privacy/PrivacyPrinciples.astro";
+import LegalPrinciples from "@/components/sections/legal/LegalPrinciples.astro";
+import LegalDetails from "@/components/sections/legal/LegalDetails.astro";
+import { privacyDetails, privacyPrinciples } from "@/data/privacy";
 ---
 
 <SiteLayout
     title="Política de privacidad | Postesados JHP"
     description="Política de privacidad y tratamiento de información del sitio web de Postesados JHP."
 >
-    <section>
-        <InteriorHero
-            image={imgBgBackground}
-            imageAlt="Fondo de la empresa"
-        >
-            <Fragment slot="title">Política de <br /> Privacidad.</Fragment>
-            Nos comprometemos a proteger su privacidad y a garantizar la seguridad de su
-            información personal.
-        </InteriorHero>
-        <PrivacyPrinciples />
-        <PrivacyDetails />
-        <PhotoCta
-            image={imgAboutFooter}
-            imageAlt="Personas trabajando footer image"
-            label="● Conversemos"
-            title="¿Tiene Alguna Pregunta?"
-            description="Si tiene dudas sobre cómo manejamos su información personal o desea ejercer sus derechos de privacidad, no dude en contactarnos."
-            href="/contact"
-            linkLabel="Contáctanos"
-        />
-    </section>
+    <InteriorHero image={imgBgBackground} imageAlt="">
+        <Fragment slot="title">Política de <br /> Privacidad.</Fragment>
+        Nos comprometemos a proteger su privacidad y a garantizar la seguridad de su
+        información personal.
+    </InteriorHero>
+    <LegalPrinciples items={privacyPrinciples} />
+    <LegalDetails title="Detalles de Nuestra Política" items={privacyDetails} />
+    <PhotoCta
+        image={imgPuente}
+        imageAlt="Vista aérea del puente Río Cachón"
+        label="● Conversemos"
+        title="¿Tiene Alguna Pregunta?"
+        description="Si tiene dudas sobre cómo manejamos su información personal o desea ejercer sus derechos de privacidad, no dude en contactarnos."
+        href="/contact"
+        linkLabel="Contáctanos"
+    />
 </SiteLayout>

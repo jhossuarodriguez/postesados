@@ -1,0 +1,16 @@
+---
+// Grilla de detalles de las páginas de privacidad y términos.
+import CardGridSection from "@/components/ui/CardGridSection.astro";
+import DetailCard from "@/components/ui/DetailCard.astro";
+
+interface Props {
+    title: string;
+    items: { title: string; description: string }[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<CardGridSection title={title}>
+    {items.map((item) => <DetailCard title={item.title} description={item.description} />)}
+</CardGridSection>

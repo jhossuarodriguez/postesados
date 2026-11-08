@@ -2,35 +2,31 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
 import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
-import TermsDetails from "@/components/sections/terms/TermsDetails.astro";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
 import imgBgBackground from "@/assets/images/bgBackground.avif";
-import TermsPrinciples from "@/components/sections/terms/TermsPrinciples.astro";
+import LegalPrinciples from "@/components/sections/legal/LegalPrinciples.astro";
+import LegalDetails from "@/components/sections/legal/LegalDetails.astro";
+import { termsDetails, termsPrinciples } from "@/data/terms";
 ---
 
 <SiteLayout
     title="Términos de uso | Postesados JHP"
     description="Condiciones de uso del sitio web y de la información técnica publicada por Postesados JHP."
 >
-    <section>
-        <InteriorHero
-            image={imgBgBackground}
-            imageAlt="Fondo de la empresa"
-        >
-            <Fragment slot="title">Términos <br /> de uso.</Fragment>
-            Conozca las condiciones que rigen el uso de nuestro sitio web y servicios de
-            ingeniería estructural.
-        </InteriorHero>
-        <TermsPrinciples />
-        <TermsDetails />
-        <PhotoCta
-            image={imgPuente}
-            imageAlt="Personas trabajando footer image"
-            label="● Conversemos"
-            title="Da el Siguiente Paso"
-            description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
-            href="/contact"
-            linkLabel="Contáctanos"
-        />
-    </section>
+    <InteriorHero image={imgBgBackground} imageAlt="">
+        <Fragment slot="title">Términos <br /> de uso.</Fragment>
+        Conozca las condiciones que rigen el uso de nuestro sitio web y servicios de
+        ingeniería estructural.
+    </InteriorHero>
+    <LegalPrinciples items={termsPrinciples} />
+    <LegalDetails title="Condiciones Adicionales" items={termsDetails} />
+    <PhotoCta
+        image={imgPuente}
+        imageAlt="Vista aérea del puente Río Cachón"
+        label="● Conversemos"
+        title="Da el Siguiente Paso"
+        description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
+        href="/contact"
+        linkLabel="Contáctanos"
+    />
 </SiteLayout>

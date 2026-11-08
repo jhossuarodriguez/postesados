@@ -1,0 +1,17 @@
+---
+// Tarjetas numeradas de las páginas de privacidad y términos.
+import Container from "@/components/layout/Container.astro";
+import NumberedCard from "@/components/ui/NumberedCard.astro";
+
+interface Props {
+    items: { number: string; title: string; description: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<Container as="section" class="py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-16" data-reveal-children>
+        {items.map((item) => <NumberedCard title={item.title} description={item.description} number={item.number} />)}
+    </div>
+</Container>
