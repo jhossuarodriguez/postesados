@@ -1,3 +1,5 @@
+import { companyContact } from "@/data/company";
+
 export interface TermsItem {
     title: string;
     description: string;
@@ -20,5 +22,5 @@ export const termsDetails: TermsItem[] = [
     { title: "Legislación Aplicable", description: "Estos términos se rigen por las leyes de la República Dominicana. Cualquier disputa será sometida a la jurisdicción de los tribunales competentes de Santo Domingo, República Dominicana." },
     { title: "Indemnización", description: "Usted acepta indemnizar y mantener libre de responsabilidad a Postesados JHP, sus directivos y empleados, frente a cualquier reclamación derivada del uso indebido de este sitio web o la violación de estos términos." },
     { title: "Modificaciones de los Términos", description: "Postesados JHP se reserva el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor al ser publicados en esta página. El uso continuado del sitio implica la aceptación de las modificaciones." },
-    { title: "Contacto Legal", description: "Para cualquier consulta relacionada con estos términos de uso, puede comunicarse con nosotros a través de postesados@gmail.com o llamando al (809) 222-5652. Estaremos encantados de asistirle." },
+    { title: "Contacto Legal", description: `Para cualquier consulta relacionada con estos términos de uso, puede comunicarse con nosotros a través de ${companyContact.email.label} o llamando al ${companyContact.phones[0].label}. Estaremos encantados de asistirle.` },
 ];

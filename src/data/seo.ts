@@ -1,4 +1,5 @@
-import { footerContact, footerSocialLinks } from "@/data/footer";
+import { companyContact } from "@/data/company";
+import { footerSocialLinks } from "@/data/footer";
 import type { ImageMetadata } from "astro";
 import aboutImage from "@/assets/images/bgBackground.avif";
 import serviceImage from "@/assets/images/projects/nuestros_servicios_hormigon_postensado_proyecto_2.avif";
@@ -34,8 +35,8 @@ export const organizationSchema = {
     url: SITE_URL,
     logo: `${SITE_URL}/images/logo-postesados.webp`,
     image: `${SITE_URL}/images/og-postesados.jpg`,
-    email: footerContact.email.label,
-    telephone: "+1-809-222-5652",
+    email: companyContact.email.label,
+    telephone: companyContact.phones[0].href.replace("tel:", ""),
     address: {
         "@type": "PostalAddress",
         addressLocality: "Santo Domingo",
