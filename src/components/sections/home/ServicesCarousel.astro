@@ -16,12 +16,12 @@ const { slides } = Astro.props;
         data-carousel-viewport
     >
         <ul
-            class="h-full flex items-center gap-6 px-5 lg:px-10 2xl:pl-28 transition-transform duration-500 ease-out motion-reduce:transition-none"
+            class="h-full flex items-center gap-6 transition-transform duration-500 ease-out motion-reduce:transition-none"
             data-carousel-track
         >
             {
                 slides.map((slide, index) => (
-                    <li class="relative isolate flex items-center justify-center shrink-0 w-[calc(100vw-3.5rem)] sm:w-106.75" aria-label={`${index + 1} de ${slides.length}`} aria-roledescription="diapositiva">
+                    <li class="relative isolate flex items-center justify-center shrink-0 w-full sm:w-106.75" aria-label={`${index + 1} de ${slides.length}`} aria-roledescription="diapositiva">
                         <div class="isolate w-full h-125 lg:h-134.75 rounded-xl relative overflow-hidden group shadow-md">
                             <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent z-10 pointer-events-none transition-opacity duration-500 group-hover:from-black/95" />
                             <Image
@@ -31,7 +31,7 @@ const { slides } = Astro.props;
                                 height={800}
                                 fit="cover"
                                 widths={[320, 480, 640, 960]}
-                                sizes="(min-width: 640px) 427px, calc(100vw - 56px)"
+                                sizes="(min-width: 640px) 427px, calc(93vw - 32px)"
                                 format="avif"
                                 quality={55}
                                 class="relative z-0 w-full h-full object-cover transform transition-transform duration-200 group-hover:scale-110 motion-reduce:transform-none motion-reduce:transition-none"
@@ -55,6 +55,6 @@ const { slides } = Astro.props;
     <CarouselControls
         count={slides.length}
         carouselName="soluciones destacadas"
-        class="flex items-center justify-center mt-8 gap-2 bg-[#e7ecf6] rounded-full max-w-full w-fit px-2 py-1.5 mx-auto"
+        class="flex items-center justify-center mt-8 gap-2 bg-tertiary rounded-full max-w-full w-fit px-2 py-1.5 mx-auto"
     />
 </div>

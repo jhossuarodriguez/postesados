@@ -32,8 +32,7 @@ const { slides } = Astro.props;
                             class="relative isolate flex h-full w-full shrink-0 items-center justify-center"
                             aria-label={`${index + 1} de ${slides.length}`}
                             aria-roledescription="diapositiva"
-                            aria-hidden={index === 0 ? undefined : "true"}
-                            inert={index === 0 ? undefined : true}
+                            inert={index !== 0}
                         >
                             <div class="group relative isolate h-full w-full overflow-hidden rounded-xl">
                                 <div class="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/80 via-black/20 to-transparent" />

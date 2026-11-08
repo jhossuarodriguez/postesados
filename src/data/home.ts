@@ -1,6 +1,5 @@
 import type { ImageMetadata } from "astro";
 import imgTuberia from "@/assets/images/hero/instalacion-tuberia-rio.avif";
-import imgBackgroundCompany from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
 import imgTetrapodos from "@/assets/images/tetrapodos-rompeolas-san-pedro-macoris.avif";
 import imgPlantaTratamiento from "@/assets/images/projects/planta_de_tratamiento_de_agua_potable.avif";
 import imgVigaBulbT from "@/assets/images/projects/destacado_viga_pretensada_bulb_t_2.avif";
@@ -18,7 +17,7 @@ export interface HomeSlide {
     title?: string;
 }
 
-export interface Innovation {
+export interface ServiceHighlight {
     id: string;
     title: string;
     description: string;
@@ -30,22 +29,20 @@ export interface Innovation {
 export interface CompanyLink {
     href: string;
     label: string;
-    title: string;
-    color: "accent-orange" | "accent-red" | "primary";
 }
 
 export const heroSlides: HomeSlide[] = [
     {
         src: imgPlantaTratamiento,
         alt: "Ingenieros supervisando tanques de concreto en una planta de tratamiento hídrico.",
-        category: "Prefabricado de hormigon armado",
+        category: "Prefabricado de hormigón armado",
         title: "Planta de tratamiento de agua potable (PTAP)",
     },
     {
         src: imgTuberia,
         alt: "Vista aérea de la instalación de una gran tubería verde sobre una estructura metálica que cruza un río, con maquinaria de construcción y trabajadores",
         category: "Prefabricados",
-        title: "Puente sobre rio cachon",
+        title: "Puente sobre el río Cachón",
     },
     {
         src: imgVigaBulbT,
@@ -89,7 +86,7 @@ export const serviceSlides: HomeSlide[] = [
     },
 ];
 
-export const innovations: Innovation[] = [
+export const serviceHighlights: ServiceHighlight[] = [
     {
         id: "01",
         title: "Hormigón pretensado",
@@ -125,17 +122,16 @@ export const innovations: Innovation[] = [
 ];
 
 export const specialtiesImage = imgTuberia;
-export const companyImage = imgBackgroundCompany;
 
 export const specialties = [
     "Hormigón pretensado",
-    "Hormigon postensado",
-    "Hormigon armado",
+    "Hormigón postensado",
+    "Hormigón armado",
     "Tecnología de tensado",
 ];
 
 export const companyLinks: CompanyLink[] = [
-    { href: "https://tenaxconstruction.com.do/", label: "Tenax Construction", title: "Ir a Tenax Construction", color: "accent-orange" },
-    { href: "https://drdrilling.com.do/", label: "Dr. Drilling", title: "Ir a Dr. Drilling", color: "accent-red" },
-    { href: "/grupo-empresarial", label: "Conocer más", title: "Ir a Conocer más", color: "primary" },
+    { href: "https://tenaxconstruction.com.do/", label: "Tenax Construction" },
+    { href: "https://drdrilling.com.do/", label: "Dr. Drilling" },
+    { href: "/grupo-empresarial", label: "Conocer más" },
 ];

@@ -9,12 +9,10 @@ interface Props {
     showArrows?: boolean;
 }
 
-const {
-    count,
-    carouselName,
-    class: className,
-    showArrows = true,
-} = Astro.props;
+const { count, carouselName, class: className, showArrows = true } = Astro.props;
+
+const arrowClass =
+    "size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer [&[hidden]]:hidden";
 ---
 
 <div class={className} data-carousel-controls={carouselName}>
@@ -23,7 +21,7 @@ const {
             <button
                 type="button"
                 aria-label={`Mostrar elemento anterior de ${carouselName}`}
-                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer [&[hidden]]:hidden"
+                class={arrowClass}
                 data-carousel-prev
             >
                 <PrevButton aria-hidden="true" />
@@ -31,7 +29,7 @@ const {
         )
     }
 
-    <div class="flex overflow-x-auto max-w-[calc(100vw-8rem)] md:max-w-none" aria-label={`Paginación de ${carouselName}`}>
+    <div class="flex overflow-x-auto max-w-[calc(100vw-8rem)] md:max-w-none" role="group" aria-label={`Paginación de ${carouselName}`}>
         {
             Array.from({ length: count }, (_, index) => (
                 <button
@@ -40,9 +38,8 @@ const {
                     aria-current={index === 0 ? "true" : undefined}
                     class="size-12 shrink-0 inline-flex items-center justify-center rounded-full [&[hidden]]:hidden"
                     data-carousel-dot
-                    data-slide={index}
                 >
-                    <span class={`size-3 ${index === 0 ? "bg-primary" : "bg-gray-300"} rounded-full transition-opacity duration-200`} />
+                    <span class={`size-3 rounded-full transition-opacity duration-200 ${index === 0 ? "bg-primary" : "bg-gray-300"}`} />
                 </button>
             ))
         }
@@ -53,7 +50,7 @@ const {
             <button
                 type="button"
                 aria-label={`Mostrar elemento siguiente de ${carouselName}`}
-                class="size-12 shrink-0 inline-flex items-center justify-center bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg transition-all duration-200 cursor-pointer [&[hidden]]:hidden"
+                class={arrowClass}
                 data-carousel-next
             >
                 <NextButton aria-hidden="true" />
@@ -66,137 +63,83 @@ const {
     </p>
 </div>
 
-
 <script>
-    const carouselCleanups = new Map<HTMLElement, () => void>();
+    function setupCarousel(carousel: HTMLElement) {
+        const viewport = carousel.querySelector<HTMLElement>("[data-carousel-viewport]");
+        const track = carousel.querySelector<HTMLElement>("[data-carousel-track]");
+        if (!viewport || !track) return;
 
-    const initializeCarousels = () => {
-        document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((carousel) => {
-            if (carouselCleanups.has(carousel)) return;
+        const slides = Array.from(track.children) as HTMLElement[];
+        const dots = Array.from(carousel.querySelectorAll<HTMLElement>("[data-carousel-dot]"));
+        const prevButton = carousel.querySelector<HTMLElement>("[data-carousel-prev]");
+        const nextButton = carousel.querySelector<HTMLElement>("[data-carousel-next]");
+        const status = carousel.querySelector<HTMLElement>("[data-carousel-status]");
+        const name = carousel.querySelector<HTMLElement>("[data-carousel-controls]")?.dataset.carouselControls;
+        // En el hero solo se ve un slide a la vez; los ocultos no deben recibir foco.
+        const oneSlideAtATime = carousel.hasAttribute("data-carousel-single-slide");
+        let current = 0;
 
-            const viewport = carousel.querySelector<HTMLElement>("[data-carousel-viewport]");
-            const track = carousel.querySelector<HTMLElement>("[data-carousel-track]");
-            const slides = Array.from(track?.children ?? []) as HTMLElement[];
-            const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]"));
-            const previous = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]");
-            const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
-            const status = carousel.querySelector<HTMLElement>("[data-carousel-status]");
-            const carouselName = carousel.querySelector<HTMLElement>("[data-carousel-controls]")?.dataset.carouselControls ?? "carrusel";
-            const controller = new AbortController();
-            let activeIndex = 0;
-            let availableIndices: number[] = [];
+        // Cuánto se puede mover la lista sin dejar espacio vacío al final.
+        const maxOffset = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+        const offsetOf = (index: number) =>
+            Math.min(slides[index].offsetLeft - slides[0].offsetLeft, maxOffset());
 
-            if (!track || slides.length === 0) return;
+        // Cuando se ven varios slides, los últimos no se pueden "centrar":
+        // el último índice útil es el primero que ya llega al final.
+        const lastIndex = () => {
+            const index = slides.findIndex((_, i) => offsetOf(i) >= maxOffset());
+            return index === -1 ? slides.length - 1 : index;
+        };
 
-            carousel.dataset.carouselInitialized = "true";
+        function show(index: number, announce = true) {
+            current = index;
+            track!.style.transform = `translateX(-${offsetOf(index)}px)`;
 
-            const getSlideOffset = (index: number) => {
-                const desiredOffset = slides[index].offsetLeft - slides[0].offsetLeft;
-                const maxOffset = Math.max(0, track.scrollWidth - (viewport?.clientWidth ?? track.clientWidth));
-                return Math.min(desiredOffset, maxOffset);
-            };
-
-            const updateAvailableIndices = () => {
-                const offsets: number[] = [];
-                const focusedDotIndex = dots.findIndex((dot) => dot === document.activeElement);
-                availableIndices = slides.reduce<number[]>((indices, _, index) => {
-                    const offset = getSlideOffset(index);
-                    if (offsets.some((existingOffset) => Math.abs(existingOffset - offset) < 1)) return indices;
-                    offsets.push(offset);
-                    indices.push(index);
-                    return indices;
-                }, []);
-
-                dots.forEach((dot, index) => {
-                    dot.hidden = !availableIndices.includes(index);
-                });
-                if (previous) previous.hidden = availableIndices.length < 2;
-                if (next) next.hidden = availableIndices.length < 2;
-
-                if (focusedDotIndex >= 0 && dots[focusedDotIndex].hidden) {
-                    const replacementIndex = availableIndices.reduce((closest, index) =>
-                        Math.abs(index - focusedDotIndex) < Math.abs(closest - focusedDotIndex) ? index : closest,
-                    );
-                    dots[replacementIndex]?.focus();
-                }
-            };
-
-            const showSlide = (index: number, announce = false) => {
-                activeIndex = Math.max(0, Math.min(index, slides.length - 1));
-                track.style.transform = `translateX(-${getSlideOffset(activeIndex)}px)`;
-
-                dots.forEach((dot, dotIndex) => {
-                    const isActive = dotIndex === activeIndex;
-                    dot.setAttribute("aria-current", isActive ? "true" : "false");
-                    dot.querySelector("span")?.classList.toggle("bg-primary", isActive);
-                    dot.querySelector("span")?.classList.toggle("bg-gray-300", !isActive);
-                });
-
-                if (carousel.hasAttribute("data-carousel-single-slide")) {
-                    slides.forEach((slide, slideIndex) => {
-                        const isActive = slideIndex === activeIndex;
-                        slide.toggleAttribute("inert", !isActive);
-                        if (isActive) slide.removeAttribute("aria-hidden");
-                        else slide.setAttribute("aria-hidden", "true");
-                    });
-                }
-
-                if (announce && status) {
-                    status.textContent = `Elemento ${activeIndex + 1} de ${slides.length} de ${carouselName}`;
-                }
-            };
-
-            const navigate = (index: number) => {
-                showSlide(index, true);
-            };
-
-            const navigateBy = (direction: -1 | 1) => {
-                const currentPosition = Math.max(0, availableIndices.indexOf(activeIndex));
-                const nextPosition = (currentPosition + direction + availableIndices.length) % availableIndices.length;
-                navigate(availableIndices[nextPosition]);
-            };
-
-            previous?.addEventListener("click", () => navigateBy(-1), { signal: controller.signal });
-            next?.addEventListener("click", () => navigateBy(1), { signal: controller.signal });
-            dots.forEach((dot, index) =>
-                dot.addEventListener("click", () => navigate(index), { signal: controller.signal }),
-            );
-            carousel.addEventListener(
-                "keydown",
-                (event) => {
-                    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-                    event.preventDefault();
-                    navigateBy(event.key === "ArrowRight" ? 1 : -1);
-                },
-                { signal: controller.signal },
-            );
-            window.addEventListener(
-                "resize",
-                () => {
-                    updateAvailableIndices();
-                    if (!availableIndices.includes(activeIndex)) {
-                        activeIndex = availableIndices.at(-1) ?? 0;
-                    }
-                    showSlide(activeIndex);
-                },
-                { signal: controller.signal },
-            );
-            carouselCleanups.set(carousel, () => {
-                controller.abort();
-                delete carousel.dataset.carouselInitialized;
-                carouselCleanups.delete(carousel);
+            const last = lastIndex();
+            dots.forEach((dot, i) => {
+                dot.hidden = i > last;
+                dot.setAttribute("aria-current", String(i === index));
+                dot.querySelector("span")?.classList.toggle("bg-primary", i === index);
+                dot.querySelector("span")?.classList.toggle("bg-gray-300", i !== index);
             });
+            if (prevButton) prevButton.hidden = last === 0;
+            if (nextButton) nextButton.hidden = last === 0;
 
-            updateAvailableIndices();
-            showSlide(availableIndices[0] ?? 0);
+            if (oneSlideAtATime) {
+                slides.forEach((slide, i) => {
+                    slide.inert = i !== index;
+                });
+            }
+
+            if (announce && status) {
+                status.textContent = `Elemento ${index + 1} de ${slides.length} de ${name}`;
+            }
+        }
+
+        function move(step: number) {
+            const last = lastIndex();
+            let next = current + step;
+            if (next > last) next = 0;
+            if (next < 0) next = last;
+            show(next);
+        }
+
+        prevButton?.addEventListener("click", () => move(-1));
+        nextButton?.addEventListener("click", () => move(1));
+        dots.forEach((dot, i) => dot.addEventListener("click", () => show(i)));
+
+        carousel.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") move(-1);
+            else if (event.key === "ArrowRight") move(1);
+            else return;
+            event.preventDefault();
         });
-    };
 
-    const destroyCarousels = () => {
-        Array.from(carouselCleanups.values()).forEach((cleanup) => cleanup());
-    };
+        // Al cambiar el tamaño, recalcula posiciones sin pasarse del último slide.
+        new ResizeObserver(() => show(Math.min(current, lastIndex()), false)).observe(viewport);
+    }
 
-    initializeCarousels();
-    document.addEventListener("astro:page-load", initializeCarousels);
-    document.addEventListener("astro:before-swap", destroyCarousels);
+    document.addEventListener("astro:page-load", () => {
+        document.querySelectorAll<HTMLElement>("[data-carousel]").forEach(setupCarousel);
+    });
 </script>
