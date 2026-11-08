@@ -1,3 +1,8 @@
 allowBuilds:
   esbuild: true
   sharp: true
+overrides:
+  # astro2tsx (de @astrojs/check) mezclaba @emnapi/core 1.x con @emnapi/runtime 2.0 beta y `astro check` fallaba.
+  # Core y runtime deben ir en la misma versión. Quitar cuando @astrojs/check traiga versiones compatibles.
+  "@emnapi/core": "1.11.3"
+  "@emnapi/runtime": "1.11.3"
