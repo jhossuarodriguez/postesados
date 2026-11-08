@@ -1,0 +1,20 @@
+---
+// Mismo ancho que el header, para que todas las secciones queden alineadas.
+interface Props {
+    as?: "div" | "section" | "header";
+    class?: string;
+    id?: string;
+}
+
+const { as: Tag = "div", class: className, ...props } = Astro.props;
+---
+
+<Tag
+    class:list={[
+        "mx-auto w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 px-4",
+        className,
+    ]}
+    {...props}
+>
+    <slot />
+</Tag>

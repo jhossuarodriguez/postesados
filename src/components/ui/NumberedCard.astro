@@ -1,33 +1,33 @@
 ---
+export type NumberedCardAccent = "primary" | "black" | "orange" | "blue";
+
 interface Props {
     title: string;
     description: string;
     number: string;
-    class?: string;
-    titleClass?: string;
-    descriptionClass?: string;
-    numberClass?: string;
+    accent?: NumberedCardAccent;
 }
 
-const {
-    title,
-    description,
-    number,
-    class: className = "bg-tertiary hover:bg-primary transition duration-300 rounded-2xl p-8 flex flex-col justify-between min-h-52 group/card",
-    titleClass = "text-xl font-bold mb-3 text-primary group-hover/card:text-white",
-    descriptionClass = "text-gray-600 leading-relaxed font-general-sans group-hover/card:text-white",
-    numberClass = "text-3xl font-bold text-primary mt-6 group-hover/card:text-white",
-} = Astro.props;
+const { title, description, number, accent = "primary" } = Astro.props;
+
+// Color de fondo de la tarjeta y del título/número al pasar el ratón.
+const accentClasses: Record<NumberedCardAccent, { card: string; highlight: string }> = {
+    primary: { card: "hover:bg-primary", highlight: "group-hover/card:text-white" },
+    black: { card: "hover:bg-black", highlight: "group-hover/card:text-yellow-400" },
+    orange: { card: "hover:bg-accent-orange", highlight: "group-hover/card:text-white" },
+    blue: { card: "hover:bg-accent-blue", highlight: "group-hover/card:text-white" },
+};
+const { card, highlight } = accentClasses[accent];
 ---
 
-<div class={className}>
+<div class:list={["group/card flex min-h-52 flex-col justify-between rounded-2xl bg-tertiary p-8 transition duration-300", card]}>
     <div>
-        <h3 class={titleClass}>
+        <h3 class:list={["mb-3 text-xl font-bold text-primary", highlight]}>
             {title}
         </h3>
-        <p class={descriptionClass}>
+        <p class="font-general-sans leading-relaxed text-gray-600 group-hover/card:text-white">
             {description}
         </p>
     </div>
-    <span class={numberClass}>{number}</span>
+    <span class:list={["mt-6 text-3xl font-bold text-primary", highlight]}>{number}</span>
 </div>

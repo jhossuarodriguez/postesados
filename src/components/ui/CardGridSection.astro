@@ -1,0 +1,28 @@
+---
+// Sección con fondo gris, título centrado y una grilla de tarjetas (las tarjetas van en el slot).
+import Container from "@/components/layout/Container.astro";
+
+interface Props {
+    title: string;
+    id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<section id={id} class="bg-tertiary w-full py-12 md:py-16 lg:py-20">
+    <Container>
+        <h2
+            class="text-3xl md:text-5xl 2xl:text-6xl font-bold tracking-tighter text-center mb-10 md:mb-14 text-primary"
+            data-reveal
+        >
+            {title}
+        </h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-4 md:gap-6 2xl:gap-8"
+            data-reveal-children
+        >
+            <slot />
+        </div>
+    </Container>
+</section>
