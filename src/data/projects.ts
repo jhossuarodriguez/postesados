@@ -1,18 +1,14 @@
 import type { ImageMetadata } from "astro";
 
-import imgArmadoPuente from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
-import imgPilar from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
-import imgSoldadura from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
+import imgEncofrado from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
+import imgAcueducto from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
+import imgMontaje from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
+import imgMixer from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
+import imgGrua from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
+import imgPuenteAerea from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 import imgConstruccionPuente from "@/assets/images/hero/construccion-puente.avif";
 import imgPlanta from "@/assets/images/hero/planta-de-tratamiento-de-agua.avif";
 import imgTuberia from "@/assets/images/hero/instalacion-tuberia-rio.avif";
-import imgEncofrado from "@/assets/images/service_section/puente-rio-cachon-encofrado-lateral.avif";
-import imgVaciado from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
-import imgMixer from "@/assets/images/service_section/mixer-vaciado-valvulas-azules.avif";
-import imgMontaje from "@/assets/images/service_section/montaje-losas-prefabricadas-camion.avif";
-import imgGrua from "@/assets/images/service_section/planta-tratamiento-ingenieros-gran-angular.avif";
-import imgAcueducto from "@/assets/images/service_section/acueducto-vista-aerea-rio.avif";
-import imgPuenteAerea from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 
 export interface Project {
     image: ImageMetadata;
@@ -26,7 +22,7 @@ export interface FeaturedProject extends Project {
 
 export const featuredProjects: FeaturedProject[] = [
     {
-        image: imgArmadoPuente,
+        image: imgEncofrado,
         category: "Puentes",
         title: "Puente Río Cachón — Armado Estructural",
         description: "Diseño y ejecución del armado estructural con sistema de postensado de alta resistencia."
@@ -51,12 +47,12 @@ export const projects: Project[] = [
         title: "Construcción de Puente — Vista General"
     },
     {
-        image: imgPilar,
+        image: imgAcueducto,
         category: "Cimentación",
         title: "Pilares con Tablestacas de Acero"
     },
     {
-        image: imgVaciado,
+        image: imgMixer,
         category: "Puentes",
         title: "Vaciado Nocturno — Puente Río Cachón"
     },
@@ -66,7 +62,7 @@ export const projects: Project[] = [
         title: "Vaciado con Mixer — Válvulas Industriales"
     },
     {
-        image: imgSoldadura,
+        image: imgMontaje,
         category: "Cimentación",
         title: "Soldadura de Pilotes de Acero"
     },
@@ -96,5 +92,3 @@ export const projects: Project[] = [
         title: "Puente Río Cachón — Vista Aérea"
     },
 ];
-
-export { imgPuenteAerea };

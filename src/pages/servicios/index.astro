@@ -33,26 +33,24 @@ const schema = {
     description="Diseño, fabricación y suministro de hormigón pretensado, postensado y armado, prefabricados, tensado e inyección de lechada."
     schema={schema}
 >
-    <section>
-        <InteriorHero
-            image={imgHormigonPostensado}
-            imageAlt="Estructura de hormigón postensado ejecutada por Postesados JHP"
-        >
-            <Fragment slot="title">Servicios</Fragment>
-            Diseñamos, fabricamos y suministramos soluciones de hormigón pretensado,
-            postensado y armado, desde elementos prefabricados hasta instalación,
-            tensado e inyección especializada.
-        </InteriorHero>
-        <ServiceStats />
-        <ServiceGrid />
-        <PhotoCta
-            image={imgPuente}
-            imageAlt="Vista aérea del puente Río Cachón"
-            label="● Conversemos"
-            title="Da el Siguiente Paso"
-            description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
-            href="/contact"
-            linkLabel="Contáctanos"
-        />
-    </section>
+    <InteriorHero
+        image={imgHormigonPostensado}
+        imageAlt="Estructura de hormigón postensado ejecutada por Postesados JHP"
+    >
+        <Fragment slot="title">Servicios</Fragment>
+        Diseñamos, fabricamos y suministramos soluciones de hormigón pretensado,
+        postensado y armado, desde elementos prefabricados hasta instalación,
+        tensado e inyección especializada.
+    </InteriorHero>
+    <ServiceStats />
+    <ServiceGrid />
+    <PhotoCta
+        image={imgPuente}
+        imageAlt="Vista aérea del puente Río Cachón"
+        label="● Conversemos"
+        title="Da el Siguiente Paso"
+        description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
+        href="/contact"
+        linkLabel="Contáctanos"
+    />
 </SiteLayout>

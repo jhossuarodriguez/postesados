@@ -12,25 +12,20 @@ import ImpactGrid from "@/components/sections/about/ImpactGrid.astro";
     title="Nosotros | Postesados JHP"
     description="Empresa especializada en diseño, fabricación y suministro de elementos prefabricados de hormigón armado y pretensado."
 >
-    <section>
-        <InteriorHero
-            image={imgBgBackground}
-            imageAlt="Fondo de la empresa"
-        >
-            <Fragment slot="title">Nosotros</Fragment>
-            Combinamos diseño, capacidad productiva y atención especializada para
-            desarrollar soluciones estructurales eficientes, seguras y duraderas.
-        </InteriorHero>
-        <CompanyGrid />
-        <ImpactGrid />
-        <PhotoCta
-            image={imgPuente}
-            imageAlt="Personas trabajando footer image"
-            label="● Conversemos"
-            title="Da el Siguiente Paso"
-            description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
-            href="/contact"
-            linkLabel="Contáctanos"
-        />
-    </section>
+    <InteriorHero image={imgBgBackground} imageAlt="">
+        <Fragment slot="title">Nosotros</Fragment>
+        Combinamos diseño, capacidad productiva y atención especializada para
+        desarrollar soluciones estructurales eficientes, seguras y duraderas.
+    </InteriorHero>
+    <CompanyGrid />
+    <ImpactGrid />
+    <PhotoCta
+        image={imgPuente}
+        imageAlt="Vista aérea del puente Río Cachón"
+        label="● Conversemos"
+        title="Da el Siguiente Paso"
+        description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
+        href="/contact"
+        linkLabel="Contáctanos"
+    />
 </SiteLayout>

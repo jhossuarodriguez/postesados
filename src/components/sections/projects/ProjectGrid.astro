@@ -1,11 +1,12 @@
 ---
+import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
 import { projects } from "@/data/projects";
 ---
 
-<div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 pb-16 md:pb-24">
+<Container class="pb-16 md:pb-24">
     <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-5 md:mx-0"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         data-reveal-children
     >
         {
@@ -35,4 +36,4 @@ import { projects } from "@/data/projects";
             ))
         }
     </div>
-</div>
+</Container>

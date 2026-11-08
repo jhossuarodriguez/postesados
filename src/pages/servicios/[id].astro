@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/layout/Container.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import InteriorHero from "@/components/sections/shared/InteriorHero.astro";
@@ -23,6 +24,7 @@ const schema = {
     areaServed: { "@type": "Country", name: "República Dominicana" },
     mainEntityOfPage: { "@id": new URL(`${path}#webpage`, Astro.site).href },
 };
+const relatedServices = services.filter((item) => service.related.includes(item.id));
 ---
 
 <SiteLayout
@@ -37,19 +39,19 @@ const schema = {
         <Fragment slot="title">{service.title}</Fragment>
         {service.description}
     </InteriorHero>
-    <div class="mx-auto grid max-w-350 gap-12 px-6 py-16 lg:grid-cols-[2fr_1fr] lg:gap-20 lg:py-24">
+    <Container class="grid gap-12 py-16 lg:grid-cols-[2fr_1fr] lg:gap-20 lg:py-24">
         <div class="space-y-12">
-            <section>
+            <section data-reveal-children>
                 <h2 class="text-3xl font-bold tracking-tight text-primary">Cómo funciona esta solución</h2>
                 <p class="mt-6 font-general-sans text-lg leading-relaxed text-gray-700">{service.overview}</p>
             </section>
-            <section>
+            <section data-reveal-children>
                 <h2 class="text-3xl font-bold tracking-tight text-primary">Aplicaciones</h2>
                 <ul class="mt-6 list-disc space-y-3 pl-5 font-general-sans text-lg text-gray-700">
                     {service.applications.map((application) => <li>{application}</li>)}
                 </ul>
             </section>
-            <section>
+            <section data-reveal-children>
                 <h2 class="text-3xl font-bold tracking-tight text-primary">Aspectos técnicos a evaluar</h2>
                 <ul class="mt-6 list-disc space-y-4 pl-5 font-general-sans text-lg text-gray-700">
                     {service.considerations.map((consideration) => <li>{consideration}</li>)}
@@ -58,19 +60,23 @@ const schema = {
             </section>
         </div>
         <aside class="space-y-8">
-            <section class="rounded-2xl bg-tertiary p-6 sm:p-8">
+            <section class="rounded-2xl bg-tertiary p-6 sm:p-8" data-reveal>
                 <h2 class="text-2xl font-bold text-primary">Consulta tu proyecto</h2>
                 <p class="mt-4 font-general-sans leading-relaxed text-gray-700">Comparte la ubicación, los planos disponibles y las necesidades de tu obra para evaluar la solución adecuada.</p>
                 <a href="/contact" class="mt-6 inline-flex min-h-12 items-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white hover:bg-secondary">Solicitar información</a>
             </section>
-            <nav aria-label="Servicios relacionados" class="px-2">
+            <nav aria-label="Servicios relacionados" class="px-2" data-reveal-children>
                 <h2 class="text-xl font-bold text-primary">Servicios relacionados</h2>
                 <ul class="mt-4 divide-y divide-primary/15">
-                    {services.filter((item) => service.related.includes(item.id)).map((item) => <li><a href={`/servicios/${item.id}`} class="flex min-h-12 items-center py-3 text-primary underline underline-offset-4">{item.title}</a></li>)}
+                    {relatedServices.map((item) => (
+                        <li>
+                            <a href={`/servicios/${item.id}`} class="flex min-h-12 items-center py-3 text-primary underline underline-offset-4">{item.title}</a>
+                        </li>
+                    ))}
                 </ul>
                 <a href="/tecnologia" class="mt-4 inline-flex min-h-12 items-center text-primary underline underline-offset-4">Tecnología y control de producción</a>
                 <a href="/proyectos" class="inline-flex min-h-12 items-center text-primary underline underline-offset-4">Ver proyectos y aplicaciones</a>
             </nav>
         </aside>
-    </div>
+    </Container>
 </SiteLayout>

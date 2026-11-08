@@ -1,13 +1,17 @@
+---
+import Container from "@/components/layout/Container.astro";
+---
+
 <div class="bg-primary relative min-h-120 w-full overflow-hidden pb-10 md:min-h-138 lg:pt-6">
-    <div
-        class="relative z-10 mx-auto pt-28 pb-0 md:max-w-335 md:px-5 md:pt-44 md:pb-18 lg:max-w-400 lg:px-5"
+    <Container
+        class="relative z-10 pt-28 pb-0 md:pt-44 md:pb-18"
     >
-        <div class="mt-16 flex w-full items-start px-6">
+        <div class="mt-16 flex w-full items-start" data-reveal-children>
             <h1
                 class="w-full text-4xl font-bold leading-normal tracking-tighter text-white sm:text-4xl md:text-8xl md:leading-20 lg:mt-10"
             >
                 Nuestros Proyectos
             </h1>
         </div>
-    </div>
+    </Container>
 </div>

@@ -1,11 +1,12 @@
 ---
+import Container from "@/components/layout/Container.astro";
 import { Image } from "astro:assets";
 import { featuredProjects } from "@/data/projects";
 ---
 
-<div class="md:max-w-335 lg:max-w-400 mx-auto md:px-5 lg:px-5 py-16 md:py-24">
+<Container class="py-16 md:py-24">
     <div
-        class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12 mx-5 md:mx-0"
+        class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12"
         data-reveal-children
     >
         <div class="flex-1">
@@ -30,7 +31,7 @@ import { featuredProjects } from "@/data/projects";
             </p>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-5 md:mx-0" data-reveal-children>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" data-reveal-children>
         {
             featuredProjects.map((project) => (
                 <div class="group/card relative overflow-hidden h-96 md:h-120">
@@ -61,4 +62,4 @@ import { featuredProjects } from "@/data/projects";
             ))
         }
     </div>
-</div>
+</Container>

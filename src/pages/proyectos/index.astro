@@ -2,7 +2,7 @@
 import SiteLayout from "@/layouts/SiteLayout.astro";
 import FeaturedProjectGrid from "@/components/sections/projects/FeaturedProjectGrid.astro";
 import PhotoCta from "@/components/sections/shared/PhotoCta.astro";
-import { imgPuenteAerea } from "@/data/projects";
+import imgPuente from "@/assets/images/service_section/puente-rio-cachon-vista-aerea-lateral.avif";
 import ProjectGrid from "@/components/sections/projects/ProjectGrid.astro";
 import ProjectHero from "@/components/sections/projects/ProjectHero.astro";
 ---
@@ -11,18 +11,16 @@ import ProjectHero from "@/components/sections/projects/ProjectHero.astro";
     title="Proyectos | Postesados JHP"
     description="Proyectos de infraestructura, puentes y edificaciones desarrollados con soluciones de hormigón armado, pretensado, postensado y prefabricado."
 >
-    <section>
-        <ProjectHero />
-        <FeaturedProjectGrid />
-        <ProjectGrid />
-        <PhotoCta
-            image={imgPuenteAerea}
-            imageAlt="Vista aérea del puente Río Cachón"
-            label="● Conversemos"
-            title="Da el Siguiente Paso"
-            description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
-            href="/contact"
-            linkLabel="Contáctenos"
-        />
-    </section>
+    <ProjectHero />
+    <FeaturedProjectGrid />
+    <ProjectGrid />
+    <PhotoCta
+        image={imgPuente}
+        imageAlt="Vista aérea del puente Río Cachón"
+        label="● Conversemos"
+        title="Da el Siguiente Paso"
+        description="Ya sea que requiera un diseño estructural optimizado o una ejecución precisa de postensado, estamos listos para reforzar su proyecto con eficiencia ingenieril."
+        href="/contact"
+        linkLabel="Contáctanos"
+    />
 </SiteLayout>
