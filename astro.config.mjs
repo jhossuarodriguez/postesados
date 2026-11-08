@@ -10,6 +10,8 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   trailingSlash: 'never',
+  // El CSS va dentro del HTML: evita una petición que bloquea el primer pintado (mejora el LCP).
+  build: { inlineStylesheets: 'always' },
   integrations: [sitemap({ filter: (page) => !page.includes('/404') })],
   vite: {
     // En los previews de Vercel las páginas llevan noindex.
