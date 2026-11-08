@@ -208,9 +208,12 @@ const structuredData = {
 
 <script>
 	import { destroyReveal, initializeReveal } from "@/lib/reveal";
+	import { destroyLazyVideos, initializeLazyVideos } from "@/lib/lazy-video";
 
 	document.addEventListener("astro:page-load", initializeReveal);
 	document.addEventListener("astro:before-swap", destroyReveal);
+	document.addEventListener("astro:page-load", initializeLazyVideos);
+	document.addEventListener("astro:before-swap", destroyLazyVideos);
 </script>
 
 <style>
