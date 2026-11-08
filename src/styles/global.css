@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import 'tailwind-animations';
 
 @font-face {
   font-display: swap;
@@ -48,6 +47,7 @@
   --color-dark: #030938;
   --color-accent-orange: #b64015;
   --color-accent-red: #c02b20;
+  --color-accent-blue: #016ebe;
 }
 
 :focus-visible {
@@ -80,19 +80,27 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 }
 
-.page-intro {
-  animation: page-intro 0.5s ease-out both;
-}
 
-@keyframes page-intro {
+/*
+ * Reveal al hacer scroll (ver src/lib/reveal.ts). Fuera de @layer para que gane a las
+ * utilidades de Tailwind mientras el elemento está oculto.
+ * Con @keyframes (y no transition) no pisa las transiciones propias del elemento ni hay que
+ * limpiar nada al terminar; solo anima transform/opacity, que el navegador mueve sin repintar.
+ */
+.js-reveal :is([data-reveal], [data-reveal-children] > *):not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+.js-reveal [data-revealed] {
+  animation: reveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes reveal {
   from {
-    transform: translateY(12px);
-  }
-
-  to {
-    transform: translateY(0);
+    opacity: 0;
+    transform: translateY(1rem);
   }
 }

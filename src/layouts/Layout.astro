@@ -171,6 +171,20 @@ const structuredData = {
 		/>
 		<ClientRouter />
 
+		<!-- Activa el reveal antes del primer pintado para que no parpadee el contenido.
+		     El ClientRouter reemplaza los atributos de <html> al navegar, así que se reaplica. -->
+		<script is:inline>
+			(() => {
+				const enableReveal = () => {
+					if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+						document.documentElement.classList.add("js-reveal");
+					}
+				};
+				enableReveal();
+				document.addEventListener("astro:after-swap", enableReveal);
+			})();
+		</script>
+
 		<script
 			is:inline
 			async
@@ -193,23 +207,10 @@ const structuredData = {
 </html>
 
 <script>
-	import {
-		destroyViewportVideos,
-		initializeViewportVideos,
-	} from "@/lib/viewport-videos";
-	import {
-		destroyScrollAnimations,
-		initializeScrollAnimations,
-	} from "@/lib/scroll-animations";
+	import { destroyReveal, initializeReveal } from "@/lib/reveal";
 
-	document.addEventListener("astro:page-load", () => {
-		initializeScrollAnimations();
-		initializeViewportVideos();
-	});
-	document.addEventListener("astro:before-swap", () => {
-		destroyScrollAnimations();
-		destroyViewportVideos();
-	});
+	document.addEventListener("astro:page-load", initializeReveal);
+	document.addEventListener("astro:before-swap", destroyReveal);
 </script>
 
 <style>
@@ -223,14 +224,5 @@ const structuredData = {
 		width: 100%;
 		font-family: "Montserrat", sans-serif;
 		overflow-x: clip;
-	}
-
-	html.lenis,
-	html.lenis body {
-		height: auto;
-	}
-
-	.lenis.lenis-smooth {
-		scroll-behavior: auto;
 	}
 </style>

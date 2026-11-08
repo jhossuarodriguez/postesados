@@ -1,4 +1,5 @@
 ---
+import Container from "@/components/layout/Container.astro";
 import MoveRight from "@/assets/icons/MoveRight.svg";
 import { getImage } from "astro:assets";
 import aboutPhoto from "@/assets/images/projects/nave_industrial_prefabricada.avif";
@@ -13,7 +14,7 @@ const poster = await getImage({
 ---
 
 <section class="w-full py-10">
-    <div class="relative w-full overflow-hidden" data-video-container>
+    <div class="relative w-full overflow-hidden">
         <div class="absolute inset-0 bg-secondary opacity-80 z-10"></div>
 
         <img
@@ -26,26 +27,22 @@ const poster = await getImage({
             alt=""
             loading="lazy"
             decoding="async"
-            data-video-fallback
         />
         <video
-            id="home-about-video"
-            class="absolute inset-0 size-full object-cover"
-            preload="none"
+            class="absolute inset-0 size-full object-cover motion-reduce:hidden"
+            autoplay
             muted
             loop
             playsinline
-            hidden
             aria-hidden="true"
-            data-viewport-video
         >
-            <source data-video-src="/new/nave_industrial_con_viga_doble_t.webm" type="video/webm" />
+            <source src="/new/nave_industrial_con_viga_doble_t.webm" type="video/webm" />
         </video>
 
-        <div
-            class="relative z-20 min-h-150 lg:min-h-screen flex flex-col justify-center items-center text-center px-4 py-20 md:px-8 2xl:pt-20"
+        <Container
+            class="relative z-20 min-h-150 lg:min-h-screen flex flex-col justify-center items-center text-center py-20 2xl:pt-20"
         >
-            <div class="flex flex-col items-center" data-reveal="up">
+            <div class="flex flex-col items-center" data-reveal-children>
                 <p
                     class="mb-10 text-white text-3xl max-w-5xl md:text-5xl lg:max-w-6xl lg:text-6xl font-medium text-balance drop-shadow-md"
                 >
@@ -55,20 +52,13 @@ const poster = await getImage({
                 <a
                     href="/contact"
                     class="text-sm lg:text-base inline-flex min-h-12 items-center bg-white text-secondary font-medium px-4 py-2 lg:px-4 lg:py-2 rounded-full hover:bg-gray-100 transition shadow-lg group"
-                    >Contactanos
+                    >Contáctanos
                     <MoveRight
                         aria-hidden="true"
                         class="inline-block ml-2 group-hover:translate-x-1 duration-75"
                     />
                 </a>
             </div>
-        </div>
-        <button
-            type="button"
-            class="absolute bottom-4 right-4 z-30 inline-flex min-h-12 items-center rounded-full border border-white/40 bg-black/70 px-4 py-2 text-sm font-medium text-white hover:bg-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white [&[hidden]]:hidden"
-            aria-controls="home-about-video"
-            data-video-toggle
-            hidden
-        >Reproducir video</button>
+        </Container>
     </div>
 </section>
