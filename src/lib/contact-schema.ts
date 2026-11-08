@@ -27,7 +27,7 @@ export const contactSchema = z.object({
         .min(1, "Introduce un teléfono.")
         .max(25, "El teléfono es demasiado largo.")
         .regex(/^\+?[\d\s().-]*$/, "Utiliza solo números, espacios, +, paréntesis o guiones.")
-        .refine((v) => /^\d{7,15}$/.test(v.replace(/\D/g, "")), "El teléfono debe tener entre 7 y 15 dígitos."),
+        .refine((phone) => /^\d{7,15}$/.test(phone.replace(/\D/g, "")), "El teléfono debe tener entre 7 y 15 dígitos."),
     mensaje: z.string("Escribe un mensaje de al menos 10 caracteres.")
         .trim()
         .min(10, "El mensaje debe tener al menos 10 caracteres.")
