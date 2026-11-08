@@ -50,9 +50,9 @@ aplicaciones, consideraciones tecnicas y enlaces relacionados. Revisar cualquier
 nueva afirmacion tecnica o comercial con la empresa antes de publicarla.
 
 El formulario de contacto usa validacion HTML en el navegador y envia los datos a
-`actions.send` con `accept: "form"`. La action valida con el esquema de
+`actions.sendContactMessage` con `accept: "form"`. La action valida con el esquema de
 `src/lib/contact-schema.ts`, que importa Zod desde `astro/zod`, verifica Cloudflare
-Turnstile y envia la consulta y su confirmacion mediante Resend. Los errores de
+Turnstile y envia la consulta mediante Resend (sin correo de confirmacion al remitente). Los errores de
 validacion del servidor se muestran junto a cada campo con `isInputError()`.
 
 Configurar `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` y `RESEND_API_KEY` en el
@@ -67,9 +67,8 @@ sin framework de UI. Motion gestiona reveals; Lenis se descarga en idle solo con
 puntero preciso y sin reduced motion. Los videos decorativos no se descargan en
 movil, con ahorro de datos o reduced motion. Los carruseles son manuales.
 
-Las fotos del grupo empresarial alojadas en sus dominios se optimizan en build
-y se sirven desde este sitio; un build sin cache necesita acceso a esos dos
-origenes autorizados.
+Todas las imagenes, incluidas las de las empresas del grupo, estan en
+`src/assets`; el build no descarga nada de otros sitios.
 
 Las puntuaciones Lighthouse locales son mediciones de laboratorio, no una
 garantia de posicionamiento. Tras publicar, verificar status/headers, canonical,
