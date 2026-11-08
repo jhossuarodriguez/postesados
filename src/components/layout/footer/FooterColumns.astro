@@ -12,17 +12,12 @@ const { columns } = Astro.props;
     {
         columns.map((column) => (
             <div class="flex flex-col gap-2">
-                <h3
-                    aria-label={column.label}
-                    class="font-bold text-xs uppercase tracking-wider mb-1 text-white/60"
-                >
+                <h3 class="font-bold text-xs uppercase tracking-wider mb-1 text-white/60">
                     {column.label}
                 </h3>
                 {column.links.map((link) => (
                     <a
                         href={link.href}
-                        aria-label={link.ariaLabel}
-                        title={link.title}
                         class="inline-flex items-center hover:underline underline-offset-4 decoration-white/50 text-sm leading-6"
                     >
                         {link.label}

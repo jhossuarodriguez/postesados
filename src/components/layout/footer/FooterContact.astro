@@ -2,72 +2,51 @@
 import { Image } from "astro:assets";
 import Instagram from "@/assets/icons/social-media/instagram.svg";
 import LinkedIn from "@/assets/icons/social-media/linkedIn.svg";
-import type { FooterContact, FooterSocialLink } from "@/data/footer";
 import logoPostesados from "@/assets/images/branding/logo-postesados.webp";
+import { companyContact as contact } from "@/data/company";
+import { footerSocialLinks as socialLinks } from "@/data/footer";
 
-interface Props {
-    contact: FooterContact;
-    socialLinks: FooterSocialLink[];
-}
-
-const { contact, socialLinks } = Astro.props;
+const linkClass = "inline-flex items-center leading-6 hover:text-white transition-colors";
 ---
 
 <div class="lg:col-span-4 flex flex-col justify-between h-full">
     <div class="space-y-4">
-        <div class="flex items-center gap-2">
-            <div class="text-2xl font-bold tracking-tighter uppercase italic">
-                <Image
-                    src={logoPostesados}
-                    alt="Postesados Logo"
-                    width={Math.round(80 * logoPostesados.width / logoPostesados.height)}
-                    height={80}
-                    densities={[1, 2]}
-                    format="webp"
-                    class="h-20 w-auto"
-                    loading="lazy"
-                    decoding="async"
-                />
-                Postesados JHP
-            </div>
+        <div class="flex items-center gap-2 text-2xl font-bold tracking-tighter uppercase italic">
+            <Image
+                src={logoPostesados}
+                alt=""
+                width={Math.round((80 * logoPostesados.width) / logoPostesados.height)}
+                height={80}
+                densities={[1, 2]}
+                format="webp"
+                class="h-20 w-auto"
+                loading="lazy"
+                decoding="async"
+            />
+            Postesados JHP
         </div>
 
         <div class="text-gray-300 text-sm space-y-1">
-            <p
-                class="font-bold text-white mb-2 uppercase tracking-wider text-xs"
-            >
+            <p class="font-bold text-white mb-2 uppercase tracking-wider text-xs">
                 {contact.heading}
             </p>
             <a
-                class={contact.address.className}
                 href={contact.address.href}
-                rel={contact.address.rel}
-                target={contact.address.target}
-                aria-label={contact.address.ariaLabel}
-                title={contact.address.title}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`${linkClass} underline decoration-white/30 underline-offset-4`}
             >
                 {contact.address.label}
             </a>
             <div class="pt-2">
-                {
-                    contact.phones.map((phone) => (
-                        <a
-                            href={phone.href}
-                            aria-label={phone.ariaLabel}
-                            title={phone.title}
-                            class={phone.className}
-                        >
-                            {phone.label}
-                        </a>
-                    ))
-                }
+                {contact.phones.map((phone) => (
+                    <a href={phone.href} class={`${linkClass} flex`}>{phone.label}</a>
+                ))}
             </div>
             <div class="pt-1">
                 <a
                     href={contact.email.href}
-                    aria-label={contact.email.ariaLabel}
-                    title={contact.email.title}
-                    class={contact.email.className}
+                    class={`${linkClass} underline decoration-white/30 underline-offset-4`}
                 >
                     {contact.email.label}
                 </a>
@@ -80,17 +59,12 @@ const { contact, socialLinks } = Astro.props;
             socialLinks.map((link) => (
                 <a
                     href={link.href}
-                    rel={link.rel}
-                    target={link.target}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
                     class="size-10 inline-flex items-center justify-center border border-white/20 rounded-full hover:bg-white hover:text-secondary transition-all"
-                    aria-label={link.ariaLabel}
-                    title={link.title}
                 >
-                    {link.platform === "instagram" ? (
-                        <Instagram aria-hidden="true" />
-                    ) : (
-                        <LinkedIn aria-hidden="true" />
-                    )}
+                    {link.platform === "instagram" ? <Instagram aria-hidden="true" /> : <LinkedIn aria-hidden="true" />}
                 </a>
             ))
         }

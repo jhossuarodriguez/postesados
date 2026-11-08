@@ -1,67 +1,57 @@
 ---
 import { Image } from "astro:assets";
-
 import MoveRight from "@/assets/icons/MoveRight.svg";
-import { dropdownPanels, dropdownTabs } from "@/data/navigation";
+import { dropdownPanels } from "@/data/navigation";
 ---
 
-<!-- Desktop Dropdown Menu -->
 <nav
     class="fixed top-24 left-1/2 -translate-x-1/2 w-[93%] md:w-[94%] md:max-w-335 lg:max-w-400 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain bg-secondary rounded-xl shadow-xl z-40 transform -translate-y-8 opacity-0 invisible transition-[opacity,translate] duration-300 ease-out hidden lg:block"
-    id="menu-dropdownn"
+    id="desktop-menu"
     aria-label="Menú principal"
-    data-lenis-prevent
     inert
 >
-    <div class="nav-container px-8 py-8 mt-8">
-        <!-- Tabs -->
-        <ul
-            class="flex items-center gap-0 relative list-none p-0 mb-6 border-b border-white/15"
+    <div class="px-8 py-8 mt-8">
+        <div
+            class="flex items-center relative mb-6 border-b border-white/15"
             role="tablist"
-            aria-label="Navegación de secciones"
+            aria-label="Secciones del menú"
         >
             {
-                dropdownTabs.map((tab, index) => (
-                    <li role="presentation">
-                        <button
-                            id={tab.id}
-                            type="button"
-                            class={`tab bg-transparent border-none text-white/80 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white${index === 0 ? " active" : ""}`}
-                            role="tab"
-                            tabindex={index === 0 ? 0 : -1}
-                            aria-selected={index === 0 ? "true" : "false"}
-                            aria-controls={tab.panelId}
-                        >
-                            <span class="tab-label">{tab.label}</span>
-                        </button>
-                    </li>
+                dropdownPanels.map((panel, index) => (
+                    <button
+                        id={`menu-tab-${index}`}
+                        type="button"
+                        role="tab"
+                        class={`tab text-white/80 text-lg font-general-sans py-3 px-5 cursor-pointer transition-colors duration-200 whitespace-nowrap hover:text-white ${index === 0 ? "active" : ""}`}
+                        tabindex={index === 0 ? 0 : -1}
+                        aria-selected={index === 0 ? "true" : "false"}
+                        aria-controls={`menu-panel-${index}`}
+                    >
+                        {panel.tab}
+                    </button>
                 ))
             }
-            <li
+            <span
                 class="active-bar absolute -bottom-px left-0 h-0.5 bg-white rounded-sm transition-[width,transform] duration-300 ease-in-out"
-                role="presentation"
                 aria-hidden="true"
-            >
-            </li>
-        </ul>
+            ></span>
+        </div>
 
         {
             dropdownPanels.map((panel, index) => (
                 <div
                     class="nav-panel flex justify-between w-full"
-                    id={panel.id}
+                    id={`menu-panel-${index}`}
                     role="tabpanel"
-                    aria-labelledby={panel.tabId}
-                    hidden={index === 0 ? undefined : true}
+                    aria-labelledby={`menu-tab-${index}`}
+                    hidden={index !== 0}
                 >
-                    <ul class={panel.listClass}>
+                    <ul class={panel.twoColumns ? "grid grid-cols-2 gap-x-12 content-start max-w-6xl" : "content-start"}>
                         {panel.links.map((link) => (
                             <li>
                                 <a
                                     href={link.href}
-                                    class={link.class}
-                                    title={link.title}
-                                    aria-label={link.title}
+                                    class="group/section flex items-center justify-between gap-4 py-4 px-3 border-b border-white/8 rounded-lg transition-colors duration-200 hover:bg-quaternary/50 text-white/80 hover:text-white"
                                 >
                                     <div class="flex-1 min-w-0">
                                         <p class="text-white text-base font-semibold leading-[1.3]">
@@ -72,7 +62,7 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                                         </p>
                                     </div>
                                     <div class="flex items-center justify-center border border-white rounded-[10px] p-1 group-hover/section:bg-white">
-                                        <MoveRight class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75" />
+                                        <MoveRight aria-hidden="true" class="size-5 group-hover/section:text-secondary group-hover/section:translate-x-1 duration-75" />
                                     </div>
                                 </a>
                             </li>
@@ -90,25 +80,21 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
                             loading="lazy"
                         />
                         <div class="inset-0 absolute bg-black/10 rounded-2xl"></div>
-                        <div class="absolute inset-0">
-                            <div class="w-full h-full flex flex-col gap-x-20 space-y-3 lg:space-y-0 pt-10 pl-6 pb-6">
-                                <span class="text-white/80 font-bold text-base">
-                                    {panel.overviewLabel}
-                                </span>
-                                <p class="text-white font-bold text-7xl tracking-tighter w-full">
-                                    Abarcando <br /> el Futuro.
-                                </p>
-                                <div class="mb-5 flex mt-auto">
-                                    <a
-                                        href={panel.ctaHref}
-                                        class="flex min-h-12 items-center gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1 group"
-                                        title={panel.ctaTitle}
-                                        aria-label={panel.ctaTitle}
-                                    >
-                                        Ver mas
-                                        <MoveRight class="lg:inline-block ml-2 hidden group-hover:translate-x-1 duration-100" />
-                                    </a>
-                                </div>
+                        <div class="absolute inset-0 flex flex-col pt-10 pl-6 pb-6">
+                            <span class="text-white/80 font-bold text-base">
+                                {panel.overviewLabel}
+                            </span>
+                            <p class="text-white font-bold text-7xl tracking-tighter">
+                                Abarcando <br /> el Futuro.
+                            </p>
+                            <div class="mb-5 mt-auto">
+                                <a
+                                    href={panel.ctaHref}
+                                    class="group inline-flex min-h-12 items-center gap-2 text-white font-bold text-sm rounded-full opacity-80 hover:opacity-100 border border-white/80 px-3 py-1"
+                                >
+                                    Ver más
+                                    <MoveRight aria-hidden="true" class="ml-2 group-hover:translate-x-1 duration-100" />
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -122,11 +108,10 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
     class="fixed inset-0 backdrop-blur-sm z-30 opacity-0 invisible transition-all duration-300 hidden lg:block"
     id="desktop-overlay"
     aria-hidden="true"
->
-</div>
+></div>
 
 <style>
-    :global([data-desktop-open]) #menu-dropdownn {
+    :global([data-desktop-open]) #desktop-menu {
         translate: -50% -1rem;
         opacity: 1;
         visibility: visible;
@@ -142,6 +127,6 @@ import { dropdownPanels, dropdownTabs } from "@/data/navigation";
     }
 
     .tab.active {
-        color: #ffffff;
+        color: white;
     }
 </style>
