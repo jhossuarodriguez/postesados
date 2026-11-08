@@ -43,8 +43,8 @@ const poster = await getImage({
     </video>
     <div class="absolute inset-0 -z-10 bg-black/70"></div>
 
+    {/* Sin reveal: el título es el LCP y no debe esperar al JS para verse. */}
     <Container
-        data-reveal-children
         class="flex flex-col items-center gap-10 pb-10 pt-40 md:min-h-screen md:justify-center md:gap-12 md:pb-12 md:pt-32 lg:flex-row lg:gap-16 lg:py-28 xl:gap-20"
     >
         <header
