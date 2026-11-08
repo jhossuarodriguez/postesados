@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/layout/Container.astro";
+import imgNaveIndustrial from "@/assets/images/projects/nave_industrial_prefabricada.avif";
+---
+
+<section class="relative isolate min-h-150 overflow-hidden bg-dark mt-2 lg:mt-6">
+    <Image
+        src={imgNaveIndustrial}
+        alt="Estructura industrial desarrollada con soluciones integrales de ingeniería"
+        class="absolute inset-0 -z-20 size-full object-cover"
+        fetchpriority="high"
+        loading="eager"
+        width={1600}
+        widths={[480, 768, 1280, 1600, 1920]}
+        sizes="100vw"
+        format="avif"
+    />
+    <div class="absolute inset-0 -z-10 bg-black/40"></div>
+    <Container data-reveal-children class="flex min-h-150 flex-col justify-end pb-16 pt-36 md:pb-20">
+        <h1 class="max-w-5xl text-5xl font-bold leading-[0.95] tracking-tighter text-white md:text-7xl lg:text-8xl">
+            Capacidades que se integran para construir mejor.
+        </h1>
+        <p class="mt-8 max-w-2xl font-general-sans text-base leading-relaxed text-white/75 md:text-xl">
+            Especialidades complementarias en geotecnia, construcción civil,
+            prefabricación y hormigón presforzado para responder a cada etapa
+            del proyecto.
+        </p>
+    </Container>
+</section>

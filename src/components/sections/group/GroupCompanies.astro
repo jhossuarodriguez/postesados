@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import Container from "@/components/layout/Container.astro";
+import MoveRight from "@/assets/icons/MoveRight.svg";
+import { groupCompanies, type GroupCompany } from "@/data/group";
+
+const accentClasses: Record<GroupCompany["accent"], string> = {
+    blue: "bg-primary text-white",
+    orange: "bg-accent-orange text-white",
+    red: "bg-accent-red text-white",
+};
+---
+
+<section class="bg-tertiary py-20 md:py-28">
+    <Container>
+        <div class="mb-14 max-w-3xl" data-reveal-children>
+            <p class="text-sm font-bold text-primary">NUESTRAS EMPRESAS</p>
+            <h2 class="mt-4 text-4xl font-bold tracking-tighter text-primary md:text-6xl">
+                Tres especialidades. Una respuesta coordinada.
+            </h2>
+        </div>
+
+        <div class="space-y-6">
+            {
+                groupCompanies.map((company, index) => {
+                    const isExternal = company.website.startsWith("http");
+                    // En pantallas grandes la foto alterna entre izquierda y derecha.
+                    const imageGoesRight = index % 2 === 1;
+
+                    return (
+                        <article class="grid overflow-hidden rounded-3xl bg-white shadow-sm lg:grid-cols-2" data-reveal>
+                            <div class:list={["relative min-h-80 lg:min-h-130", imageGoesRight && "lg:order-2"]}>
+                                <Image
+                                    src={company.image}
+                                    alt={company.imageAlt}
+                                    width={800}
+                                    height={600}
+                                    widths={[400, 800, 1200]}
+                                    sizes="(min-width: 1024px) 45vw, 90vw"
+                                    fit="cover"
+                                    format="avif"
+                                    quality={55}
+                                    class="absolute inset-0 size-full object-cover"
+                                />
+                                <div class="absolute inset-0 bg-linear-to-t from-black/35 to-transparent" />
+                                <span class:list={["absolute left-6 top-6 rounded-full px-4 py-2 text-xs font-bold", accentClasses[company.accent]]}>
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
+                            </div>
+                            <div class="flex flex-col justify-center p-7 md:p-10 lg:p-14">
+                                <p class="text-xs font-bold uppercase tracking-widest text-primary">
+                                    {company.eyebrow}
+                                </p>
+                                <h3 class="mt-3 text-3xl font-bold tracking-tight text-primary md:text-5xl">
+                                    {company.name}
+                                </h3>
+                                <p class="mt-6 font-general-sans text-base leading-relaxed text-gray-600 md:text-lg">
+                                    {company.description}
+                                </p>
+                                <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                                    {company.services.map((service) => (
+                                        <li class="flex items-start gap-2 font-general-sans text-sm text-gray-700">
+                                            <span aria-hidden="true" class="mt-1 text-primary">●</span>
+                                            {service}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <a
+                                    href={company.website}
+                                    target={isExternal ? "_blank" : undefined}
+                                    rel={isExternal ? "noopener noreferrer" : undefined}
+                                    class="group mt-10 inline-flex min-h-12 w-fit items-center rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition hover:bg-secondary"
+                                >
+                                    {company.websiteLabel}
+                                    <MoveRight aria-hidden="true" class="ml-2 transition-transform group-hover:translate-x-1" />
+                                </a>
+                            </div>
+                        </article>
+                    );
+                })
+            }
+        </div>
+    </Container>
+</section>

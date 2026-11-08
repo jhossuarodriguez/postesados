@@ -1,0 +1,32 @@
+---
+import Container from "@/components/layout/Container.astro";
+import { integratedCapabilities } from "@/data/group";
+---
+
+<Container as="section" class="py-20 md:py-28">
+    <div class="flex flex-col items-start gap-10" data-reveal-children>
+        <p class="w-fit rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-xs font-bold text-primary md:text-sm">
+            ● Una visión integral
+        </p>
+        <h2 class="text-4xl font-medium leading-tight tracking-tighter text-primary md:text-6xl">
+            Del terreno a la <br /><span class="font-bold">estructura terminada.</span>
+        </h2>
+    </div>
+    <div class="mt-14 grid gap-4 md:grid-cols-3" data-reveal-children>
+        {
+            integratedCapabilities.map((capability) => (
+                <article class="group min-h-72 rounded-3xl bg-tertiary p-7 transition duration-300 hover:bg-primary md:p-8">
+                    <p class="text-sm font-bold text-primary group-hover:text-white">
+                        {capability.number}
+                    </p>
+                    <h3 class="text-2xl font-bold text-primary group-hover:text-white">
+                        {capability.title}
+                    </h3>
+                    <p class="mt-4 font-general-sans leading-relaxed text-gray-600 group-hover:text-white/80">
+                        {capability.description}
+                    </p>
+                </article>
+            ))
+        }
+    </div>
+</Container>

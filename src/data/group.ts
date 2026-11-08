@@ -1,3 +1,8 @@
+import type { ImageMetadata } from "astro";
+import imgVigaBulbT from "@/assets/images/projects/destacado_viga_pretensada_bulb_t_2.avif";
+import imgDrDrilling from "@/assets/images/group/drdrilling-grua.avif";
+import imgTenax from "@/assets/images/group/tenax-nave-industrial.avif";
+
 export interface GroupCompany {
     name: string;
     eyebrow: string;
@@ -5,7 +10,7 @@ export interface GroupCompany {
     services: string[];
     website: string;
     websiteLabel: string;
-    image: ImageMetadata | string;
+    image: ImageMetadata;
     imageAlt: string;
     accent: "blue" | "orange" | "red";
 }
@@ -41,7 +46,7 @@ export const groupCompanies: GroupCompany[] = [
         ],
         website: "https://drdrilling.com.do/",
         websiteLabel: "Visitar DR Drilling",
-        image: "https://drdrilling.com.do/storage/2026/08/grua_sobre_nosotros.avif",
+        image: imgDrDrilling,
         imageAlt: "Equipo especializado de ingeniería geotécnica de DR Drilling",
         accent: "red",
     },
@@ -58,8 +63,8 @@ export const groupCompanies: GroupCompany[] = [
         ],
         website: "https://tenaxconstruction.com.do/",
         websiteLabel: "Visitar Tenax Construction",
-        image: "https://www.tenaxconstruction.com.do/images/banner3.webp",
-        imageAlt: "Proyecto de construcción ejecutado por Tenax Construction",
+        image: imgTenax,
+        imageAlt: "Nave industrial en construcción de Tenax Construction",
         accent: "orange",
     },
 ];
@@ -84,5 +89,3 @@ export const integratedCapabilities = [
             "Producción controlada de elementos prefabricados, suministro de componentes especializados y montaje eficiente en obra.",
     },
 ];
-import type { ImageMetadata } from "astro";
-import imgVigaBulbT from "@/assets/images/projects/destacado_viga_pretensada_bulb_t_2.avif";
